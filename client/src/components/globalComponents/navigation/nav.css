@@ -83,12 +83,18 @@
   display: none;
   color: var(--grey-carbon);
   position: absolute;
-  font-size: 100%;
-  left: -150%;
+  font-family: geomanistUltra;
+  text-transform: capitalize;
+  font-size: 150%;
+  transition: 0.2s ease-out;
+  left: -200%;
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
   animation: 5.5s connexionAccessAnim;
+}
+.connexionAccess:hover {
+  scale: 1.2;
 }
 @keyframes connexionAccessAnim {
   0% {

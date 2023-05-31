@@ -203,245 +203,234 @@ export default function Home() {
   // SCROLL LISTENER //   // SCROLL LISTENER //   // SCROLL LISTENER //
 
   useEffect(() => {
-    onscroll = function () {
-      let h1Span = document.querySelectorAll('[data-data]');
-      let sections = document.querySelectorAll('section');
-      let imageSlider = document.querySelector('.imageSlider');
-      let section2 = sections[1];
-      let aside = document.querySelectorAll('aside');
-      let asidePosition = aside[0].getBoundingClientRect();
-      let welcomeSpan = document.querySelectorAll('.welcomeSpan');
-      let welcomeH2 = document.querySelector('.welcomeH2');
-      let welcomeH2Position = welcomeH2.getBoundingClientRect();
-      let welcomeH3 = document.querySelectorAll('.welcomeH3');
-      let home = document.querySelector('.Home');
-      actualScrollPourcent.current = (window.scrollY / home.offsetHeight) * 100;
+    if (window.location.pathname === '/') {
+      onscroll = function () {
+        let h1Span = document.querySelectorAll('[data-data]');
+        let sections = document.querySelectorAll('section');
+        let imageSlider = document.querySelector('.imageSlider');
+        let section2 = sections[1];
+        let aside = document.querySelectorAll('aside');
+        let asidePosition = aside[0].getBoundingClientRect();
+        let welcomeSpan = document.querySelectorAll('.welcomeSpan');
+        let welcomeH2 = document.querySelector('.welcomeH2');
+        let welcomeH2Position = welcomeH2.getBoundingClientRect();
+        let welcomeH3 = document.querySelectorAll('.welcomeH3');
+        let home = document.querySelector('.Home');
+        actualScrollPourcent.current =
+          (window.scrollY / home.offsetHeight) * 100;
 
-      // SCROLL ACTIONS FOR HEADER AND NAV //
+        // SCROLL ACTIONS FOR HEADER AND NAV //
 
-      {
-        if (browserName !== 'firefox') {
-          window.clearTimeout(isScrolling);
-          let drop2 = document.querySelectorAll('.drop2');
+        {
+          if (browserName !== 'firefox') {
+            window.clearTimeout(isScrolling);
+            let drop2 = document.querySelectorAll('.drop2');
 
-          drop2[0].style.animation = 'none';
-          drop2[1].style.animation = 'none';
-          // eslint-disable-next-line react-hooks/exhaustive-deps
-          isScrolling = setTimeout(() => {
-            drop2[0].style.animation = '';
-            drop2[1].style.animation = '';
-          }, 300);
-        }
+            drop2[0].style.animation = 'none';
+            drop2[1].style.animation = 'none';
+            // eslint-disable-next-line react-hooks/exhaustive-deps
+            isScrolling = setTimeout(() => {
+              drop2[0].style.animation = '';
+              drop2[1].style.animation = '';
+            }, 300);
+          }
 
-        let h2 = document.querySelector('h2');
+          let h2 = document.querySelector('h2');
 
-        h2.style.opacity = `${1 - 0.02 * window.scrollY}`;
-        for (let index = 0; index < h1Span.length; index++) {
-          if (index > 6) {
-            h1Span[index].style.transition = `ease-out ${
-              headerParallax[index] * 0.2
-            }s`;
-            h1Span[index].style.transform = `translateY(-${
-              window.scrollY * headerParallax[index] * 0.4
-            }px) `;
-          } else {
-            h1Span[index].style.transition = `ease-out ${
-              headerParallax[index] * 0.2
-            }s`;
-            h1Span[index].style.transform = ` translateY(calc(-${
-              window.scrollY * headerParallax[index] * 0.75
-            }px - ${h1Span[index].offsetHeight}px))`;
+          h2.style.opacity = `${1 - 0.02 * window.scrollY}`;
+          for (let index = 0; index < h1Span.length; index++) {
+            if (index > 6) {
+              h1Span[index].style.transition = `ease-out ${
+                headerParallax[index] * 0.2
+              }s`;
+              h1Span[index].style.transform = `translateY(-${
+                window.scrollY * headerParallax[index] * 0.4
+              }px) `;
+            } else {
+              h1Span[index].style.transition = `ease-out ${
+                headerParallax[index] * 0.2
+              }s`;
+              h1Span[index].style.transform = ` translateY(calc(-${
+                window.scrollY * headerParallax[index] * 0.75
+              }px - ${h1Span[index].offsetHeight}px))`;
+            }
           }
         }
-      }
-      // SCROLL ACTIONS FOR FIRST SECTION //
+        // SCROLL ACTIONS FOR FIRST SECTION //
 
-      if (
-        window.scrollY > home.offsetHeight * 0.08 &&
-        countForWelcomeSpanAfter < 1
-      ) {
-        const h1After = `
+        if (
+          window.scrollY > home.offsetHeight * 0.08 &&
+          countForWelcomeSpanAfter < 1
+        ) {
+          const h1After = `
       .Home main section:first-of-type h2 span::after {
         display: initial;
       }
     `;
-        injectStyle(h1After);
-        countForWelcomeSpanAfter++;
-      }
-      if (
-        window.scrollY > home.offsetHeight * 0.05 &&
-        window.scrollY < home.offsetHeight * 0.07
-      ) {
-        welcomeH2.style.display = 'block';
-        welcomeH2.style.translate = '0%';
-      } else if (
-        window.scrollY > home.offsetHeight * 0.07 &&
-        welcomeH2Position.top + welcomeH2Position.height + 10 <
-          asidePosition.top
-      ) {
-        welcomeH2.style.translate = '0%';
-        if (browserName !== 'firefox') {
-          setTimeout(() => {
+          injectStyle(h1After);
+          countForWelcomeSpanAfter++;
+        }
+        if (
+          window.scrollY > home.offsetHeight * 0.05 &&
+          window.scrollY < home.offsetHeight * 0.07
+        ) {
+          welcomeH2.style.display = 'block';
+          welcomeH2.style.translate = '0%';
+        } else if (
+          window.scrollY > home.offsetHeight * 0.07 &&
+          welcomeH2Position.top + welcomeH2Position.height + 10 <
+            asidePosition.top
+        ) {
+          welcomeH2.style.translate = '0%';
+          if (browserName !== 'firefox') {
+            setTimeout(() => {
+              welcomeH2.style.transform = ` translateY(${
+                window.scrollY - home.offsetHeight * 0.07
+              }px)`;
+            }, 10);
+          } else
             welcomeH2.style.transform = ` translateY(${
               window.scrollY - home.offsetHeight * 0.07
             }px)`;
-          }, 10);
-        } else
-          welcomeH2.style.transform = ` translateY(${
-            window.scrollY - home.offsetHeight * 0.07
-          }px)`;
 
-        for (let index = 0; index < welcomeSpan.length; index++) {
-          welcomeSpan[index].style.scale = '1';
-        }
-      } else if (
-        asidePosition.top + asidePosition.height >
-          welcomeH2Position.height *
-            (window.matchMedia('(max-aspect-ratio: 8/10)').matches ? 1 : 0.5) &&
-        window.scrollY > home.offsetHeight * 0.05
-      ) {
-        window.clearTimeout(isScrollingBis);
-        for (let i = 0; i < welcomeH3.length; i++) {
-          welcomeH3[i].style.paddingTop = `15%`;
-        }
-        welcomeH2.style.paddingBottom = '8%';
-        isScrollingBis = setTimeout(() => {
+          for (let index = 0; index < welcomeSpan.length; index++) {
+            welcomeSpan[index].style.scale = '1';
+          }
+        } else if (
+          asidePosition.top + asidePosition.height >
+            welcomeH2Position.height *
+              (window.matchMedia('(max-aspect-ratio: 8/10)').matches
+                ? 1
+                : 0.5) &&
+          window.scrollY > home.offsetHeight * 0.05
+        ) {
+          window.clearTimeout(isScrollingBis);
           for (let i = 0; i < welcomeH3.length; i++) {
-            welcomeH3[i].style.paddingTop = `12%`;
+            welcomeH3[i].style.paddingTop = `15%`;
           }
-          welcomeH2.style.paddingBottom = '2%';
-        }, 100);
-        if (window.matchMedia('(max-aspect-ratio: 8/10)').matches) {
-          for (let index = 0; index < welcomeSpan.length; index++) {
-            welcomeSpan[index].style.scale = `${
-              welcomeSpan[index].style.scale === 0 ? '' : 0
-            }`;
+          welcomeH2.style.paddingBottom = '8%';
+          isScrollingBis = setTimeout(() => {
+            for (let i = 0; i < welcomeH3.length; i++) {
+              welcomeH3[i].style.paddingTop = `12%`;
+            }
+            welcomeH2.style.paddingBottom = '2%';
+          }, 100);
+          if (window.matchMedia('(max-aspect-ratio: 8/10)').matches) {
+            for (let index = 0; index < welcomeSpan.length; index++) {
+              welcomeSpan[index].style.scale = `${
+                welcomeSpan[index].style.scale === 0 ? '' : 0
+              }`;
+            }
+          } else {
+            for (let index = 0; index < welcomeSpan.length; index++) {
+              welcomeSpan[index].style.scale = `${
+                welcomeSpan[index].style.scale === 1 ? '' : 1
+              }`;
+            }
           }
-        } else {
-          for (let index = 0; index < welcomeSpan.length; index++) {
-            welcomeSpan[index].style.scale = `${
-              welcomeSpan[index].style.scale === 1 ? '' : 1
-            }`;
-          }
-        }
-        welcomeH2.style.translate = '-55%';
-        if (browserName !== 'firefox') {
-          setTimeout(() => {
+          welcomeH2.style.translate = '-55%';
+          if (browserName !== 'firefox') {
+            setTimeout(() => {
+              welcomeH2.style.transform = ` translateY(${
+                window.scrollY - home.offsetHeight * 0.06
+              }px)`;
+            }, 10);
+          } else
             welcomeH2.style.transform = ` translateY(${
               window.scrollY - home.offsetHeight * 0.06
             }px)`;
-          }, 10);
-        } else
-          welcomeH2.style.transform = ` translateY(${
-            window.scrollY - home.offsetHeight * 0.06
-          }px)`;
-      } else {
-        welcomeH2.style.translate = '0%';
+        } else {
+          welcomeH2.style.translate = '0%';
+
+          for (let index = 0; index < welcomeSpan.length; index++) {
+            welcomeSpan[index].style.scale = '1';
+          }
+        }
 
         for (let index = 0; index < welcomeSpan.length; index++) {
-          welcomeSpan[index].style.scale = '1';
-        }
-      }
-
-      for (let index = 0; index < welcomeSpan.length; index++) {
-        welcomeSpan[index].style.opacity = '1';
-        welcomeSpan[index].style.top = `
+          welcomeSpan[index].style.opacity = '1';
+          welcomeSpan[index].style.top = `
            calc(${2 * welcomeSpan[index].offsetHeight}px + ${
-          welcomeSpan[index].offsetHeight * index
-        }px)`;
-        welcomeSpan[index].style.transform = ` translateY(${
-          -window.scrollY * 0.1
-        }%)`;
-      }
+            welcomeSpan[index].offsetHeight * index
+          }px)`;
+          welcomeSpan[index].style.transform = ` translateY(${
+            -window.scrollY * 0.1
+          }%)`;
+        }
 
-      // SCROLL ACTIONS FOR SECOND SECTION //
-      {
-        let centerContentSection2 = document.querySelector(
-          '.centerContentSection2'
-        );
-        let h4Center = centerContentSection2.querySelector('h4');
-        let figcaptions = document.querySelectorAll('figcaption');
-        let figures = document.querySelectorAll('figure');
-        let h3 = section2.querySelectorAll('h3');
-        let section2Open = section2Top.current + welcomeH2Position.height * 2.5;
-        if (window.scrollY > section2Open) {
-          section2.style.position = 'fixed'
-            ? ''
-            : (section2.style.position = 'fixed') &&
-              (section2.style.top = '0') &&
-              (section2.style.left = '0') &&
-              (h3[0].style.transform = 'translateX(0)') &&
-              (h3[1].style.transform = 'translateX(0)');
-          section2.style.position = 'fixed';
-          section2.style.top = '0';
-          section2.style.left = '0';
-          h3[0].style.transform = 'translateX(0)';
-          h3[1].style.transform = 'translateX(0)';
-          if (window.scrollY > section2Open + 0.02 * home.offsetHeight) {
-            h3[0].style.top = `-${
-              (window.scrollY - section2Open + 0.02 * home.offsetHeight) * 0.2
-            }px`;
-            h3[1].style.bottom = `-${
-              (window.scrollY - section2Open + 0.02 * home.offsetHeight) * 0.2
-            }px`;
-            if (
-              window.scrollY > section2Open + 0.02 * home.offsetHeight &&
-              window.scrollY < section2Open + 0.025 * home.offsetHeight
-            ) {
-              h4Center.style.opacity = 0;
-              h4Center.style.scale = 0;
-            } else if (
-              window.scrollY > section2Open + 0.025 * home.offsetHeight &&
-              window.scrollY < section2Open + 0.15 * home.offsetHeight
-            ) {
-              let distanceToScale =
-                section2Open +
-                0.15 * home.offsetHeight -
-                (section2Open + 0.025 * home.offsetHeight);
-              // setTimeout(() => {
-              h4Center.style.scale = `${
-                (window.scrollY +
-                  distanceToScale -
-                  (section2Open + 0.15 * home.offsetHeight)) /
-                distanceToScale
-              }`;
+        // SCROLL ACTIONS FOR SECOND SECTION //
+        {
+          let centerContentSection2 = document.querySelector(
+            '.centerContentSection2'
+          );
+          let h4Center = centerContentSection2.querySelector('h4');
+          let figcaptions = document.querySelectorAll('figcaption');
+          let figures = document.querySelectorAll('figure');
+          let h3 = section2.querySelectorAll('h3');
+          let section2Open =
+            section2Top.current + welcomeH2Position.height * 2.5;
+          if (window.scrollY > section2Open) {
+            section2.style.position = 'fixed'
+              ? ''
+              : (section2.style.position = 'fixed') &&
+                (section2.style.top = '0') &&
+                (section2.style.left = '0') &&
+                (h3[0].style.transform = 'translateX(0)') &&
+                (h3[1].style.transform = 'translateX(0)');
+            section2.style.position = 'fixed';
+            section2.style.top = '0';
+            section2.style.left = '0';
+            h3[0].style.transform = 'translateX(0)';
+            h3[1].style.transform = 'translateX(0)';
+            if (window.scrollY > section2Open + 0.02 * home.offsetHeight) {
+              h3[0].style.top = `-${
+                (window.scrollY - section2Open + 0.02 * home.offsetHeight) * 0.2
+              }px`;
+              h3[1].style.bottom = `-${
+                (window.scrollY - section2Open + 0.02 * home.offsetHeight) * 0.2
+              }px`;
+              if (
+                window.scrollY > section2Open + 0.02 * home.offsetHeight &&
+                window.scrollY < section2Open + 0.025 * home.offsetHeight
+              ) {
+                h4Center.style.opacity = 0;
+                h4Center.style.scale = 0;
+              } else if (
+                window.scrollY > section2Open + 0.025 * home.offsetHeight &&
+                window.scrollY < section2Open + 0.15 * home.offsetHeight
+              ) {
+                let distanceToScale =
+                  section2Open +
+                  0.15 * home.offsetHeight -
+                  (section2Open + 0.025 * home.offsetHeight);
+                // setTimeout(() => {
+                h4Center.style.scale = `${
+                  (window.scrollY +
+                    distanceToScale -
+                    (section2Open + 0.15 * home.offsetHeight)) /
+                  distanceToScale
+                }`;
 
-              h4Center.style.opacity = `${
-                (window.scrollY +
-                  distanceToScale -
-                  (section2Open + 0.15 * home.offsetHeight)) /
-                distanceToScale
-              }`;
-              // }, 10);
-              centerContentSection2.scrollLeft = 0;
-            } else if (
-              window.scrollY > section2Open + 0.15 * home.offsetHeight &&
-              window.scrollY < section2Open + 0.3 * home.offsetHeight
-            ) {
-              let distanceToTranslate =
-                section2Open +
-                0.3 * home.offsetHeight -
-                (section2Open + 0.15 * home.offsetHeight);
+                h4Center.style.opacity = `${
+                  (window.scrollY +
+                    distanceToScale -
+                    (section2Open + 0.15 * home.offsetHeight)) /
+                  distanceToScale
+                }`;
+                // }, 10);
+                centerContentSection2.scrollLeft = 0;
+              } else if (
+                window.scrollY > section2Open + 0.15 * home.offsetHeight &&
+                window.scrollY < section2Open + 0.3 * home.offsetHeight
+              ) {
+                let distanceToTranslate =
+                  section2Open +
+                  0.3 * home.offsetHeight -
+                  (section2Open + 0.15 * home.offsetHeight);
 
-              // 125 = 125 % of inner width
-              let distanceInPourcent = 125 / distanceToTranslate;
-              if (browserName === 'firefox') {
-                h4Center.style.transform = `translate(${
-                  -50 -
-                  (window.scrollY - (section2Open + 0.15 * home.offsetHeight)) *
-                    distanceInPourcent
-                }%, -50%)`;
-
-                imageSlider.style.transform = `translate(${
-                  (-(
-                    window.scrollY -
-                    (section2Open + 0.15 * home.offsetHeight)
-                  ) *
-                    distanceInPourcent) /
-                  8
-                }%, 0%)`;
-              } else {
-                setTimeout(() => {
+                // 125 = 125 % of inner width
+                let distanceInPourcent = 125 / distanceToTranslate;
+                if (browserName === 'firefox') {
                   h4Center.style.transform = `translate(${
                     -50 -
                     (window.scrollY -
@@ -457,60 +446,78 @@ export default function Home() {
                       distanceInPourcent) /
                     8
                   }%, 0%)`;
-                }, 20);
-              }
-            } else if (
-              window.scrollY > section2Open + 0.3 * home.offsetHeight &&
-              window.scrollY < section2Open + 0.9 * home.offsetHeight
-            ) {
-              window.clearTimeout(isScrollingTer);
-              for (let i = 0; i < figures.length; i++) {
-                figures[i].style.scale = `0.75`;
-              }
+                } else {
+                  setTimeout(() => {
+                    h4Center.style.transform = `translate(${
+                      -50 -
+                      (window.scrollY -
+                        (section2Open + 0.15 * home.offsetHeight)) *
+                        distanceInPourcent
+                    }%, -50%)`;
 
-              isScrollingTer = setTimeout(() => {
-                for (let i = 0; i < figures.length; i++) {
-                  figures[i].style.scale = `1`;
+                    imageSlider.style.transform = `translate(${
+                      (-(
+                        window.scrollY -
+                        (section2Open + 0.15 * home.offsetHeight)
+                      ) *
+                        distanceInPourcent) /
+                      8
+                    }%, 0%)`;
+                  }, 20);
                 }
-              }, 300);
-              let distanceToTranslate =
-                section2Open +
-                0.9 * home.offsetHeight -
-                (section2Open + 0.3 * home.offsetHeight);
+              } else if (
+                window.scrollY > section2Open + 0.3 * home.offsetHeight &&
+                window.scrollY < section2Open + 0.9 * home.offsetHeight
+              ) {
+                window.clearTimeout(isScrolling);
+                for (let i = 0; i < figures.length; i++) {
+                  figures[i].style.scale = `0.75`;
+                }
 
-              centerContentSection2.scrollLeft = `${
-                -windowWidth * 8 +
-                ((window.scrollY +
-                  distanceToTranslate -
-                  (section2Open + 0.3 * home.offsetHeight)) /
-                  distanceToTranslate) *
-                  windowWidth *
-                  8
-              } `;
-              for (let i = 0; i < figcaptions.length; i++) {
-                figcaptions[i].style.transform = `translateY(${
-                  (figures[i].getBoundingClientRect().right /
-                    figures[i].getBoundingClientRect().width) *
-                  100
-                }%)`;
+                isScrolling = setTimeout(() => {
+                  for (let i = 0; i < figures.length; i++) {
+                    figures[i].style.scale = `1`;
+                  }
+                }, 300);
+                let distanceToTranslate =
+                  section2Open +
+                  0.9 * home.offsetHeight -
+                  (section2Open + 0.3 * home.offsetHeight);
+
+                centerContentSection2.scrollLeft = `${
+                  -windowWidth * 8 +
+                  ((window.scrollY +
+                    distanceToTranslate -
+                    (section2Open + 0.3 * home.offsetHeight)) /
+                    distanceToTranslate) *
+                    windowWidth *
+                    8
+                } `;
+                for (let i = 0; i < figcaptions.length; i++) {
+                  figcaptions[i].style.transform = `translateY(${
+                    (figures[i].getBoundingClientRect().right /
+                      figures[i].getBoundingClientRect().width) *
+                    100
+                  }%)`;
+                }
+                centerContentSection2.style.opacity = '1';
+              } else {
+                centerContentSection2.style.opacity = '0.05';
               }
-              centerContentSection2.style.opacity = '1';
             } else {
-              centerContentSection2.style.opacity = '0.05';
+              h3[0].style.top = `0`;
+              h3[1].style.bottom = `0`;
             }
           } else {
-            h3[0].style.top = `0`;
-            h3[1].style.bottom = `0`;
+            section2.style.position = 'absolute';
+            section2.style.top = `${
+              welcomeH2Position.height * 2.5 + section2Top.current
+            }px`;
+            section2.style.left = '0';
           }
-        } else {
-          section2.style.position = 'absolute';
-          section2.style.top = `${
-            welcomeH2Position.height * 2.5 + section2Top.current
-          }px`;
-          section2.style.left = '0';
         }
-      }
-    };
+      };
+    }
   }, []);
 
   return (
