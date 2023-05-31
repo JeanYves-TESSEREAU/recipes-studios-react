@@ -1,0 +1,549 @@
+.firstNav {
+  position: fixed;
+  top: 3%;
+  right: 3%;
+  width: max(6vw, 65px);
+  height: max(6vw, 65px);
+  border-radius: 56% 44% 60% 40% / 52% 43% 57% 48%;
+  box-shadow: -2.5vw 4vw 1.2vw 0 rgba(0, 0, 0, 0.3);
+  background: linear-gradient(
+    0deg,
+    var(--blue-pastel) 0%,
+    var(--red-pastel) 90%
+  );
+  animation: navBorderTransform 6s linear infinite;
+  z-index: 10;
+}
+.nav {
+  position: fixed;
+  top: 3%;
+  right: 3%;
+  width: max(6vw, 65px);
+  height: max(6vw, 65px);
+  border-radius: 56% 44% 60% 40% / 52% 43% 57% 48%;
+  background: linear-gradient(
+    0deg,
+    var(--blue-pastel) 0%,
+    var(--red-pastel) 90%
+  );
+  animation: navBorderTransform2 6s linear infinite;
+  z-index: -1;
+}
+/* @keyframes navEntrance {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+} */
+@keyframes navBorderTransform {
+  0%,
+  100% {
+    border-radius: 56% 44% 60% 40% / 52% 43% 57% 48%;
+  }
+  15% {
+    border-radius: 51% 49% 46% 54% / 41% 57% 43% 59%;
+  }
+  30% {
+    border-radius: 41% 59% 49% 51% / 60% 63% 37% 40%;
+  }
+  45% {
+    border-radius: 56% 44% 41% 59% / 48% 52% 48% 52%;
+  }
+  65% {
+    border-radius: 45% 55% 60% 40% / 44% 63% 37% 56%;
+  }
+  85% {
+    border-radius: 51% 49% 46% 54% / 41% 57% 43% 59%;
+  }
+}
+@keyframes navBorderTransform2 {
+  0%,
+  100% {
+    border-radius: 56% 44% 60% 40% / 52% 43% 57% 48%;
+  }
+  15% {
+    border-radius: 51% 49% 46% 54% / 41% 57% 43% 59%;
+  }
+  30% {
+    border-radius: 41% 59% 49% 51% / 60% 63% 37% 40%;
+  }
+  45% {
+    border-radius: 56% 44% 41% 59% / 48% 52% 48% 52%;
+  }
+  65% {
+    border-radius: 45% 55% 60% 40% / 44% 63% 37% 56%;
+  }
+  85% {
+    border-radius: 51% 49% 46% 54% / 41% 57% 43% 59%;
+  }
+}
+.connexionAccess {
+  display: none;
+  color: var(--grey-carbon);
+  position: absolute;
+  font-size: 100%;
+  left: -150%;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  animation: 5.5s connexionAccessAnim;
+}
+@keyframes connexionAccessAnim {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+nav .juiceDrop {
+  -webkit-filter: url('#juice');
+  filter: url('#juice');
+  position: absolute;
+  width: max(5vw, 60px);
+  top: 0;
+  left: 3px;
+  bottom: 0;
+  z-index: -2;
+}
+
+.drop1,
+.drop2 {
+  width: 40%;
+  height: 35%;
+  border-radius: 50%;
+  position: absolute;
+  left: 40%;
+  top: 70%;
+  background-color: var(--blue-pastel);
+}
+.drop1 {
+  width: 90%;
+  height: 16%;
+  top: 72%;
+  left: 10%;
+  border-radius: 0;
+}
+
+.drop2 {
+  animation: drop 2.3s cubic-bezier(1, 0.19, 0.66, 0.12) infinite;
+}
+.leftDropH2 {
+  display: none;
+  text-align: center;
+  position: absolute;
+  text-transform: capitalize;
+  font-family: 'GeomanistUltra';
+  max-width: 50%;
+  letter-spacing: 0vw;
+  color: rgb(255, 255, 255);
+  top: 20%;
+  left: 5%;
+  font-size: 7vw;
+  height: fit-content;
+  animation: drop2H2LeftAnim 1s ease-in-out;
+}
+@keyframes drop2H2LeftAnim {
+  0% {
+    top: 0%;
+    transform: translateY(-100%) scale(0);
+  }
+  100% {
+    transform: translateY(0%) scale(1);
+  }
+}
+.drop2:last-of-type {
+  animation: drop 2.45s cubic-bezier(1, 0.19, 0.66, 0.12) infinite;
+}
+@keyframes drop {
+  0% {
+    top: 65%;
+    width: 40%;
+  }
+  100% {
+    top: 200%;
+    width: 20%;
+  }
+}
+/* @keyframes dropOpenedFirstOfType {
+  0% {
+    top: 55%;
+    width: 40%;
+    height: 35%;
+    left: 40%;
+  }
+  15% {
+    top: 110%;
+    left: 40%;
+    width: 40%;
+    height: 35%;
+  }
+  25% {
+    left: 0%;
+    width: 40%;
+    height: 35%;
+  }
+  5%,
+  35% {
+    border-radius: 56% 44% 60% 40% / 52% 43% 57% 48%;
+  }
+  10%,
+  40% {
+    border-radius: 51% 49% 46% 54% / 41% 57% 43% 59%;
+  }
+  35%,
+  45% {
+    border-radius: 41% 59% 49% 51% / 60% 63% 37% 40%;
+  }
+  20%,
+  50% {
+    border-radius: 56% 44% 41% 59% / 48% 52% 48% 52%;
+  }
+  25%,
+  55% {
+    border-radius: 45% 55% 60% 40% / 44% 63% 37% 56%;
+  }
+  30%,
+  65% {
+    border-radius: 51% 49% 46% 54% / 41% 57% 43% 59%;
+  }
+  75% {
+    top: 40vh;
+    width: 100%;
+    height: 100%;
+    left: calc(-91vw + 130%);
+    border-radius: 45% 55% 60% 40% / 44% 63% 37% 56%;
+  }
+  80% {
+    top: 40vh;
+  }
+  100% {
+    border-radius: 0% 0% 0% 0% / 0% 0% 0% 0%;
+    top: -4vh;
+    width: 52vw;
+    height: 104vh;
+    left: calc(-100vw + 100% + 3vw);
+  }
+} */
+@keyframes dropOpenedFirstOfType {
+  0% {
+    top: 55%;
+    width: 40%;
+    height: 35%;
+    left: 40%;
+  }
+  15% {
+    transform: translateY(55%);
+  }
+  25% {
+    transform: translateX(-40%);
+  }
+  5%,
+  35% {
+    border-radius: 56% 44% 60% 40% / 52% 43% 57% 48%;
+  }
+  10%,
+  40% {
+    border-radius: 51% 49% 46% 54% / 41% 57% 43% 59%;
+  }
+  35%,
+  45% {
+    border-radius: 41% 59% 49% 51% / 60% 63% 37% 40%;
+  }
+  20%,
+  50% {
+    border-radius: 56% 44% 41% 59% / 48% 52% 48% 52%;
+  }
+  25%,
+  55% {
+    border-radius: 45% 55% 60% 40% / 44% 63% 37% 56%;
+  }
+  30%,
+  65% {
+    border-radius: 51% 49% 46% 54% / 41% 57% 43% 59%;
+  }
+  75% {
+    top: 40vh;
+    width: 100%;
+    height: 100%;
+    left: calc(-91vw + 130%);
+    border-radius: 45% 55% 60% 40% / 44% 63% 37% 56%;
+  }
+  80% {
+    top: 40vh;
+  }
+  100% {
+    border-radius: 0% 0% 0% 0% / 0% 0% 0% 0%;
+    top: -4vh;
+    width: 52vw;
+    height: 104vh;
+    left: calc(-100vw + 100% + 3vw);
+  }
+}
+@keyframes dropOpenedLastOfType {
+  0% {
+    top: 65%;
+    width: 40%;
+    height: 35%;
+    left: unset;
+    right: 30%;
+  }
+  8% {
+    right: 30%;
+    width: 40%;
+    height: 35%;
+  }
+  5%,
+  35% {
+    border-radius: 56% 44% 60% 40% / 52% 43% 57% 48%;
+  }
+  10%,
+  40% {
+    border-radius: 51% 49% 46% 54% / 41% 57% 43% 59%;
+  }
+  35%,
+  45% {
+    border-radius: 41% 59% 49% 51% / 60% 63% 37% 40%;
+  }
+  20%,
+  50% {
+    border-radius: 56% 44% 41% 59% / 48% 52% 48% 52%;
+  }
+  25%,
+  55% {
+    border-radius: 45% 55% 60% 40% / 44% 63% 37% 56%;
+  }
+  30%,
+  65% {
+    border-radius: 51% 49% 46% 54% / 41% 57% 43% 59%;
+  }
+  75% {
+    top: 40vh;
+    width: 100%;
+    height: 100%;
+    border-radius: 45% 55% 60% 40% / 44% 63% 37% 56%;
+  }
+  80% {
+    top: 40vh;
+    right: 30%;
+  }
+  100% {
+    border-radius: 0;
+    top: -4vh;
+    width: 52vw;
+    height: 104vh;
+    right: -6vw;
+  }
+}
+
+.firstNav ul {
+  position: absolute;
+  right: 25%;
+  top: 15%;
+}
+.firstNav ul li {
+  cursor: pointer;
+  user-select: none;
+  font-family: 'Geomanist-Light';
+  color: white;
+  margin: 0;
+  font-size: max(1.25vw, 15px);
+  list-style: none;
+  transition: 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.li2 {
+  display: none;
+  position: absolute;
+  top: 200%;
+  overflow: hidden;
+  width: 40vw;
+  max-height: max-content;
+}
+.li2 a {
+  text-decoration: none;
+}
+.li2 a > p {
+  margin: 0;
+  max-height: max-content;
+  word-wrap: break-word;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: 'GeomanistBold';
+  background-color: var(--grey-carbon);
+  color: transparent;
+  text-shadow: 0 0.1vw 0.15vw rgb(68, 66, 66);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  font-size: max(5.5vw, 30px);
+  transition: 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+  animation: li2Anim1 0.5s;
+}
+@keyframes li2Anim1 {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+.firstNav ul li:first-of-type::before {
+  position: absolute;
+  content: '';
+  bottom: 100%;
+  left: 50%;
+  width: 50%;
+  height: 3%;
+  border-radius: 1vw;
+  background-color: white;
+  transition: 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+  animation: liBarAnim 2s cubic-bezier(0.175, 0.885, 0.32, 1.275) infinite;
+}
+
+@keyframes rightBodyH2Anim {
+  from {
+    left: -100%;
+  }
+  75% {
+    left: -100%;
+  }
+  100% {
+    left: 0%;
+  }
+}
+.firstNav ul li:first-of-type::after {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  content: '';
+  width: 50%;
+  height: 3%;
+  border-radius: 1vw;
+  background-color: white;
+  animation: liBarAnim 2s cubic-bezier(0.175, 0.885, 0.32, 1.275) infinite;
+  animation-delay: 0.2s;
+  transition: 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.firstNav ul li:first-of-type:hover::before {
+  animation: none;
+  bottom: 115%;
+}
+
+.firstNav ul li:first-of-type:hover::after {
+  animation: none;
+  top: 115%;
+}
+
+@keyframes liBarAnim {
+  0%,
+  100% {
+    width: 50%;
+  }
+  50% {
+    width: 5%;
+  }
+}
+
+/*   -----    HERE IS THE COSMETIC FOR MOBILE FRIENDLY (phones) AND RATIO max 8/10  -----    */
+
+@media (max-aspect-ratio: 8/10) {
+  .firstNav ul {
+    top: 13%;
+  }
+  .li2 {
+    top: 400%;
+    width: 47vw;
+  }
+  .drop2 {
+    animation: drop2 2.3s cubic-bezier(1, 0.19, 0.66, 0.12) infinite;
+  }
+  .drop2:last-of-type {
+    animation: drop2 2.45s cubic-bezier(1, 0.19, 0.66, 0.12) infinite;
+  }
+  @keyframes drop2 {
+    0% {
+      top: 65%;
+      width: 45%;
+    }
+
+    100% {
+      top: 300%;
+      width: 25%;
+    }
+  }
+}
+
+/*   -----    HERE IS THE COSMETIC FOR MOBILE FRIENDLY LANDSCAPE (phones) AND RATIO max 10/5  -----    */
+
+@media (min-aspect-ratio: 10/5) and (max-width: 800px) {
+  .firstNav {
+    position: fixed;
+    top: 3%;
+    right: 3%;
+    width: max(5vw, 50px);
+    height: max(5vw, 50px);
+  }
+  .nav {
+    position: fixed;
+    top: 3%;
+    right: 3%;
+    width: max(5vw, 50px);
+    height: max(5vw, 50px);
+  }
+  .li2 {
+    top: 80%;
+  }
+  .firstNav .juiceDrop {
+    width: max(3vw, 50px);
+    top: 0;
+    left: -3%;
+    bottom: 0;
+  }
+  .drop2 {
+    animation: drop3 2.3s cubic-bezier(1, 0.19, 0.66, 0.12) infinite;
+  }
+  .drop2:last-of-type {
+    animation: drop3 2.45s cubic-bezier(1, 0.19, 0.66, 0.12) infinite;
+  }
+  @keyframes drop3 {
+    0% {
+      top: 55%;
+      width: 40%;
+    }
+
+    100% {
+      top: 300%;
+      width: 20%;
+    }
+  }
+
+  .firstNav ul {
+    top: 8%;
+    right: 20%;
+  }
+  .firstNav ul li {
+    font-size: max(1.55vw, 10px);
+  }
+  n.firstNavav ul li:first-of-type::after,
+  na.firstNavv ul li:first-of-type::before {
+    left: 58%;
+    width: 40%;
+    animation: liBarAnim-10-5 2s cubic-bezier(0.175, 0.885, 0.32, 1.275)
+      infinite;
+  }
+  @keyframes liBarAnim-10-5 {
+    0%,
+    100% {
+      width: 40%;
+    }
+    50% {
+      width: 4%;
+    }
+  }
+}

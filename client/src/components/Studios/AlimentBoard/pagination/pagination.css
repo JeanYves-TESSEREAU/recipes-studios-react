@@ -1,0 +1,666 @@
+.openTable ~ .Pagination {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  left: 19vw;
+  align-items: center;
+  bottom: 3vh;
+  transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 1s;
+  animation: pagination 4s cubic-bezier(0, 0, 0.72, 1.375);
+  z-index: 3;
+}
+@keyframes pagination {
+  from {
+    opacity: 0;
+    bottom: 3vh;
+    transform: scale(0.5);
+  }
+  20% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+    bottom: 3vh;
+    transform: scale(1);
+  }
+}
+.closeTable ~ .Pagination {
+  display: none;
+}
+.paginationNav {
+  visibility: visible;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  transform: scale(0.9);
+  bottom: 1vh;
+  margin-right: 30vw;
+  transition: cubic-bezier(0.175, 2, 0.42, 1.1) 1.15s;
+  transition-delay: 0.2s;
+  opacity: 1;
+  -webkit-box-reflect: below -12% linear-gradient(0deg, rgb(3, 3, 3) 5%, rgba(
+          0,
+          0,
+          0,
+          0.248
+        )
+        11%, rgba(0, 0, 0, 0.1) 28%, rgba(0, 0, 0, 0) 100%);
+  transform: perspective(52vw) rotateY(-25deg);
+}
+
+.Pagination label {
+  font-size: max(1.3vw, 15px);
+  font-family: 'Geomanist-Light';
+  position: absolute;
+  transform: perspective(52vw) rotateY(15deg) rotateZ(-3deg);
+  width: 33vw;
+  color: #ccf7ea;
+  backdrop-filter: blur(0.5em);
+  background-color: rgba(87, 87, 87, 0.1);
+  border-radius: 10px;
+  display: flex;
+  left: -15.5%;
+  bottom: 12vh;
+  white-space: nowrap;
+  align-items: center;
+  text-align: center;
+  justify-content: space-around;
+  margin: 0.2vw;
+  animation-name: label;
+  animation-duration: 5s;
+}
+@keyframes label {
+  from {
+    opacity: 0;
+  }
+  80% {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.totalItems {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Geomanist-ExtraLight', 'Geomanist-Light';
+  font-size: max(1.3vw, 13px);
+  color: rgb(115, 218, 192);
+  left: 57vw;
+  bottom: 61vh;
+  animation-name: totalItems;
+  animation-duration: 5s;
+  border-radius: 0.3em;
+  z-index: 3;
+}
+@keyframes totalItems {
+  from {
+    opacity: 0;
+  }
+  80% {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.Pagination > label > input {
+  font-family: 'GeomanistRegular';
+  color: black;
+  width: 3.5vw;
+  min-width: 30px;
+  font-size: max(1.2vw, 12px);
+  min-height: 110%;
+  z-index: 10;
+}
+.paginationNav > button {
+  margin-top: 9vw;
+  color: rgba(11, 6, 31);
+  padding: 1vw;
+  font-family: 'GeomanistUltra';
+  background-color: rgb(247, 247, 247);
+  /* box-shadow: 0em 0.4em 0.2em rgba(0, 0, 30, 0.5); */
+  font-size: max(2vw, 25px);
+  border-style: none;
+  border-radius: 30%;
+}
+.paginationNav > button:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+  transition: 0.2s;
+}
+.paginationNav > button:active {
+  transform: scale(0.5);
+  transition: 0.3s;
+}
+.allIndex {
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  display: flex;
+  justify-content: stretch;
+  align-content: center;
+  align-items: center;
+  width: 29vw;
+  height: 15vw;
+
+  margin: 1vw;
+}
+.pageIndexPrevious {
+  left: 0vw;
+  cursor: pointer;
+  transform: perspective(32vw) rotateY(-60deg);
+  display: flex;
+  bottom: -0.6vh;
+  border: solid 0.08em rgba(255, 253, 253, 0.589);
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  position: absolute;
+  font-size: max(1.8vw, 15px);
+  color: rgb(0, 0, 0);
+  font-family: 'GeomanistUltra';
+  background-color: rgba(255, 255, 255, 0.596);
+  backdrop-filter: blur(10em);
+  border-radius: 5%;
+  box-shadow: 0em 0.2em 0.2em rgba(0, 0, 30, 0.3);
+  width: 10vw;
+  height: 6.5vw;
+  min-width: 55px;
+  min-height: 42px;
+  transition: ease-in-out 1s;
+}
+.pageIndexNext {
+  left: calc(100% - 10vw);
+  cursor: pointer;
+  display: flex;
+  border: solid 0.08em rgba(255, 255, 255, 0.63);
+  background-color: rgba(255, 255, 255, 0.596);
+  box-shadow: 0em 0.2em 0.1em rgba(0, 0, 30, 0.3);
+  transform: perspective(32vw) rotateY(60deg);
+  bottom: -0.6vh;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  position: absolute;
+  font-size: max(1.8vw, 15px);
+  color: rgb(0, 0, 0);
+  font-family: 'GeomanistUltra';
+  backdrop-filter: blur(10em);
+  border-radius: 5%;
+  width: 10vw;
+  height: 6.5vw;
+  min-width: 55px;
+  min-height: 42px;
+  transition: ease-in-out 1s;
+}
+
+.pageIndexCurrent {
+  backdrop-filter: blur(20em);
+  cursor: pointer;
+  position: absolute;
+  border: solid 0.08em rgb(200, 250, 212);
+  bottom: 0;
+  white-space: nowrap;
+  transform: perspective(32vw) rotateY(0deg);
+  display: inline-block;
+  text-align: center;
+  left: calc(50% - 4vw);
+  font-family: 'GeomanistUltra';
+  background: rgba(101, 167, 139, 0.2);
+  border-radius: 5%;
+  box-shadow: 0.4em 3em 0.8em rgba(248, 248, 248, 0.1);
+  width: 8vw;
+  min-width: 45px;
+  height: 9vw;
+  min-height: 60px;
+  transition: ease-in-out 1s;
+}
+.pageIndexCurrent:hover {
+  bottom: 1.5vh;
+  box-shadow: 0.1em 0em 0.4em rgba(0, 0, 30, 0.3);
+}
+.pageIndexCurrent > h4 {
+  color: rgb(16, 22, 31);
+  font-size: max(1.8vw, 23px);
+  font-family: 'GeomanistBold';
+  text-shadow: 0.2em 0.4em 0.7em rgba(0, 0, 30, 0.5);
+}
+.pageIndexCurrent > h5 {
+  color: rgb(255, 255, 255);
+  font-size: max(1.2vw, 15px);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Geomanist-ExtraLight', 'Geomanist-Light';
+  animation: pageIndexCurrentH5 linear 1s;
+}
+@keyframes pageIndexCurrentH5 {
+  from {
+    opacity: 0;
+  }
+  40% {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.pageIndexNotDisplayedLeft {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  background: rgb(41, 18, 3);
+  border-radius: 5%;
+  transform: perspective(32vw) rotateY(-95deg) rotateZ(0deg);
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  left: -8vw;
+  font-size: 1vw;
+  color: lavender;
+  font-family: 'GeomanistUltra';
+  box-shadow: 0.2em 0.2em 0.3em rgba(0, 0, 30, 0.3);
+  width: 8vw;
+  height: 0vh;
+  transition: ease-in-out 1s;
+}
+.pageIndexNotDisplayedRight {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  background: rgb(41, 18, 3);
+  border-radius: 5%;
+  transform: perspective(32vw) rotateY(95deg) rotateZ(0deg);
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  left: 100%;
+  font-size: 1vw;
+  color: lavender;
+  font-family: 'GeomanistUltra';
+  box-shadow: 0.2em 0.2em 0.3em rgba(0, 0, 30, 0.3);
+  width: 8vw;
+  height: 0vh;
+  transition: ease-in-out 1s;
+}
+
+.pageIndexNotDisplayed {
+  display: none;
+}
+
+@media (max-width: 1000px) and (orientation: landscape) {
+  .Pagination > label {
+    font-size: 1.3vw;
+    bottom: 50vh;
+  }
+  .pageIndexCurrent h5 {
+    font-size: 1.2vw;
+    top: 60%;
+  }
+  .pageIndexCurrent h4 {
+    font-size: 2.5vw;
+  }
+}
+
+/*   -----    HERE IS THE COSMETIC FOR MOBILE FRIENDLY ON LANDSCAPE FOR PHONES -----    */
+
+@media (max-width: 1000px) and (orientation: landscape) {
+  .Pagination > label {
+    font-size: 1.3vw;
+    transform: unset;
+    left: 57%;
+    background: none;
+    width: unset;
+    bottom: 50vh;
+  }
+  .pageIndexCurrent h5 {
+    font-size: 1.2vw;
+    top: 60%;
+  }
+  .pageIndexCurrent h4 {
+    font-size: 2.5vw;
+  }
+}
+
+/*   -----    HERE IS THE COSMETIC FOR MOBILE FRIENDLY (phones) AND RATIO max 9/10  -----    */
+@media (max-aspect-ratio: 9/10) {
+  .allIndex {
+    width: 65vw;
+    height: 20vh;
+  }
+  .pageIndexCurrent {
+    width: 25vw;
+    height: 25vw;
+    left: 50%;
+    border-radius: 50%;
+    transform: translate(-50%);
+    box-shadow: none;
+    background-image: linear-gradient(180deg, #bdece5 0%, #a7d1c8 100%);
+  }
+  .pageIndexNext {
+    width: 21vw;
+    height: 13vw;
+    bottom: 0.5vh;
+    border-radius: 50%;
+    background-color: whitesmoke;
+    left: calc(100% - 16vw);
+    box-shadow: none;
+    transform: perspective(40vw) rotateY(60deg);
+  }
+  .pageIndexPrevious {
+    width: 21vw;
+    height: 13vw;
+    background-color: whitesmoke;
+    bottom: 0.5vh;
+    border-radius: 50%;
+    left: -5vw;
+    box-shadow: none;
+    transform: perspective(40vw) rotateY(-60deg);
+  }
+  .paginationNav {
+    visibility: visible;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    transform: scale(0.9);
+    bottom: 0;
+    margin-right: 0;
+    transition: cubic-bezier(0.175, 2, 0.42, 1.1) 1.15s;
+    transition-delay: 0.2s;
+    opacity: 1;
+    -webkit-box-reflect: below -3% linear-gradient(0deg, rgb(3, 3, 3) 0%, rgba(
+            0,
+            0,
+            0,
+            0.1
+          )
+          20%, rgba(0, 0, 0, 0.1) 100%);
+  }
+  .openTable ~ .Pagination {
+    left: 50%;
+    transform: translate(-50%);
+    align-items: center;
+    justify-items: center;
+    bottom: 2vh;
+    animation-name: paginationResponsive;
+  }
+  @keyframes paginationResponsive {
+    from {
+      left: 0;
+      transform: translate(-50%);
+      opacity: 0;
+      bottom: -10vh;
+      transform: scale(0.5);
+    }
+    to {
+      left: 0;
+      transform: translate(-50%);
+      opacity: 1;
+      bottom: 3vh;
+      transform: scale(1);
+    }
+  }
+
+  .Pagination > label {
+    left: 1%;
+    min-height: 7vh;
+    transform: unset;
+    border: solid 0.1em rgba(215, 217, 219, 0.39);
+    min-width: 97%;
+    bottom: 17vh;
+    transform-origin: -50%;
+    color: rgb(165, 248, 223);
+    background-image: linear-gradient(180deg, #abb3b1b2 0%, #89a39d93 100%);
+    border-radius: 10px;
+  }
+  .Pagination > label > input {
+    margin-right: 25%;
+  }
+  .pageIndexNotDisplayedLeft {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    background: rgb(58, 56, 55);
+    border-radius: 50%;
+    transform: perspective(32vw) rotateY(-60deg);
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    left: -20%;
+    font-size: 1vw;
+    color: lavender;
+    font-family: 'GeomanistUltra';
+    box-shadow: 0.2em 0.2em 0.3em rgba(0, 0, 30, 0.3);
+    width: 8vw;
+    height: 0vh;
+    transition: ease-in-out 1s;
+  }
+  .pageIndexNotDisplayedRight {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    background: rgb(58, 56, 55);
+    border-radius: 50%;
+    transform: perspective(32vw) rotateY(60deg);
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    left: 120%;
+    font-size: 1vw;
+    color: lavender;
+    font-family: 'GeomanistUltra';
+    box-shadow: 0.2em 0.2em 0.3em rgba(0, 0, 30, 0.3);
+    width: 8vw;
+    height: 0vh;
+    transition: ease-in-out 1s;
+  }
+  .paginationNav > button {
+    display: none;
+  }
+  .pageIndexCurrent > h5 {
+    margin-bottom: 10vh;
+    font-family: 'Geomanist-ExtraLight', 'Geomanist-Light';
+  }
+}
+/*   ---------------------------    HERE IS THE COSMETIC FOR MOBILE FRIENDLY (tablets) AND RATIO max 7/10  ------------------   */
+
+@media (max-aspect-ratio: 1/1) and (min-aspect-ratio: 7/10) {
+  .pageIndexCurrent h4 {
+    font-size: 4.5vw;
+  }
+  .pageIndexCurrent {
+    height: 20vw;
+    width: 20vw;
+    left: 50%;
+    border-radius: 50%;
+    transform: translate(-50%);
+    box-shadow: none;
+    background-image: linear-gradient(180deg, #bdece5 0%, #a7d1c8 100%);
+  }
+  .pageIndexNext {
+    height: 12.5vw;
+    width: 20vw;
+    bottom: 0.5vh;
+    border-radius: 50%;
+    background-color: whitesmoke;
+    left: calc(100% - 16vw);
+    box-shadow: none;
+    transform: perspective(40vw) rotateY(60deg);
+  }
+  .pageIndexPrevious {
+    height: 12.5vw;
+    width: 20vw;
+    background-color: whitesmoke;
+    bottom: 0.5vh;
+    border-radius: 50%;
+    left: -5vw;
+    box-shadow: none;
+    transform: perspective(40vw) rotateY(-60deg);
+  }
+  .allIndex {
+    width: 60vw;
+    height: 25vh;
+  }
+  .pageIndexNext h4 {
+    font-size: 3.2vw;
+  }
+  .pageIndexPrevious h4 {
+    font-size: 3.2vw;
+  }
+
+  .paginationNav {
+    visibility: visible;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    transform: scale(0.9);
+    bottom: 0;
+    margin-right: 0;
+    transition: cubic-bezier(0.175, 2, 0.42, 1.1) 1.15s;
+    transition-delay: 0.2s;
+    opacity: 1;
+    -webkit-box-reflect: below -3% linear-gradient(0deg, rgb(3, 3, 3) 0%, rgba(
+            0,
+            0,
+            0,
+            0.1
+          )
+          20%, rgba(0, 0, 0, 0.1) 100%);
+  }
+  .openTable ~ .Pagination {
+    left: 50%;
+    transform: translate(-50%);
+    align-items: center;
+    bottom: 1.5vh;
+    animation-name: paginationResponsive;
+  }
+  @keyframes paginationResponsive {
+    from {
+      left: 0;
+      transform: translate(-50%);
+      opacity: 0;
+      bottom: -10vh;
+      transform: scale(0.5);
+    }
+    to {
+      left: 0;
+      transform: translate(-50%);
+      opacity: 1;
+      bottom: 3vh;
+      transform: scale(1);
+    }
+  }
+
+  .Pagination > label {
+    left: 1%;
+    min-height: 7vh;
+    border: solid 0.1em rgba(215, 217, 219, 0.39);
+    transform: unset;
+    min-width: 97%;
+    bottom: 17vh;
+    transform-origin: -50%;
+    color: rgb(165, 248, 223);
+    backdrop-filter: blur(0.5em);
+    background-color: rgba(87, 87, 87, 0.1);
+    border-radius: 10px;
+    font-size: 3vw;
+  }
+  .Pagination > label > input {
+    font-size: 2vw;
+    min-width: 5vw;
+  }
+  .totalItems {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Geomanist-ExtraLight', 'Geomanist-Light';
+    font-size: 3vw;
+    color: rgb(122, 243, 217);
+    left: 7%;
+    bottom: 15vh;
+
+    animation-name: totalItems;
+    animation-duration: 5s;
+    border-radius: 0.3em;
+    z-index: 3;
+  }
+  .pageIndexNotDisplayedLeft {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    background: rgb(58, 56, 55);
+    border-radius: 50%;
+    transform: perspective(32vw) rotateY(-60deg);
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    left: -20%;
+    font-size: 1vw;
+    color: lavender;
+    font-family: 'GeomanistUltra';
+    box-shadow: 0.2em 0.2em 0.3em rgba(0, 0, 30, 0.3);
+    width: 8vw;
+    height: 0vh;
+    transition: ease-in-out 1s;
+  }
+  .pageIndexNotDisplayedRight {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    background: rgb(58, 56, 55);
+    border-radius: 50%;
+    transform: perspective(32vw) rotateY(60deg);
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    left: 120%;
+    font-size: 1vw;
+    color: lavender;
+    font-family: 'GeomanistUltra';
+    box-shadow: 0.2em 0.2em 0.3em rgba(0, 0, 30, 0.3);
+    width: 8vw;
+    height: 0vh;
+    transition: ease-in-out 1s;
+  }
+  .paginationNav > button {
+    display: none;
+  }
+  .pageIndexCurrent > h5 {
+    font-family: 'Geomanist-ExtraLight', 'Geomanist-Light';
+
+    font-size: 2.5vw;
+    top: 40%;
+  }
+}
+@media (max-width: 1100px) and (min-width: 1000px) and (orientation: landscape) {
+  .Pagination label {
+    font-size: 2vw;
+    transform: perspective(52vw) rotateY(15deg) rotateZ(-3.6deg);
+    width: 70vw;
+    left: -10.5%;
+    bottom: 15vh;
+    z-index: 10;
+  }
+}
+@media (max-width: 1370px) and (min-width: 1100px) and (orientation: landscape) {
+  .Pagination label {
+    transform: perspective(52vw) rotateY(15deg) rotateZ(-3.6deg);
+  }
+}

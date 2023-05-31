@@ -1,0 +1,18 @@
+export const GET_ALIMENTS = 'GET_ALIMENTS';
+export const GET_RECIPES = 'GET_RECIPES';
+export const CREATE_RECIPE = 'CREATE_RECIPE';
+export const ALIMENTS_ERROR = 'ALIMENTS_ERROR';
+export const RECIPES_ERROR = 'RECIPES_ERROR';
+export const GET_ALIMENT_BY_ID = 'GET_ALIMENT_BY_ID';
+export const GET_RECIPE_BY_ID = 'GET_RECIPE_BY_ID';
+export const GET_ALIMENT_LIST = 'GET_ALIMENT_LIST';
+export const GET_RECIPE_ACTIVE = 'GET_RECIPE_ACTIVE';
+export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
+export const REGISTER_FAIL = 'REGISTER_FAIL';
+
+export const USER_LOADED = 'USER_LOADED';
+export const AUTH_ERROR = 'AUTH_ERROR';
+
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAIL = 'LOGIN_FAIL';
+export const LOGOUT = 'LOGOUT';

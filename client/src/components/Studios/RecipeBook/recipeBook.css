@@ -1,0 +1,606 @@
+.recipeBook {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* --- HERE IS THE COSMETIC ABOUT THE THREE CLOSED SECTION'S MODAL --- */
+
+.searchByNameRecipeBookClose {
+  top: 10vh;
+  position: absolute;
+  justify-items: center;
+
+  align-content: center;
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 25vw;
+  height: 10vw;
+  border-radius: 1em;
+  background: linear-gradient(
+    151.91deg,
+    rgba(255, 255, 255, 0.247) 18.5%,
+    rgba(34, 83, 90, 0.13) 144.64%
+  );
+  animation: searchByNameRecipeBookCloseAnim linear 1s;
+}
+@keyframes searchByNameRecipeBookCloseAnim {
+  from {
+    height: 0;
+    top: 0;
+    font-size: 0;
+  }
+  50% {
+    font-size: 0;
+  }
+}
+.searchByCategoryRecipeBookClose {
+  top: 25vh;
+  right: 3vw;
+  position: absolute;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  align-content: center;
+  width: 25vw;
+  height: 10vw;
+  border-radius: 1em;
+  background: linear-gradient(
+    151.91deg,
+    rgba(255, 255, 255, 0.247) 18.5%,
+    rgba(34, 83, 90, 0.13) 144.64%
+  );
+  animation: searchByCategoryRecipeBookCloseAnim linear 2s;
+}
+@keyframes searchByCategoryRecipeBookCloseAnim {
+  from {
+    width: 0;
+    right: 0;
+    font-size: 0;
+  }
+  60% {
+    width: 0;
+    font-size: 0;
+  }
+  80% {
+    font-size: 0;
+  }
+}
+.searchByNutrientsRecipeBookClose {
+  top: 25vh;
+  left: 3vw;
+  position: absolute;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  align-content: center;
+  width: 25vw;
+  height: 10vw;
+  border-radius: 1em;
+  background: linear-gradient(
+    151.91deg,
+    rgba(255, 255, 255, 0.247) 18.5%,
+    rgba(34, 83, 90, 0.13) 144.64%
+  );
+  animation: searchByNutrientsRecipeBookCloseAnim linear 2s;
+}
+@keyframes searchByNutrientsRecipeBookCloseAnim {
+  from {
+    width: 0;
+    left: 0;
+    font-size: 0;
+  }
+  50% {
+    width: 0;
+    font-size: 0;
+  }
+  75% {
+    font-size: 0;
+  }
+}
+.recipeBook .searchByNameRecipeBookClose:active,
+.recipeBook .searchByCategoryRecipeBookClose:active,
+.recipeBook .searchByNutrientsRecipeBookClose:active,
+.recipeBook .searchByNameRecipeBookClose:hover,
+.recipeBook .searchByCategoryRecipeBookClose:hover,
+.recipeBook .searchByNutrientsRecipeBookClose:hover {
+  background: linear-gradient(
+    151.91deg,
+    rgba(34, 83, 90, 0.13) 18.5%,
+    rgba(255, 255, 255, 0.247) 144.64%
+  );
+  color: white;
+  cursor: pointer;
+  transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s;
+  transform: scale(1.05);
+}
+
+.recipeBook .searchByNameRecipeBookClose h3,
+.recipeBook .searchByCategoryRecipeBookClose h3,
+.recipeBook .searchByNutrientsRecipeBookClose h3 {
+  margin: 0;
+  font-family: 'GeomanistRegular';
+  font-size: max(1.8vw, 16px);
+  color: white;
+}
+
+.recipeBook .searchByNameRecipeBookClose h3,
+.recipeBook .searchByNameRecipeBookClose h2 {
+  animation: searchByNameRecipeBookCloseAnim linear 1.3s;
+}
+
+.recipeBook .searchByCategoryRecipeBookClose h3,
+.recipeBook .searchByCategoryRecipeBookClose h2 {
+  animation: searchByCategoryRecipeBookCloseAnim linear 2.8s;
+}
+
+.recipeBook .searchByNutrientsRecipeBookClose h3,
+.recipeBook .searchByNutrientsRecipeBookClose h2 {
+  animation: searchByNutrientsRecipeBookCloseAnim linear 2.8s;
+}
+
+.recipeBook .searchByNameRecipeBookClose h2,
+.recipeBook .searchByCategoryRecipeBookClose h2,
+.recipeBook .searchByNutrientsRecipeBookClose h2 {
+  margin: 2%;
+  font-size: max(1.6vw, 16px);
+  font-family: 'GeomanistExtraLight';
+  font-weight: lighter;
+}
+
+.searchByNameRecipeBookClose::before,
+.searchByCategoryRecipeBookClose::before,
+.searchByNutrientsRecipeBookClose::before {
+  content: '';
+  position: absolute;
+  width: 99.5%;
+  height: 98%;
+  border-radius: 1em;
+  border: 1px solid transparent;
+  background: radial-gradient(
+    184.19% 165.64% at 14.68% 41.13%,
+    rgba(237, 252, 255, 0.144) 16.62%,
+    #d7ebf8 100%
+  );
+  /* mask-image: linear-gradient(rgb(255, 255, 255), transparent),
+    content-box linear-gradient(rgb(255, 255, 255), transparent);
+  mask-composite: exclude; */
+}
+
+/* --- HERE IS THE COSMETIC ABOUT THE FIRST OPENED SECTION ( searchByNameRecipeBookOpen )  --- */
+
+.searchByNameRecipeBookOpen {
+  position: absolute;
+  cursor: default;
+  font-size: max(1vw, 10px);
+  background-image: linear-gradient(to bottom, #ffffff 1%, #eff1f500 100%);
+  border-radius: 1em;
+  backdrop-filter: blur(0.2em);
+  display: inline-block;
+  justify-content: center;
+  text-align: center;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  left: 17.5vw;
+  max-height: 80vh;
+  min-height: 80vh;
+  top: 10vh;
+  min-width: 65vw;
+  max-width: 65vw;
+  animation-name: searchByNameRecipeOpening1;
+  animation-timing-function: cubic-bezier(0.45, 0.82, 0.165, 1);
+  transition: cubic-bezier(0.45, 0.82, 0.165, 1.25) 1s;
+  animation-duration: 2s;
+  z-index: 2;
+}
+
+@keyframes searchByNameRecipeOpening1 {
+  from {
+    top: 80vh;
+    /* border: none; */
+    opacity: 0;
+  }
+  to {
+    top: 10vh;
+    opacity: 1;
+  }
+}
+
+.searchByNameRecipeBookOpen > div {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin-bottom: 10%;
+  min-width: 300px;
+  font-family: 'GeomanistExtraLight';
+}
+.searchByNameRecipeBookOpen > div > .recipeView:nth-child(even) {
+  margin-top: 80%;
+}
+.searchByNameRecipeBookOpen > div > .recipeView:nth-child(odd) {
+  margin-bottom: 50%;
+}
+.searchByNameRecipeBookOpen > div > .recipeView {
+  display: flex;
+  margin-top: 35%;
+  font-size: max(2vw, 15px);
+  justify-content: center;
+  align-items: center;
+  border: none;
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
+}
+/* .searchByNameRecipeBookOpen main > .recipeDetailed {
+  position: fixed;
+  display: flex;
+  justify-content: space-around;
+  min-width: 100vw;
+  min-height: 100vh;
+  font-size: max(2vw, 15px);
+  justify-content: space-evenly;
+  align-items: center;
+  border: none;
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
+
+  z-index: 10;
+} */
+
+.searchByNameRecipeBookOpen > div > .recipeView:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+.searchByNameRecipeBookOpen > div > .recipeView > .recipeOnList {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  font-family: 'Geomanist-Light';
+  color: #8d8989;
+  width: 9em;
+  height: 10em;
+  background: linear-gradient(
+    171.73deg,
+    rgba(231, 228, 247, 0.068) 2.84%,
+    rgba(221, 223, 247, 0.144) 20.84%,
+    #faf6fa 90.66%
+  );
+  box-shadow: -0.5em 1.7em 0.9em rgba(118, 122, 145, 0.2);
+  border-radius: 0.25em;
+  animation: recipeOnListFromRecipeViewAnim
+    cubic-bezier(0.175, 0.885, 0.32, 1.275) 1.5s;
+}
+
+@keyframes recipeOnListFromRecipeViewAnim {
+  0% {
+    opacity: 0;
+    transform: translateY(250%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+@keyframes recipeOnListFromRecipeViewAnim2 {
+  0% {
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(200%);
+  }
+  50% {
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(200%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+.recipeOnList h2 {
+  font-size: max(1.5vw, 14px);
+
+  background: #02030f;
+  background: linear-gradient(to bottom right, #02030f 1%, #727f87 78%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: 'GeomanistBold';
+  margin: 0;
+}
+.recipeOnList h3 {
+  font-family: 'GeomanistExtraLight';
+  color: #60696e;
+  font-size: max(0.9vw, 10px);
+  margin: 0;
+}
+
+.recipeOnList > .recipeImage {
+  margin-top: -40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(
+    171.73deg,
+    rgba(250, 240, 250, 0.267) 11.84%,
+    #dde7f1 93.66%
+  );
+  width: 6em;
+  height: 6em;
+  box-shadow: -0.3em 0.6em 0.5em rgba(127, 127, 145, 0.4);
+  border-radius: 50%;
+  /* mask: linear-gradient(#fff 0 0), content-box linear-gradient(#fff 0 0);
+  mask-composite: exclude; */
+}
+.firstInfosRecipe {
+  display: grid;
+  justify-content: space-around;
+  grid-template-columns: repeat(3, 1fr);
+  height: 3.1em;
+  margin-right: 0.8em;
+}
+.firstInfosRecipeLevel,
+.firstInfosRecipeTime,
+.firstInfosRecipeMoney {
+  position: relative;
+  height: 1.8em;
+  margin-left: 0.8em;
+  width: 1.8em;
+  border-radius: 15%;
+  background: linear-gradient(180deg, #f3fdff00 10%, #fef4ffa2 100%);
+  box-shadow: -0.1em 0.2em 0.2em rgba(81, 97, 121, 0.1);
+}
+.firstInfosRecipeLevel h3,
+.firstInfosRecipeTime h3,
+.firstInfosRecipeMoney h3 {
+  font-size: max(0.8vw, 8px);
+  color: rgb(72 72 72);
+  top: 60%;
+  left: 15%;
+  position: absolute;
+  /* filter: drop-shadow(-0.1em 0.1em 0.05em rgba(23, 21, 37, 0.3)); */
+}
+.firstInfosRecipeTime {
+  margin-top: 0.7em;
+}
+.firstInfosRecipeLevelImg,
+.firstInfosRecipeTimeImg,
+.firstInfosRecipeMoneyImg {
+  top: -15%;
+  left: 17.5%;
+  position: absolute;
+  height: 70%;
+  width: 65%;
+  /* filter: drop-shadow(-0.1em 0.1em 0.02em rgba(23, 21, 37, 0.1)); */
+}
+
+.recipeImage2 {
+  width: 70%;
+  height: 70%;
+  border-radius: 50%;
+}
+.searchByNameRecipeBookOpen + div > .recipeDetailed > .recipeImage {
+  position: absolute;
+  width: 14vh;
+  height: 14vh;
+  box-shadow: -0.5em -0.7em 1.5em #ffffff,
+    0.4em 0.7em 1.5em rgba(127, 127, 145, 0.9),
+    0.1em 0.5em 1.5em rgba(144, 174, 175, 0.671);
+  border-radius: 20%;
+}
+
+/*  */
+
+.searchModalByName {
+  position: sticky;
+  margin-top: 0;
+  display: grid;
+  top: 0;
+  width: 100%;
+  font-size: max(1.2vw, 15px);
+
+  background: #ffffff;
+  box-shadow: -0.5em -1em 1.5em #ffffff, 0.5em 1em 2em rgba(174, 174, 192, 0.5),
+    0.1em 0.5em 1.5em rgba(144, 174, 175, 0.5);
+
+  z-index: 1;
+}
+
+.searchModalByName label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 90%;
+}
+.searchModalByName label input {
+  font-family: 'GeomanistUltra';
+  color: #a7a3a3;
+  font-size: max(1.8vw, 15px);
+  min-width: 100%;
+  width: 100%;
+  border-radius: 7%;
+  height: 7vh;
+  background: none;
+  text-align: center;
+  outline: none;
+  animation: searchModalByNamePlaceHolderAnim 2s infinite;
+}
+.searchModalByName label input::placeholder {
+  color: #a7a3a3;
+}
+@keyframes searchModalByNamePlaceHolderAnim {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.searchModalExit {
+  position: absolute;
+  padding: 1.65em 1.95em 1.65em 1.95em;
+  cursor: pointer;
+
+  font-size: max(0.9vw, 10px);
+  right: 17vw;
+  top: 8vh;
+  border-style: none;
+  background: linear-gradient(133.7deg, #ffffff 2.06%, #ebebec 99.18%);
+  box-shadow:
+   /* -0.2em -0.2em 0.7em rgba(255 255 255/ 50%),
+    -0.1em -0.1em 0.3em rgb(255 255 255 / 36%), */ -0.2em
+    0.45em 0.5em rgb(88 85 82 / 15%);
+  border-radius: 50%;
+  transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+  animation: searchModalExitAnim 2s;
+  transition: 0.2s;
+  z-index: 10;
+}
+@keyframes searchModalExitAnim {
+  from {
+    /* background: none;
+    box-shadow: none; */
+    transform: scale(0);
+    top: 0;
+  }
+  60% {
+    transform: scale(0);
+    top: 0;
+  }
+  100% {
+    transform: scale(1);
+
+    top: 8vh;
+  }
+}
+
+.recipeDetailedExit {
+  position: absolute;
+  padding: 1.65em 1.95em 1.65em 1.95em;
+
+  font-size: max(1vw, 12px);
+  right: 4vw;
+  top: 3.5vh;
+  border-style: none;
+  background: linear-gradient(133.7deg, #ffffff 2.06%, #ebebec 99.18%);
+  box-shadow:
+   /* -0.2em -0.2em 0.7em rgba(255 255 255/ 50%),
+    -0.1em -0.1em 0.3em rgb(255 255 255 / 36%), */ -0.2em
+    0.45em 0.5em rgb(88 85 82 / 15%);
+  border-radius: 50%;
+  transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+  animation: recipeDetailedExitAnim 2s;
+  transition: 0.2s;
+  z-index: 10;
+}
+
+@keyframes recipeDetailedExitAnim {
+  from {
+    transform: scale(0) translateY(-300%);
+  }
+  60% {
+    transform: scale(1) translateY(-300%);
+  }
+  100% {
+    transform: scale(1) translateY(0%);
+  }
+}
+
+.recipeDetailedExit:hover {
+  transform: scale(1.2);
+  box-shadow: -0.4em 0.2em 1em rgba(149, 150, 151, 0.568);
+}
+.searchModalExit:active {
+  transform: scale(0.7);
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1.1) 0.2s;
+}
+
+.searchModalExit:hover {
+  transform: rotate(90deg);
+  padding: 1.6em 1.95em 1.6em 1.95em;
+}
+
+.recipeDetailedExit:active {
+  transform: scale(0.7);
+
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1.1) 0.2s;
+}
+
+#recipeBookImg {
+  position: absolute;
+  z-index: -1;
+  transition: 0.5s;
+}
+
+/*   -----    HERE IS THE COSMETIC FOR MOBILE FRIENDLY (phones) AND RATIO max 8/10  -----    */
+
+@media (max-aspect-ratio: 8/10) {
+  .searchByNameRecipeBookOpen {
+    max-width: unset;
+    left: unset;
+  }
+
+  .searchModalExit {
+    right: 5vw;
+  }
+  .searchByNutrientsRecipeBookClose {
+    /* left: 4vw; */
+    width: 70vw;
+    height: 20vw;
+    border-radius: 0.5em;
+    top: 3vh;
+  }
+  .searchByNameRecipeBookClose {
+    top: 40vh;
+    left: 4vw;
+    width: 70vw;
+    height: 20vw;
+    border-radius: 0.5em;
+  }
+  .searchByCategoryRecipeBookClose {
+    top: 21vh;
+    right: 4vw;
+    width: 70vw;
+    height: 20vw;
+    border-radius: 0.5em;
+  }
+  .searchByNutrientsRecipeBookClose::before,
+  .searchByNameRecipeBookClose::before,
+  .searchByCategoryRecipeBookClose::before {
+    border-radius: 0.5em;
+  }
+}
+
+@media (max-aspect-ratio: 12/10) and (min-aspect-ratio: 7/10) {
+  .searchByNameRecipeBookClose {
+    left: 4vw;
+    width: 50vw;
+    height: 12vw;
+    border-radius: 0.8em;
+    top: 3vh;
+  }
+  .searchByNutrientsRecipeBookClose {
+    top: 40vh;
+    left: 4vw;
+    width: 50vw;
+    height: 12vw;
+    border-radius: 0.8em;
+  }
+  .searchByCategoryRecipeBookClose {
+    top: 21vh;
+    right: 4vw;
+    width: 50vw;
+    height: 12vw;
+    border-radius: 0.8em;
+  }
+  .searchByNutrientsRecipeBookClose::before,
+  .searchByNameRecipeBookClose::before,
+  .searchByCategoryRecipeBookClose::before {
+    border-radius: 0.8em;
+  }
+}

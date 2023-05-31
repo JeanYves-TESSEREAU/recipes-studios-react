@@ -1,0 +1,241 @@
+.account {
+  width: 100vw;
+  background-color: white;
+  z-index: 10;
+  position: fixed;
+  overflow-y: scroll;
+}
+.closeConnexion {
+  position: absolute;
+  padding: 1.65em 1.95em 1.65em 1.95em;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: max(1vw, 12px);
+  left: 2.5vh;
+  top: 2.5vh;
+  border-style: none;
+  background: linear-gradient(133.7deg, #ffffff 2.06%, #ebebec 99.18%);
+  box-shadow: /* -0.2em -0.2em 0.7em rgba(255 255 255/ 50%), -0.1em -0.1em 0.3em rgb(255 255 255 / 36%), */ -0.2em
+    0.45em 0.55em rgba(88, 85, 82, 0.447);
+  border-radius: 50%;
+  transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+  animation: closeConnexionAnim 2s;
+  transition: 0.2s;
+  z-index: 10;
+}
+@keyframes closeConnexionAnim {
+  from {
+    transform: translateY(10vh);
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.closeConnexion:hover {
+  transform: scale(1.2);
+}
+
+.connexionForm {
+  max-width: 50%;
+  width: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  position: absolute;
+  justify-items: center;
+}
+.account form {
+  max-height: 90%;
+  margin-bottom: 15%;
+  text-align: center;
+}
+.connectionForm label:first-child {
+  padding: 10%;
+}
+.connexionForm button {
+  margin-top: 3%;
+  margin-bottom: 3%;
+  font-size: max(1vw, 12px);
+  font-family: 'GeomanistBold';
+  text-align: center;
+  background-image: linear-gradient(
+    to right,
+    #82c6f7 0%,
+    #97e8f7 51%,
+    #90ccf7 100%
+  );
+  transition: 0.5s;
+  padding: 2%;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  border: none;
+  border-radius: 7px;
+  box-shadow: 0.15em 0.4em 1em rgba(43, 67, 102, 0.384);
+  cursor: pointer;
+  animation: valid2 ease-in 4s;
+}
+.connexionForm fieldset {
+  margin: 2%;
+  padding: 1%;
+}
+.connexionForm > fieldset {
+  padding: 9% 9% 3% 9%;
+}
+.connexionForm > fieldset > legend {
+  font-size: max(2vw, 18px);
+}
+legend {
+  text-transform: capitalize;
+}
+.connexionForm label {
+  display: flex;
+  width: 100%;
+  justify-items: center;
+  justify-content: center;
+}
+.connexionForm input {
+  width: 80%;
+  height: 100%;
+  text-align: center;
+  max-width: unset;
+  background: none;
+}
+.connexionForm input:nth-child(n + 3) {
+  margin-top: 3%;
+  font-size: max(1vw, 12px);
+  width: 20%;
+  font-family: 'GeomanistBold';
+  text-align: center;
+  background-image: linear-gradient(
+    to right,
+    #82c6f7 0%,
+    #97e8f7 51%,
+    #90ccf7 100%
+  );
+  transition: 0.5s;
+  padding: 1%;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  border: none;
+  border-radius: 7px;
+  box-shadow: 0.15em 0.4em 1em rgba(43, 67, 102, 0.384);
+  cursor: pointer;
+  animation: valid ease-in 4s;
+}
+
+@keyframes valid {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(100%);
+  }
+
+  50% {
+    transform: translateX(-50%) translateY(0%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-50%) translateY(0%);
+  }
+}
+@keyframes valid2 {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.connexionValidation:hover {
+  transform: scale(1.1) translateX(-45%);
+  background-position: right center;
+  box-shadow: 1em 1em 1.2em rgba(43, 67, 102, 0.384);
+  color: #fff;
+  text-decoration: none;
+}
+.connexionForm button:hover {
+  transform: scale(1.1) translateX(0%);
+  background-position: right center;
+  box-shadow: 1em 1em 1.2em rgba(43, 67, 102, 0.384);
+  color: #fff;
+  text-decoration: none;
+}
+.logout {
+  text-transform: uppercase;
+  width: 50%;
+  height: 20vh;
+  position: absolute;
+  left: 25%;
+  top: 40vh;
+  font-family: 'GeomanistBold';
+  text-align: center;
+  background-image: linear-gradient(
+    to right,
+    #82c6f7 0%,
+    #97e8f7 51%,
+    #90ccf7 100%
+  );
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  font-size: max(3vw, 25px);
+  border: none;
+  border-radius: 7px;
+  box-shadow: 0.15em 0.4em 1em rgba(43, 67, 102, 0.384);
+  cursor: pointer;
+  animation: logout ease-in 3s;
+}
+.logout:hover {
+  transform: scale(1.1);
+  background-position: right center;
+  box-shadow: 1em 1em 1.2em rgba(43, 67, 102, 0.384);
+  color: #fff;
+  text-decoration: none;
+}
+@keyframes logout {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+
+  50% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+@media (max-aspect-ratio: 8 / 10) {
+  .connexionForm {
+    max-width: 80%;
+    width: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    position: absolute;
+    justify-items: center;
+  }
+  .connexionForm > fieldset {
+    padding: 15%;
+  }
+  .connexionForm fieldset {
+    margin: 4%;
+  }
+  .connexionValidation {
+    font-size: max(1vw, 14px);
+    padding: 2vw;
+  }
+}
