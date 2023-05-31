@@ -1816,7 +1816,7 @@ html {
   .recipeDetailedExit {
     padding: 1.2em 1.4em 1.2em 1.4em;
     font-size: max(1vw, 12px);
-    right: 3vw;
+
     top: 2vh;
   }
 }

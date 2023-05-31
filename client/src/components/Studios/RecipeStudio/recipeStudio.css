@@ -1528,6 +1528,7 @@ input[type='radio']:checked label {
 
 #recetteStudioImg,
 #recipeBookImg {
+  transition: 0.7s;
   position: absolute;
   transform: scale(0.45);
   min-height: 110%;

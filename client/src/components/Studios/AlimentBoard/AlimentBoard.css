@@ -961,7 +961,7 @@ tr:hover > td {
 #recipeImg {
   position: absolute;
   transform: scale(0.51) translate(0vw, 1vh);
-  transition: cubic-bezier(0.77, 0, 0.175, 1) 1s;
+  transition: cubic-bezier(0.77, 0, 0.175, 1) 0.4s;
   animation: recipeImg cubic-bezier(0.77, 0, 0.175, 1) 1s;
 }
 @keyframes recipeImg {
@@ -1002,7 +1002,7 @@ tr:hover > td {
   #recipeImg {
     position: absolute;
     transform: scale(0.45) translate(-180vw, 0vh);
-    transition: cubic-bezier(0.77, 0, 0.175, 1) 1s;
+
     animation: recipeImgMobile cubic-bezier(0.77, 0, 0.175, 1) 1.5s;
   }
   @keyframes recipeImgMobile {
@@ -1105,7 +1105,7 @@ tr:hover > td {
   #recipeImg {
     position: absolute;
     transform: scale(0.5) translate(-115vw, 0);
-    transition: cubic-bezier(0.77, 0, 0.175, 1) 1s;
+
     animation: recipeImgTab cubic-bezier(0.77, 0, 0.175, 1) 1s;
   }
   @keyframes recipeImgTab {
@@ -1136,7 +1136,7 @@ tr:hover > td {
   #recipeImg {
     position: absolute;
     transform: scale(0.4) translate(-10vw, -15vh);
-    transition: cubic-bezier(0.77, 0, 0.175, 1) 1s;
+
     animation: recipeImgTabLandscape cubic-bezier(0.77, 0, 0.175, 1) 1.5s;
   }
   @keyframes recipeImgTabLandscape {
@@ -1154,7 +1154,7 @@ tr:hover > td {
   #recipeImg {
     position: absolute;
     transform: scale(0.4) translate(0vw, 0vh);
-    transition: cubic-bezier(0.77, 0, 0.175, 1) 1s;
+
     animation: recipeImgTabLandscape cubic-bezier(0.77, 0, 0.175, 1) 1.5s;
   }
   @keyframes recipeImgTabLandscape {
@@ -1170,7 +1170,6 @@ tr:hover > td {
   #recipeImg {
     position: absolute;
     transform: scale(0.45) translate(0vw, 0);
-    transition: cubic-bezier(0.77, 0, 0.175, 1) 1s;
     animation: smalLadtoprecipeImg cubic-bezier(0.77, 0, 0.175, 1) 1.5s;
   }
   @keyframes smalLadtoprecipeImg {

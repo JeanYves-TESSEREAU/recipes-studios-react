@@ -506,47 +506,46 @@ export default function Nav({ hideFor3dOpening }) {
   let windowHeight = window.innerHeight;
   let windowWidth = window.innerWidth;
   useEffect(() => {
-    if (openingNavMenu.current === false) {
-      const resizeListener = () => {
-        let mediaSize = window.matchMedia('(max-aspect-ratio: 6/10)').matches;
-        setMedia(mediaSize);
-        let drop = document.querySelectorAll('.drop2');
-        let nav = document.querySelector('.juiceDrop');
-        let navLeft = nav.getBoundingClientRect().left;
-        let navWidth = nav.getBoundingClientRect().width;
-        let w = window.innerWidth;
-        let navRight = nav.getBoundingClientRect().right;
-        let li2 = document.querySelector('.li2');
-        li2.style.left = `calc(-${w * 0.5}px + ${Number(w - navRight)}px + ${
-          navWidth * 1.6
-        }px)`;
-        let leftDrop = drop[0];
-        let rightDrop = drop[1];
-        leftDrop.style.transition = 'none';
-        rightDrop.style.transition = 'none';
-        if (openingNavMenu.current) {
-          leftDrop.style.left = ` calc(-${Number(navLeft)}px)`;
-          rightDrop.style.right = ` calc(-${Number(
-            w - (navLeft + navWidth)
-          )}px )`;
-        } else {
-          if (window.matchMedia('(max-aspect-ratio: 8/10)').matches) {
-            leftDrop.style.animationName = 'drop2';
-            rightDrop.style.animationName = 'drop2';
-          } else if (
-            window.matchMedia('(min-aspect-ratio: 10/5) and (max-width: 800px)')
-              .matches
-          ) {
-            leftDrop.style.animationName = 'drop3';
-            rightDrop.style.animationName = 'drop3';
-          } else {
-            leftDrop.style.animationName = 'drop';
-            rightDrop.style.animationName = 'drop';
-          }
-        }
-      };
-      window.addEventListener('resize', resizeListener);
-    }
+    const resizeListener = () => {
+      // let mediaSize = window.matchMedia('(max-aspect-ratio: 6/10)').matches;
+      // setMedia(mediaSize);
+      let drop = document.querySelectorAll('.drop2');
+      let nav = document.querySelector('.juiceDrop');
+      let navLeft = nav.getBoundingClientRect().left;
+      let navWidth = nav.getBoundingClientRect().width;
+      let w = window.innerWidth;
+      let navRight = nav.getBoundingClientRect().right;
+      let li2 = document.querySelector('.li2');
+      li2.style.left = `calc(-${w * 0.5}px + ${Number(w - navRight)}px + ${
+        navWidth * 1.6
+      }px)`;
+      let leftDrop = drop[0];
+      let rightDrop = drop[1];
+      leftDrop.style.animation = 'none';
+      rightDrop.style.animation = 'none';
+      if (openingNavMenu.current) {
+        leftDrop.style.left = ` calc(-${Number(navLeft)}px)`;
+        rightDrop.style.right = ` calc(-${Number(
+          w - (navLeft + navWidth)
+        )}px )`;
+      }
+      // else {
+      //   if (window.matchMedia('(max-aspect-ratio: 8/10)').matches) {
+      //     leftDrop.style.animationName = 'drop2';
+      //     rightDrop.style.animationName = 'drop2';
+      //   } else if (
+      //     window.matchMedia('(min-aspect-ratio: 10/5) and (max-width: 800px)')
+      //       .matches
+      //   ) {
+      //     leftDrop.style.animationName = 'drop3';
+      //     rightDrop.style.animationName = 'drop3';
+      //   } else {
+      //     leftDrop.style.animationName = 'drop';
+      //     rightDrop.style.animationName = 'drop';
+      //   }
+      // }
+    };
+    window.addEventListener('resize', resizeListener);
   });
 
   return (

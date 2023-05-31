@@ -10,7 +10,8 @@ import {
 
 const initialState = {
   isAuthenticated: null,
-  token: localStorage.getItem('token'),
+  // NEXT LINE IS NULL BECAUSE OF SAFARI BUG
+  token: null,
   loading: true,
   user: null,
 };

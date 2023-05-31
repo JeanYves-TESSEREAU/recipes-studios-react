@@ -1628,6 +1628,7 @@ const AlimentBoard = ({
       />
       <img
         id='recipeImg'
+        style={{ opacity: visibility ? '1' : '0' }}
         // style={{
         //   transform: mediaSize ? `scale(${scaleForImgAlimentBoard})` : '',
 

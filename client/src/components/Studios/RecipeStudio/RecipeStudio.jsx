@@ -71,6 +71,10 @@ const RecipeStudio = ({
   const [recipeDiet, setRecipeDiet] = useState([
     { diet: { protein: false, glucides: false, lipides: false } },
   ]);
+  const [visibility, setVisibility] = useState(true);
+  const hideFor3dOpening = () => {
+    setVisibility(!visibility);
+  };
 
   let browserName = useRef;
   let userAgent = navigator.userAgent;
@@ -931,7 +935,7 @@ const RecipeStudio = ({
 
   return (
     <div className='recipeStudio'>
-      <Nav />
+      <Nav hideFor3dOpening={hideFor3dOpening} visibility={visibility} />
       {/* ______________________    HERE IS THE MODAL WITH OPTIONS OF DIET'S PROPORTIONS   __________________________ */}
 
       <div
@@ -940,6 +944,7 @@ const RecipeStudio = ({
           display: ` ${
             proportionAlimentOpen && count === 0 ? 'block' : 'none'
           }`,
+          opacity: visibility ? '1' : '0',
         }}>
         <button className='exit' onClick={(e) => setCount(1)}>
           X
@@ -1016,7 +1021,9 @@ const RecipeStudio = ({
 
       {/*  _________     HERE IS THE  MODAL TO SHOW THE ALIMENT JUST ADDED OR ALREADY ADDED TO THE PROPORTION ALIMENT'S SECTION ___________ */}
 
-      <aside className='modalSucces'>
+      <aside
+        className='modalSucces'
+        style={{ opacity: visibility ? '1' : '0' }}>
         <span>{AlimentToStudy.length > 0 ? messageModal : ''}</span>
       </aside>
 
@@ -1037,10 +1044,13 @@ const RecipeStudio = ({
           display: `${
             recipeDetailsOpen || proportionAlimentOpen ? 'none' : ''
           }`,
+          opacity: visibility ? '1' : '0',
         }}>
         <h3>ETAPE N° 1</h3>
         <h2>Ajouter Des Aliments</h2>
-        <div className='leftEggContainer'>
+        <div
+          style={{ display: visibility ? 'block' : 'none' }}
+          className='leftEggContainer'>
           <EggLeftSvg displayEggsSvg={displayEggsSvg} />
         </div>
         {searchType ? (
@@ -1104,7 +1114,7 @@ const RecipeStudio = ({
                         fontFamily: 'Geomanist-ExtraLight',
                         whiteSpace: 'nowrap',
                       }}
-                      to='/studios/aliments-studio'>
+                      to='/aliments-studio'>
                       Votre Liste est Vide, Aller Au Studio Des Aliments
                     </Link>
                   </td>
@@ -1162,12 +1172,15 @@ const RecipeStudio = ({
           display: `${
             searchAlimentOnRecipeStudioOpen || recipeDetailsOpen ? 'none' : ''
           }`,
+          opacity: visibility ? '1' : '0',
         }}>
         <h3>ETAPE N° 2</h3>
         <h2>Proportions Des Aliments</h2>
         <div
           className='centerEggContainer'
-          style={{ display: `${proportionAlimentOpen ? 'none' : ''}` }}>
+          style={{
+            display: `${proportionAlimentOpen && visibility ? 'none' : ''}`,
+          }}>
           <EggCenterSvg displayEggsSvg={displayEggsSvg} />
         </div>
 
@@ -1238,7 +1251,11 @@ const RecipeStudio = ({
           })}
         </div>
       </section>
-      <footer style={{ display: `${proportionAlimentOpen ? '' : 'none'}` }}>
+      <footer
+        style={{
+          display: `${proportionAlimentOpen ? '' : 'none'}`,
+          opacity: visibility ? '1' : '0',
+        }}>
         <div
           className='glucidesTotal'
           style={{
@@ -1340,10 +1357,13 @@ const RecipeStudio = ({
               ? 'none'
               : ''
           }`,
+          opacity: visibility ? '1' : '0',
         }}>
         <h3>ETAPE N° 3</h3>
         <h2>Détails Et Instructions</h2>
-        <div className='rightEggContainer'>
+        <div
+          className='rightEggContainer'
+          style={{ display: visibility ? 'block' : 'none' }}>
           <EggRightSvg displayEggsSvg={displayEggsSvg} />
         </div>
         {recipeDetailsOpen ? (
@@ -1814,8 +1834,13 @@ const RecipeStudio = ({
           ''
         )}
       </section>
-      <aside style={{ display: `${recipeDetailsOpen ? '' : 'none'}` }}>
+      <aside
+        style={{
+          display: `${recipeDetailsOpen ? '' : 'none'}`,
+          opacity: visibility ? '1' : '0',
+        }}>
         <button
+          style={{ opacity: visibility ? '1' : '0' }}
           onClick={toggleRecipeDetailsRecipeStudio}
           className='sendpRecipeDetailsRecipeStudio'>
           Revenir Aux Étapes Précédentes
@@ -1826,6 +1851,7 @@ const RecipeStudio = ({
 
       <img
         id='recetteStudioImg'
+        style={{ opacity: visibility ? '1' : '0' }}
         src={recetteStudioImg}
         alt='recetteStudioImage'></img>
       {goToRecipe ? <Navigate to='/recettes-book'></Navigate> : ''}

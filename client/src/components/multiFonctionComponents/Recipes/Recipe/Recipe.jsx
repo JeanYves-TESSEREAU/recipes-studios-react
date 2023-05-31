@@ -59,7 +59,7 @@ import { alertPopup } from '../../../../assets/fonctions/alertPopup.js';
 
 import Slide from '../../../svgComponents/Slide';
 
-const Recipe = ({ recipeActived, recipeId, getRecipeByID }) => {
+const Recipe = ({ recipeActived, recipeId, getRecipeByID, visibility }) => {
   /* ______________________             HERE IS ALL FONCTIONS/STATE AND CONDITIONS PART                     __________________________ */
   /* ______________________             HERE IS ALL FONCTIONS/STATE AND CONDITIONS PART                       __________________________ */
   /* ______________________             HERE IS ALL FONCTIONS/STATE AND CONDITIONS PART                       __________________________ */
@@ -245,6 +245,7 @@ const Recipe = ({ recipeActived, recipeId, getRecipeByID }) => {
     'Indices',
   ];
   let coefForRecipe = portion / recipeId.recipeId.totalGrammes;
+  console.log(recipeId);
 
   let totalRetinolµg = useRef(0);
   let betaCaroteneµg = useRef(0);
@@ -2078,7 +2079,7 @@ const Recipe = ({ recipeActived, recipeId, getRecipeByID }) => {
   /* ______________________             HERE IS THE CONTENT PART                     __________________________ */
 
   return (
-    <div>
+    <div style={{ opacity: visibility ? '1' : '0' }}>
       <Fragment>
         <main className='backGroundOfRecipe'>
           {/*  HERE IS THE ROUND MENU AND NAV */

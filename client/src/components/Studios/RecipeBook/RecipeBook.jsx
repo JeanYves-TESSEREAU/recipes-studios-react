@@ -67,7 +67,7 @@ const RecipeBook = ({
   // console.log(recipes);
   useEffect(() => {
     getRecipe(recipeName);
-    if (recipeActived === '') getRecipeByID('626b1c6e9842ce0ac7214f98');
+    if (recipeActived === '') getRecipeByID('647793938dfd6b0bc5c00525');
   }, [recipeName]);
 
   const handleInputSearchOnChange = (e) => {
@@ -439,7 +439,7 @@ const RecipeBook = ({
 
       <img
         id='recipeBookImg'
-        style={{ filter: visibility ? '' : 'brightness(50%)' }}
+        style={{ opacity: visibility ? '1' : '0' }}
         // style={{
         //   transform: `scale(${scaleForImg})`,
 

@@ -14,7 +14,7 @@ import {
 export const getRecipeByID = (id) => async (dispatch) => {
   try {
     if (id === '' || id == null || id === undefined) {
-      id = '614d2152f7d7c264ec733931';
+      id = '647793938dfd6b0bc5c00525';
     }
     const res = await axios.get(`/recipes/id/${id}`);
 
