@@ -12,11 +12,11 @@ import Recipe from './components/multiFonctionComponents/Recipes/Recipe/Recipe';
 // import PublicRoute from './components/Routes/PublicRoute.jsx';
 
 function App() {
-  // window.onbeforeunload = function () {
-  //   // setTimeout(() => {
-  //   window.scrollTo(0, 0);
-  //   // }, 10);
-  // };
+  window.onbeforeunload = function () {
+    // setTimeout(() => {
+    window.scrollTo(0, 0);
+    // }, 10);
+  };
 
   return (
     <div className='App'>

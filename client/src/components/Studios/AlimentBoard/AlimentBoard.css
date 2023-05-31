@@ -135,8 +135,8 @@ fieldset {
   position: sticky;
   font-size: max(1.5vw, 25px);
   padding: 2vw;
-  top: 2vh;
-  right: 2vw;
+  top: 5vh;
+  right: 90vw;
   border-style: none;
   background: linear-gradient(133.7deg, #ffffff 2.06%, #ecebeb 95.18%);
   box-shadow: -0.2em -0.2em 0.7em rgba(255 255 255/ 50%),
@@ -144,7 +144,6 @@ fieldset {
     0.4em 0.4em 0.6em rgb(88 85 82 / 44%);
   border-radius: 20%;
   transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
-
   transition: 0.2s;
 }
 .menuExit:hover {

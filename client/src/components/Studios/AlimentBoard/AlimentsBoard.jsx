@@ -50,6 +50,7 @@ const AlimentBoard = ({
   const [onDelete, setOnDelete] = useState(false);
   const [onSend, setOnSend] = useState(false);
   const [redirect, setredirect] = useState(false);
+  const [visibility, setVisibility] = useState(true);
   // let mediaSize = window.matchMedia('(min-aspect-ratio: 11/6)').matches;
 
   // const [scaleForImgAlimentBoard, setScaleForImgAlimentBoard] = useState(
@@ -109,6 +110,10 @@ const AlimentBoard = ({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [listToRecipeFinal]);
+
+  const hideFor3dOpening = () => {
+    setVisibility(!visibility);
+  };
 
   const handleInputSearchOnChange = (e) => {
     e.preventDefault();
@@ -307,9 +312,13 @@ const AlimentBoard = ({
   return (
     <div className='AlimentBoard'>
       {/* ____________    HERE IS THE MODAL WITH DIFFERENTS FILTERS OF REQUEST _________________ */}
-      <Nav />
+      <Nav hideFor3dOpening={hideFor3dOpening} visibility={visibility} />
 
-      <div className={`filter ${displayedFilter ? 'displayedFilter' : ''}`}>
+      <div
+        style={{
+          opacity: visibility ? '1' : '0',
+        }}
+        className={`filter ${displayedFilter ? 'displayedFilter' : ''}`}>
         <button
           className='exit'
           onClick={(e) => {
@@ -359,7 +368,10 @@ const AlimentBoard = ({
 
       <div
         className='alimentActions'
-        style={{ display: ` ${notDisplayedActions ? 'block' : 'none'}` }}>
+        style={{
+          display: ` ${notDisplayedActions ? 'block' : 'none'}`,
+          opacity: visibility ? '1' : '0',
+        }}>
         <button className='exit' onClick={toggleActionsModal}>
           x
         </button>
@@ -402,7 +414,11 @@ const AlimentBoard = ({
 
       {/* ______________________       HERE IS OUR TABLE WITH ALL ALIMENTS TO STUDY       __________________________ */}
 
-      <div className='pagination'>
+      <div
+        className='pagination'
+        style={{
+          opacity: visibility ? '1' : '0',
+        }}>
         <table className={` ${openTable ? 'openTable' : 'closeTable'}`}>
           <caption>
             {/* <button className='toggleNoActive' onClick={toggleNoActive}>
@@ -815,7 +831,10 @@ const AlimentBoard = ({
 
         <div
           className='menu'
-          style={{ display: `${displayedMenu ? 'flex' : 'none'}` }}>
+          style={{
+            display: `${displayedMenu ? 'flex' : 'none'}`,
+            opacity: visibility ? '1' : '0',
+          }}>
           <h2>OPTIONS +</h2>
 
           <section>

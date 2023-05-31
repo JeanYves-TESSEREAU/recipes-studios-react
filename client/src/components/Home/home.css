@@ -129,7 +129,7 @@
   position: absolute;
   top: 75%;
   left: 6%;
-  background: var(--blue-pastel);
+  background: var(--blue-pastel-darker);
   border-radius: 5vw;
   content: '';
   width: 9%;
@@ -141,7 +141,7 @@
   position: absolute;
   top: 75%;
   left: 57.5%;
-  background: var(--red-pastel);
+  background: var(--red-pastel-darker);
   border-radius: 5vw;
   content: '';
   width: 13.6%;
@@ -182,7 +182,7 @@
 .Home header > h1 span {
   z-index: -1;
   position: absolute;
-  color: var(--blue-pastel);
+  color: var(--blue-pastel-darker);
   opacity: 0;
   display: inline-block;
   font-size: 20vw;
@@ -191,7 +191,7 @@
   /* transform-style: preserve-3d; */
   font-size: 20vw;
   /* background-color: #161212a1; */
-  color: var(--red-pastel);
+  color: var(--red-pastel-darker);
   /* text-shadow: 0.25vw 0.15vw 0.2vw var(--red-pastel);
   -webkit-background-clip: text;
   -moz-background-clip: text;

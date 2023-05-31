@@ -60,8 +60,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --blue-pastel: #a2c2cd;
-  --red-pastel: #ff6961;
+  --blue-pastel: #d1e4ea;
+  --red-pastel: #f0c0bc;
+  --blue-pastel-darker: #93bfcc;
+  --red-pastel-darker: #cc827c;
   --grey-carbon: #1c1c1c;
   --blue-pastel-light: rgb(239, 241, 248);
   --red-pastel-light: rgb(247, 207, 205);

@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './home.css';
 import Nav from '../globalComponents/navigation/Nav';
 import injectStyle from '../../assets/fonctions/injectStyle.js';
@@ -20,7 +20,8 @@ export default function Home() {
   let isScrolling;
   let actualScrollPourcent = useRef(0);
   let isScrollingBis;
-  let isScrollingTer;
+  // let isScrollingTer;
+  const [visibility, setVisibility] = useState(true);
   let windowHeight = window.innerHeight;
   let windowWidth = window.innerWidth;
   let countForWelcomeSpanAfter = 0;
@@ -41,6 +42,9 @@ export default function Home() {
     0.3, 0.7, 0.2, 0.4, 0.6, 0.1, 0.9, 0.5, 0.35, 0.75, 0.25, 0.95, 0.65, 0.45,
   ];
 
+  const hideFor3dOpening = () => {
+    setVisibility(!visibility);
+  };
   const headerAnim = () => {
     let h1Span = document.querySelectorAll('[data-data]');
 
@@ -523,7 +527,10 @@ export default function Home() {
   return (
     <div className='Home'>
       <header>
-        <h1>
+        <h1
+          style={{
+            opacity: visibility ? '1' : '0',
+          }}>
           <span data-data={'R'}>r</span>
           <span data-data={'E'}>e</span>
           <span data-data={'C'}>c</span>
@@ -539,14 +546,28 @@ export default function Home() {
           <span data-data={'O'}>o</span>
           <span data-data={'S'}>s</span>
         </h1>
-        <h2>
+        <h2
+          style={{
+            opacity: visibility ? '1' : '0',
+          }}>
           <span>par the </span>body<span> arch</span>itect
         </h2>
-        <h3>scroll</h3>
-        <Nav />
+        <h3
+          style={{
+            opacity: visibility ? '1' : '0',
+          }}>
+          scroll
+        </h3>
+        <Nav hideFor3dOpening={hideFor3dOpening} visibility={visibility} />
       </header>
-      <main>
-        <section>
+      <main
+        style={{
+          opacity: visibility ? '1' : '0',
+        }}>
+        <section
+          style={{
+            opacity: visibility ? '1' : '0',
+          }}>
           <h2 className='welcomeH2'>
             <span className='welcomeSpan' data-welcome='salut !'>
               salut !
@@ -665,7 +686,10 @@ export default function Home() {
             </article>
           </aside>
         </section>
-        <section>
+        <section
+          style={{
+            opacity: visibility ? '1' : '0',
+          }}>
           <h3>
             des studios
             <span> de pros</span>
@@ -731,7 +755,10 @@ export default function Home() {
           </h3>
         </section>
       </main>
-      <footer>
+      <footer
+        style={{
+          opacity: visibility ? '1' : '0',
+        }}>
         <div className='footerContact'>
           <address>
             <i>

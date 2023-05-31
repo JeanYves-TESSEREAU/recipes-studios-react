@@ -1553,11 +1553,11 @@ input[type='radio']:checked label {
   .searchAlimentOnRecipeStudioClose {
     /* left: 4vw; */
     width: 70vw;
-    top: 3vh;
+    top: 20vh;
   }
 
   .proportionAlimentClose {
-    top: 21vh;
+    top: 40vh;
     right: 4vw;
 
     animation: proportionAlimentMobileCloseAnim
@@ -1583,7 +1583,7 @@ input[type='radio']:checked label {
   }
 
   .recipeDetailsClose {
-    top: 40vh;
+    top: 60vh;
     left: 4vw;
   }
 
@@ -1624,7 +1624,7 @@ input[type='radio']:checked label {
   }
   #recetteStudioImg,
   #recipeBookImg {
-    transform: scale(0.4);
+    transform: scale(0.55);
     animation: recetteStudioImgMobileAnim ease-in-out 1.2s;
   }
   @keyframes recetteStudioImgMobileAnim {
@@ -1633,7 +1633,7 @@ input[type='radio']:checked label {
       transform: translateX(50vw);
     }
     100% {
-      transform: scale(0.4);
+      transform: scale(0.55);
     }
   }
 

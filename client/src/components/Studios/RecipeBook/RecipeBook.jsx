@@ -44,6 +44,10 @@ const RecipeBook = ({
   const [recipeActived, setrecipeActived] = useState('');
   const [count, setCount] = useState(0);
   const [animationSearchByName, setAnimationSearchByName] = useState(true);
+  const [visibility, setVisibility] = useState(true);
+  const hideFor3dOpening = () => {
+    setVisibility(!visibility);
+  };
 
   const optionNotDispo = () => {
     alertPopup('Option bientôt disponible :)', 'info');
@@ -147,9 +151,10 @@ const RecipeBook = ({
 
   return (
     <div className='recipeBook'>
-      <Nav />
+      <Nav hideFor3dOpening={hideFor3dOpening} visibility={visibility} />
       <button
         style={{
+          opacity: visibility ? '1' : '0',
           display:
             searchByNameRecipeBookOpen && recipeActived === ''
               ? 'block'
@@ -169,6 +174,7 @@ const RecipeBook = ({
           searchByNameRecipeBookOpen ? null : toggleSearchByNameRecipeBookOpen
         }
         style={{
+          opacity: visibility ? '1' : '0',
           display: `${
             searchByCategoryRecipeBookOpen ||
             searchByNutrientsRecipeBookOpen ||
@@ -350,6 +356,7 @@ const RecipeBook = ({
         }
         // onMouseUp={searchByCategoryRecipeBookOpen ? optionNotDispo : null}
         style={{
+          opacity: visibility ? '1' : '0',
           display: `${
             searchByNameRecipeBookOpen || searchByNutrientsRecipeBookOpen
               ? 'none'
@@ -389,6 +396,7 @@ const RecipeBook = ({
         }
         // onMouseUp={searchByNutrientsRecipeBookOpen ? optionNotDispo : null}
         style={{
+          opacity: visibility ? '1' : '0',
           display: `${
             searchByNameRecipeBookOpen || searchByCategoryRecipeBookOpen
               ? 'none'
@@ -419,8 +427,9 @@ const RecipeBook = ({
         ''
       ) : (
         <Fragment>
-          <Recipe recipeActived={recipeActived} />{' '}
+          <Recipe visibility={visibility} recipeActived={recipeActived} />{' '}
           <button
+            style={{ opacity: visibility ? '1' : '0' }}
             className='recipeDetailedExit'
             onClick={exitModalRecipeDetails}>
             X
@@ -430,6 +439,7 @@ const RecipeBook = ({
 
       <img
         id='recipeBookImg'
+        style={{ filter: visibility ? '' : 'brightness(50%)' }}
         // style={{
         //   transform: `scale(${scaleForImg})`,
 

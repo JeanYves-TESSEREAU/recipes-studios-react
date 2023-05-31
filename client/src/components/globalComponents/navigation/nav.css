@@ -83,9 +83,9 @@
   display: none;
   color: var(--grey-carbon);
   position: absolute;
-  font-family: geomanistUltra;
+  font-family: geomanist;
   text-transform: capitalize;
-  font-size: 150%;
+  font-size: 110%;
   transition: 0.2s ease-out;
   left: -200%;
   top: 50%;
@@ -438,12 +438,12 @@ nav .juiceDrop {
 
 .firstNav ul li:first-of-type:hover::before {
   animation: none;
-  bottom: 115%;
+  /* bottom: 115%; */
 }
 
 .firstNav ul li:first-of-type:hover::after {
   animation: none;
-  top: 115%;
+  /* top: 115%; */
 }
 
 @keyframes liBarAnim {
@@ -459,6 +459,9 @@ nav .juiceDrop {
 /*   -----    HERE IS THE COSMETIC FOR MOBILE FRIENDLY (phones) AND RATIO max 8/10  -----    */
 
 @media (max-aspect-ratio: 8/10) {
+  .connexionAccess {
+    left: -170%;
+  }
   .firstNav ul {
     top: 13%;
   }

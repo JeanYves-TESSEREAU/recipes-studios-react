@@ -7,12 +7,13 @@ import { Environment, ContactShadows, ScrollControls } from '@react-three/drei';
 import { Models } from './3dModels';
 import Connexion from '../../Connexion/Connexion';
 
-export default function Nav() {
+export default function Nav({ hideFor3dOpening }) {
   // const [dropDelay, setDropDelay] = useState(false);
   const [translateX, setTranslateX] = useState(0);
   const [connexion, setConnexion] = useState('close');
   const [displayedMenuTitle, setDisplayedMenuTitle] = useState('accueil');
   const [profil, setProfil] = useState('connection');
+
   const [media, setMedia] = useState(
     window.matchMedia('(max-aspect-ratio: 6/10)').matches
   );
@@ -72,6 +73,7 @@ export default function Nav() {
       resizeDropForAnim = '';
     }
     if (openingNavMenu.current === false) {
+      hideFor3dOpening();
       document.body.style.overflow = 'hidden';
       canvas.style.zIndex = 10;
       connexionAccess.style.display = 'block';
@@ -159,8 +161,24 @@ export default function Nav() {
 }
 `;
       injectStyle(moveMenuIcon2);
+      injectStyle(moveMenuIcon1);
+      const moveMenuIconBefore = `
+      .firstNav ul li:first-of-type:hover::before {
+        animation: none;
+        bottom: 50%;
+      } 
+    `;
+      injectStyle(moveMenuIconBefore);
+      const moveMenuIconAfter = `
+      .firstNav ul li:first-of-type:hover::after {
+        animation: none;
+        top: 50%;
+      }
+    `;
+      injectStyle(moveMenuIconAfter);
       openingNavMenu.current = true;
     } else if (openingNavMenu.current && openingNavMenuCount.current === 1) {
+      hideFor3dOpening();
       document.body.style.overflow = 'auto';
       openingNavMenuCount.current = 0;
       canvas.style.pointerEvents = 'none';
@@ -192,7 +210,7 @@ export default function Nav() {
       rightDrop.style.backgroundColor = 'var(--blue-pastel)';
       const moveMenuIcon = `
          .firstNav ul li:first-of-type{
-          color: white;
+          color: var(--grey-carbon);
         }
       `;
       injectStyle(moveMenuIcon);
@@ -214,7 +232,7 @@ export default function Nav() {
           height: 3%;
           rotate: -180deg;
           border-radius: 1vw;
-          background-color: white;
+          background-color: var(--grey-carbon);
           transition: 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
           animation: liBarAnim 2s cubic-bezier(0.175, 0.885, 0.32, 1.275) infinite;
         }
@@ -227,6 +245,13 @@ export default function Nav() {
       } 
     `;
       injectStyle(moveMenuIconBefore);
+      const moveMenuIconAfter = `
+      .firstNav ul li:first-of-type:hover::after {
+        animation: none;
+        top: 115%;
+      }
+    `;
+      injectStyle(moveMenuIconAfter);
       const moveMenuIcon2 = `
         .firstNav ul li:first-of-type::after{
         position: absolute;
@@ -237,20 +262,14 @@ export default function Nav() {
         height: 3%;
         rotate: 0deg;
         border-radius: 1vw;
-        background-color: white;
+        background-color: var(--grey-carbon);
         animation: liBarAnim 2s cubic-bezier(0.175, 0.885, 0.32, 1.275) infinite;
         animation-delay: 0.2s;
         transition: 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
       }
       `;
       injectStyle(moveMenuIcon2);
-      const moveMenuIconAfter = `
-      .firstNav ul li:first-of-type:hover::after {
-        animation: none;
-        top: 115%;
-      }
-    `;
-      injectStyle(moveMenuIconAfter);
+
       openingNavMenu.current = false;
       menuDisplay.current = false;
       startClock.current = false;
@@ -408,7 +427,7 @@ export default function Nav() {
         rightDrop.style.backgroundColor = 'var(--blue-pastel)';
         const moveMenuIcon = `
            .firstNav ul li:first-of-type{
-            color: white;
+            color: var(--grey-carbon);
           }
         `;
         injectStyle(moveMenuIcon);
@@ -430,7 +449,7 @@ export default function Nav() {
             height: 3%;
             rotate: -180deg;
             border-radius: 1vw;
-            background-color: white;
+            background-color: var(--grey-carbon);
             transition: 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
             animation: liBarAnim 2s cubic-bezier(0.175, 0.885, 0.32, 1.275) infinite;
           }
@@ -453,7 +472,7 @@ export default function Nav() {
           height: 3%;
           rotate: 0deg;
           border-radius: 1vw;
-          background-color: white;
+          background-color: var(--grey-carbon);
           animation: liBarAnim 2s cubic-bezier(0.175, 0.885, 0.32, 1.275) infinite;
           animation-delay: 0.2s;
           transition: 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
@@ -484,67 +503,50 @@ export default function Nav() {
   const displayCanvas = () => {
     openNavMenu();
   };
-  // useEffect(() => {}, [canvasOpened]);
   let windowHeight = window.innerHeight;
   let windowWidth = window.innerWidth;
-
-  // useEffect(() => {
-  //   let nav = document.querySelector('nav');
-  //   if (dropDelay === false) {
-  //     headerAnims();
-  //     setTimeout(() => {
-  //       nav.style.animationName = 'navEntrance';
-  //       nav.style.animationDuration = '0.5s ';
-  //       nav.style.animationTimingFunction = 'ease-in-out';
-  //       setTimeout(() => {
-  //         nav.style.animationDuration = '6s';
-  //         nav.style.animationName = 'navBorderTransform';
-  //         nav.style.animationTimingFunction = 'linear';
-  //         nav.style.animationIterationCount = 'infinite';
-  //       }, 500);
-  //     }, 4500);
-  //   }
-  // });
   useEffect(() => {
-    const resizeListener = () => {
-      let mediaSize = window.matchMedia('(max-aspect-ratio: 6/10)').matches;
-      setMedia(mediaSize);
-      let drop = document.querySelectorAll('.drop2');
-      let nav = document.querySelector('.juiceDrop');
-      let navLeft = nav.getBoundingClientRect().left;
-      let navWidth = nav.getBoundingClientRect().width;
-      let w = window.innerWidth;
-      let navRight = nav.getBoundingClientRect().right;
-      let li2 = document.querySelector('.li2');
-      li2.style.left = `calc(-${w * 0.5}px + ${Number(w - navRight)}px + ${
-        navWidth * 1.6
-      }px)`;
-      let leftDrop = drop[0];
-      let rightDrop = drop[1];
-      leftDrop.style.transition = 'unset';
-      rightDrop.style.transition = 'unset';
-      if (openingNavMenu.current) {
-        leftDrop.style.left = ` calc(-${Number(navLeft)}px)`;
-        rightDrop.style.right = ` calc(-${Number(
-          w - (navLeft + navWidth)
-        )}px )`;
-      } else {
-        if (window.matchMedia('(max-aspect-ratio: 8/10)').matches) {
-          leftDrop.style.animationName = 'drop2';
-          rightDrop.style.animationName = 'drop2';
-        } else if (
-          window.matchMedia('(min-aspect-ratio: 10/5) and (max-width: 800px)')
-            .matches
-        ) {
-          leftDrop.style.animationName = 'drop3';
-          rightDrop.style.animationName = 'drop3';
+    if (openingNavMenu.current === false) {
+      const resizeListener = () => {
+        let mediaSize = window.matchMedia('(max-aspect-ratio: 6/10)').matches;
+        setMedia(mediaSize);
+        let drop = document.querySelectorAll('.drop2');
+        let nav = document.querySelector('.juiceDrop');
+        let navLeft = nav.getBoundingClientRect().left;
+        let navWidth = nav.getBoundingClientRect().width;
+        let w = window.innerWidth;
+        let navRight = nav.getBoundingClientRect().right;
+        let li2 = document.querySelector('.li2');
+        li2.style.left = `calc(-${w * 0.5}px + ${Number(w - navRight)}px + ${
+          navWidth * 1.6
+        }px)`;
+        let leftDrop = drop[0];
+        let rightDrop = drop[1];
+        leftDrop.style.transition = 'none';
+        rightDrop.style.transition = 'none';
+        if (openingNavMenu.current) {
+          leftDrop.style.left = ` calc(-${Number(navLeft)}px)`;
+          rightDrop.style.right = ` calc(-${Number(
+            w - (navLeft + navWidth)
+          )}px )`;
         } else {
-          leftDrop.style.animationName = 'drop';
-          rightDrop.style.animationName = 'drop';
+          if (window.matchMedia('(max-aspect-ratio: 8/10)').matches) {
+            leftDrop.style.animationName = 'drop2';
+            rightDrop.style.animationName = 'drop2';
+          } else if (
+            window.matchMedia('(min-aspect-ratio: 10/5) and (max-width: 800px)')
+              .matches
+          ) {
+            leftDrop.style.animationName = 'drop3';
+            rightDrop.style.animationName = 'drop3';
+          } else {
+            leftDrop.style.animationName = 'drop';
+            rightDrop.style.animationName = 'drop';
+          }
         }
-      }
-    };
-    window.addEventListener('resize', resizeListener);
+      };
+      window.addEventListener('resize', resizeListener);
+    }
   });
 
   return (
