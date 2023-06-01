@@ -935,6 +935,11 @@ const RecipeStudio = ({
 
   return (
     <div className='recipeStudio'>
+      <img
+        id='recetteStudioImg'
+        style={{ opacity: visibility ? '1' : '0' }}
+        src={recetteStudioImg}
+        alt='recetteStudioImage'></img>
       <Nav hideFor3dOpening={hideFor3dOpening} visibility={visibility} />
       {/* ______________________    HERE IS THE MODAL WITH OPTIONS OF DIET'S PROPORTIONS   __________________________ */}
 
@@ -1849,11 +1854,6 @@ const RecipeStudio = ({
 
       {/*  _________     HERE IS  THE BACKGROUND IMAGE WHICH SHOULD HAVE DIFFERENT ANIMATIONS AND SIZE DEPENDING OF DEVICES AND RATIOS   ___________ */}
 
-      <img
-        id='recetteStudioImg'
-        style={{ opacity: visibility ? '1' : '0' }}
-        src={recetteStudioImg}
-        alt='recetteStudioImage'></img>
       {goToRecipe ? <Navigate to='/recettes-book'></Navigate> : ''}
     </div>
   );

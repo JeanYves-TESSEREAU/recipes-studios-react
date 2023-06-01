@@ -136,9 +136,9 @@ nav .juiceDrop {
   border-radius: 0;
 }
 
-.drop2 {
+/* .drop2 {
   animation: drop 2.3s cubic-bezier(1, 0.19, 0.66, 0.12) infinite;
-}
+} */
 .leftDropH2 {
   display: none;
   text-align: center;
@@ -163,9 +163,9 @@ nav .juiceDrop {
     transform: translateY(0%) scale(1);
   }
 }
-.drop2:last-of-type {
+/* .drop2:last-of-type {
   animation: drop 2.45s cubic-bezier(1, 0.19, 0.66, 0.12) infinite;
-}
+} */
 @keyframes drop {
   0% {
     top: 65%;

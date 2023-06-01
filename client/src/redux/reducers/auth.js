@@ -10,7 +10,7 @@ import {
 
 const initialState = {
   isAuthenticated: null,
-  // NEXT LINE IS NULL BECAUSE OF SAFARI BUG
+  // NEXT LINE IS NULL BECAUSE OF SAFARI BUG ( "this action is not secure")
   token: null,
   loading: true,
   user: null,

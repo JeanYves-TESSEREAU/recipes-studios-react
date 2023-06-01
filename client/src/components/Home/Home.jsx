@@ -159,42 +159,46 @@ export default function Home() {
 
   // RESIZE LISTENER //   // RESIZE LISTENER //   // RESIZE LISTENER //
   useEffect(() => {
-    const resizeListener = () => {
-      if (window.location.pathname === '/') {
-        let home = document.querySelector('.Home');
-        let aside = document.querySelectorAll('aside');
-        let asidePosition = aside[0].getBoundingClientRect();
-        section2Top.current =
-          asidePosition.top + asidePosition.height + window.scrollY;
-        window.scrollTo(
-          0,
-          (actualScrollPourcent.current * home.offsetHeight) / 100
-        );
-        let h1Span = document.querySelectorAll('[data-data]');
-        for (let index = 0; index < h1Span.length; index++) {
-          h1Span[index].style.transition = 'none';
-          if (index !== 0 && index !== 7) {
-            h1Span[index].style.left = `calc(0vw  + ${
-              h1Span[index - 1].getBoundingClientRect().right
-            }px )`;
-          } else if (index === 0) {
-            h1Span[index].style.left = '15vw';
-          } else if (index === 7) {
-            h1Span[index].style.left = '10vw';
-          }
-          if (index > 6) {
-            h1Span[index].style.transform = ` translateY(-${
-              window.scrollY * headerParallax[index] * 0.4
-            }px)`;
-          } else {
-            h1Span[index].style.transform = ` translateY(calc(-${
-              window.scrollY * headerParallax[index] * 0.75
-            }px - ${h1Span[index].offsetHeight}px))`;
+    if (window.location.pathname === '/' && visibility) {
+      console.log(window.location.pathname === '/');
+      const resizeListener = () => {
+        if (window.location.pathname === '/' && visibility) {
+          let home = document.querySelector('.Home');
+          let aside = document.querySelectorAll('aside');
+          let asidePosition = aside[0].getBoundingClientRect();
+          section2Top.current =
+            asidePosition.top + asidePosition.height + window.scrollY;
+          window.scrollTo(
+            0,
+            (actualScrollPourcent.current * home.offsetHeight) / 100
+          );
+          let h1Span = document.querySelectorAll('[data-data]');
+          for (let index = 0; index < h1Span.length; index++) {
+            h1Span[index].style.transition = 'none';
+            if (index !== 0 && index !== 7) {
+              h1Span[index].style.left = `calc(0vw  + ${
+                h1Span[index - 1].getBoundingClientRect().right
+              }px )`;
+            } else if (index === 0) {
+              h1Span[index].style.left = '15vw';
+            } else if (index === 7) {
+              h1Span[index].style.left = '10vw';
+            }
+            if (index > 6) {
+              h1Span[index].style.transform = ` translateY(-${
+                window.scrollY * headerParallax[index] * 0.4
+              }px)`;
+            } else {
+              h1Span[index].style.transform = ` translateY(calc(-${
+                window.scrollY * headerParallax[index] * 0.75
+              }px - ${h1Span[index].offsetHeight}px))`;
+            }
           }
         }
-      }
-    };
-    window.addEventListener('resize', resizeListener);
+      };
+      window.addEventListener('resize', resizeListener);
+    }
+    console.log('hello');
   }, [windowHeight, windowWidth, headerParallax]);
 
   // ENTRANCE ANIM STATE LISTENER //   // ENTRANCE ANIM STATE LISTENER //   // ENTRANCE ANIM STATE LISTENER //
@@ -525,8 +529,9 @@ export default function Home() {
 
   return (
     <div className='Home'>
-      <header>
+      <header translate='no'>
         <h1
+          translate='no'
           style={{
             opacity: visibility ? '1' : '0',
           }}>

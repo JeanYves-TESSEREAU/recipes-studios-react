@@ -151,6 +151,19 @@ const RecipeBook = ({
 
   return (
     <div className='recipeBook'>
+      <img
+        id='recipeBookImg'
+        style={{ opacity: visibility ? '1' : '0' }}
+        // style={{
+        //   transform: `scale(${scaleForImg})`,
+
+        //   animation: mediaSize
+        //     ? `recipeBookImgAnimWidth ease-in-out 1.2s`
+        //     : `recipeBookImgAnimHeight ease-in-out 1.2s`,
+        // }}
+        src={recipeBookImg}
+        alt='recipeBookImg'></img>
+
       <Nav hideFor3dOpening={hideFor3dOpening} visibility={visibility} />
       <button
         style={{
@@ -436,19 +449,6 @@ const RecipeBook = ({
           </button>
         </Fragment>
       )}
-
-      <img
-        id='recipeBookImg'
-        style={{ opacity: visibility ? '1' : '0' }}
-        // style={{
-        //   transform: `scale(${scaleForImg})`,
-
-        //   animation: mediaSize
-        //     ? `recipeBookImgAnimWidth ease-in-out 1.2s`
-        //     : `recipeBookImgAnimHeight ease-in-out 1.2s`,
-        // }}
-        src={recipeBookImg}
-        alt='recipeBookImg'></img>
     </div>
   );
 };

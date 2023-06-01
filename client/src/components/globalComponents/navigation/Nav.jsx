@@ -7,7 +7,7 @@ import { Environment, ContactShadows, ScrollControls } from '@react-three/drei';
 import { Models } from './3dModels';
 import Connexion from '../../Connexion/Connexion';
 
-export default function Nav({ hideFor3dOpening }) {
+export default function Nav({ hideFor3dOpening, visibility }) {
   // const [dropDelay, setDropDelay] = useState(false);
   const [translateX, setTranslateX] = useState(0);
   const [connexion, setConnexion] = useState('close');
@@ -72,7 +72,7 @@ export default function Nav({ hideFor3dOpening }) {
     } else {
       resizeDropForAnim = '';
     }
-    if (openingNavMenu.current === false) {
+    if (openingNavMenu.current === false && visibility) {
       hideFor3dOpening();
       document.body.style.overflow = 'hidden';
       canvas.style.zIndex = 10;
@@ -177,7 +177,11 @@ export default function Nav({ hideFor3dOpening }) {
     `;
       injectStyle(moveMenuIconAfter);
       openingNavMenu.current = true;
-    } else if (openingNavMenu.current && openingNavMenuCount.current === 1) {
+    } else if (
+      openingNavMenu.current &&
+      openingNavMenuCount.current === 1 &&
+      !visibility
+    ) {
       hideFor3dOpening();
       document.body.style.overflow = 'auto';
       openingNavMenuCount.current = 0;
@@ -405,7 +409,7 @@ export default function Nav({ hideFor3dOpening }) {
         li2.style.display = 'none';
         navBox.style.transition = '0s';
         canvas.style.zIndex = 1;
-        leftDrop.style.animation = `drop${resizeDropForAnim} 2.3s cubic-bezier(1, 0.19, 0.66, 0.12) infinite`;
+        // leftDrop.style.animation = `drop${resizeDropForAnim} 2.3s cubic-bezier(1, 0.19, 0.66, 0.12) infinite`;
         leftDrop.style.borderRadius = '50%';
         leftDrop.style.top = '70%';
         leftDrop.style.width = '40%';
@@ -416,7 +420,7 @@ export default function Nav({ hideFor3dOpening }) {
         leftDrop.style.backgroundColor = 'var(--blue-pastel)';
         leftDrop.style.transition = 'unset';
         connexionAccess.style.display = 'none';
-        rightDrop.style.animation = `drop${resizeDropForAnim} 2.45s cubic-bezier(1, 0.19, 0.66, 0.12) infinite`;
+        // rightDrop.style.animation = `drop${resizeDropForAnim} 2.45s cubic-bezier(1, 0.19, 0.66, 0.12) infinite`;
         rightDrop.style.transition = 'unset';
         rightDrop.style.borderRadius = '50%';
         rightDrop.style.top = '70%';
@@ -521,32 +525,31 @@ export default function Nav({ hideFor3dOpening }) {
       }px)`;
       let leftDrop = drop[0];
       let rightDrop = drop[1];
-      leftDrop.style.animation = 'none';
-      rightDrop.style.animation = 'none';
+      // leftDrop.style.animation = 'none';
+      // rightDrop.style.animation = 'none';
       if (openingNavMenu.current) {
         leftDrop.style.left = ` calc(-${Number(navLeft)}px)`;
         rightDrop.style.right = ` calc(-${Number(
           w - (navLeft + navWidth)
         )}px )`;
+      } else {
+        if (window.matchMedia('(max-aspect-ratio: 8/10)').matches) {
+          leftDrop.style.animation = 'none';
+          rightDrop.style.animation = 'none';
+        } else if (
+          window.matchMedia('(min-aspect-ratio: 10/5) and (max-width: 800px)')
+            .matches
+        ) {
+          leftDrop.style.animation = 'none';
+          rightDrop.style.animation = 'none';
+        } else {
+          leftDrop.style.animation = 'none';
+          rightDrop.style.animation = 'none';
+        }
       }
-      // else {
-      //   if (window.matchMedia('(max-aspect-ratio: 8/10)').matches) {
-      //     leftDrop.style.animationName = 'drop2';
-      //     rightDrop.style.animationName = 'drop2';
-      //   } else if (
-      //     window.matchMedia('(min-aspect-ratio: 10/5) and (max-width: 800px)')
-      //       .matches
-      //   ) {
-      //     leftDrop.style.animationName = 'drop3';
-      //     rightDrop.style.animationName = 'drop3';
-      //   } else {
-      //     leftDrop.style.animationName = 'drop';
-      //     rightDrop.style.animationName = 'drop';
-      //   }
-      // }
     };
     window.addEventListener('resize', resizeListener);
-  });
+  }, [windowHeight, windowWidth]);
 
   return (
     <Fragment>
