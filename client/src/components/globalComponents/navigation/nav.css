@@ -83,7 +83,7 @@
   display: none;
   color: var(--grey-carbon);
   position: absolute;
-  font-family: geomanist;
+  font-family: GeomanistRegular;
   text-transform: capitalize;
   font-size: 110%;
   transition: 0.2s ease-out;
@@ -108,8 +108,8 @@
   }
 }
 nav .juiceDrop {
-  -webkit-filter: url('#juice');
-  filter: url('#juice');
+  /* -webkit-filter: url('#juice');
+  filter: url('#juice'); */
   position: absolute;
   width: max(5vw, 60px);
   top: 0;
@@ -129,16 +129,13 @@ nav .juiceDrop {
   background-color: var(--blue-pastel);
 }
 .drop1 {
-  width: 90%;
+  width: 50%;
   height: 16%;
   top: 72%;
-  left: 10%;
+  left: 30%;
   border-radius: 0;
 }
 
-/* .drop2 {
-  animation: drop 2.3s cubic-bezier(1, 0.19, 0.66, 0.12) infinite;
-} */
 .leftDropH2 {
   display: none;
   text-align: center;
@@ -163,9 +160,9 @@ nav .juiceDrop {
     transform: translateY(0%) scale(1);
   }
 }
-/* .drop2:last-of-type {
-  animation: drop 2.45s cubic-bezier(1, 0.19, 0.66, 0.12) infinite;
-} */
+.drop2:last-of-type {
+  /* animation: drop 2.45s cubic-bezier(1, 0.19, 0.66, 0.12) infinite; */
+}
 @keyframes drop {
   0% {
     top: 65%;

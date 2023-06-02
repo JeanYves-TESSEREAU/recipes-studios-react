@@ -117,13 +117,13 @@ export default function Nav({ hideFor3dOpening, visibility }) {
         leftDrop.style.backgroundColor = 'var(--grey-carbon)';
         rightDrop.style.transition = 'all 0.3s ease-in 0s';
         leftDrop.style.transition = 'all 0.3s ease-in 0s';
-        const navDropModify = `
-        nav .juiceDrop {
-          -webkit-filter:none;
-      filter: none;
-        }
-      `;
-        injectStyle(navDropModify);
+        //   const navDropModify = `
+        //   nav .juiceDrop {
+        //     -webkit-filter:none;
+        // filter: none;
+        //   }
+        // `;
+        //   injectStyle(navDropModify);
 
         if (openingNavMenu.current && openingNavMenuCount.current === 0) {
           setTimeout(() => {
@@ -192,7 +192,7 @@ export default function Nav({ hideFor3dOpening, visibility }) {
       li2.style.display = 'none';
       navBox.style.transition = '0s';
       canvas.style.zIndex = 1;
-      leftDrop.style.animation = `drop${resizeDropForAnim} 2.3s cubic-bezier(1, 0.19, 0.66, 0.12) infinite`;
+      leftDrop.style.animation = `2.3s cubic-bezier(1, 0.19, 0.66, 0.12)`;
       leftDrop.style.borderRadius = '50%';
       leftDrop.style.top = '70%';
       leftDrop.style.width = '40%';
@@ -203,7 +203,7 @@ export default function Nav({ hideFor3dOpening, visibility }) {
       leftDrop.style.backgroundColor = 'var(--blue-pastel)';
       leftDrop.style.transition = 'unset';
       connexionAccess.style.display = 'none';
-      rightDrop.style.animation = `drop${resizeDropForAnim} 2.45s cubic-bezier(1, 0.19, 0.66, 0.12) infinite`;
+      rightDrop.style.animation = ` 2.45s cubic-bezier(1, 0.19, 0.66, 0.12)`;
       rightDrop.style.transition = 'unset';
       rightDrop.style.borderRadius = '50%';
       rightDrop.style.top = '70%';
@@ -218,14 +218,14 @@ export default function Nav({ hideFor3dOpening, visibility }) {
         }
       `;
       injectStyle(moveMenuIcon);
-      const navDropModify = `
-      nav .juiceDrop {
-        -webkit-filter: url('#juice');
-    filter: url('#juice');
-  
-      }
-    `;
-      injectStyle(navDropModify);
+      //   const navDropModify = `
+      //   nav .juiceDrop {
+      //     -webkit-filter: url('#juice');
+      // filter: url('#juice');
+
+      //   }
+      // `;
+      //   injectStyle(navDropModify);
       const moveMenuIcon1 = `
         .firstNav ul li:first-of-type::before{
           position: absolute;
@@ -361,13 +361,13 @@ export default function Nav({ hideFor3dOpening, visibility }) {
           leftDrop.style.backgroundColor = 'var(--grey-carbon)';
           rightDrop.style.transition = 'all 0.3s ease-in 0s';
           leftDrop.style.transition = 'all 0.3s ease-in 0s';
-          const navDropModify = `
-          nav .juiceDrop {
-            -webkit-filter:none;
-        filter: none;
-          }
-        `;
-          injectStyle(navDropModify);
+          //   const navDropModify = `
+          //   nav .juiceDrop {
+          //     -webkit-filter:none;
+          // filter: none;
+          //   }
+          // `;
+          //   injectStyle(navDropModify);
 
           if (openingNavMenu.current && openingNavMenuCount.current === 0) {
             if (openingNavMenuCount.current === 1) {
@@ -435,14 +435,14 @@ export default function Nav({ hideFor3dOpening, visibility }) {
           }
         `;
         injectStyle(moveMenuIcon);
-        const navDropModify = `
-        nav .juiceDrop {
-          -webkit-filter: url('#juice');
-      filter: url('#juice');
+        //   const navDropModify = `
+        //   nav .juiceDrop {
+        //     -webkit-filter: url('#juice');
+        // filter: url('#juice');
 
-        }
-      `;
-        injectStyle(navDropModify);
+        //   }
+        // `;
+        //   injectStyle(navDropModify);
         const moveMenuIcon1 = `
           .firstNav ul li:first-of-type::before{
             position: absolute;

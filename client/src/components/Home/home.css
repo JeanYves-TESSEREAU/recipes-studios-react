@@ -549,7 +549,7 @@
 .Home figure::after {
   position: absolute;
   color: white;
-  font-family: geomanist;
+  font-family: GeomanistRegular;
   white-space: nowrap;
   top: 50%;
   transform: translateY(-50%);
@@ -607,7 +607,7 @@
 .footerContact::before {
   font-size: 2.5vw;
   position: absolute;
-  font-family: geomanist;
+  font-family: GeomanistRegular;
   left: 50%;
   top: -20%;
   transform: translate(-50%, -150%);
@@ -728,7 +728,7 @@
     font-size: 3vh;
     white-space: nowrap;
     position: absolute;
-    font-family: geomanist;
+    font-family: GeomanistRegular;
     left: 50%;
     top: 25%;
     transform: translate(-50%, -150%);

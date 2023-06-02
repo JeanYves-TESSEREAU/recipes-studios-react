@@ -234,18 +234,18 @@ export default function Home() {
       // SCROLL ACTIONS FOR HEADER AND NAV //
 
       {
-        if (browserName !== 'firefox') {
-          window.clearTimeout(isScrolling);
-          let drop2 = document.querySelectorAll('.drop2');
+        // if (browserName !== 'firefox') {
+        //   window.clearTimeout(isScrolling);
+        //   let drop2 = document.querySelectorAll('.drop2');
 
-          drop2[0].style.animation = 'none';
-          drop2[1].style.animation = 'none';
-          // eslint-disable-next-line react-hooks/exhaustive-deps
-          isScrolling = setTimeout(() => {
-            drop2[0].style.animation = '';
-            drop2[1].style.animation = '';
-          }, 300);
-        }
+        //   drop2[0].style.animation = 'none';
+        //   drop2[1].style.animation = 'none';
+        //   // eslint-disable-next-line react-hooks/exhaustive-deps
+        //   isScrolling = setTimeout(() => {
+        //     drop2[0].style.animation = '';
+        //     drop2[1].style.animation = '';
+        //   }, 300);
+        // }
 
         let h2 = document.querySelector('h2');
 

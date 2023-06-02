@@ -340,7 +340,7 @@
   position: absolute;
   box-shadow: 0.15em 0.4em 1em rgba(43, 67, 102, 0.384);
   cursor: pointer;
-  right: 3%;
+  left: 3%;
   top: 37%;
 }
 
