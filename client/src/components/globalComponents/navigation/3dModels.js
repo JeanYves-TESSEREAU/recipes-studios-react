@@ -172,7 +172,7 @@ export function Models({
           requestAnimationFrame(transitionAnim);
           progress2.current = 1;
         }
-        if (progress > 0.95) {
+        if (progress > 0.985) {
           ref.current.position.z = 0;
         }
       };

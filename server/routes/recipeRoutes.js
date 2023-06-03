@@ -21,12 +21,7 @@ router.get('/id/:id', getRecipeByID);
 router.get('/:name', getRecipeByName);
 
 // CREATE A RECIPE
-router.post(
-  '/create',
-  // authGlobal,
-  recipeBodyCheck,
-  createRecipe
-);
+router.post('/create', authGlobal, recipeBodyCheck, createRecipe);
 // UPDATE A RECIPE
 // router.patch('/id/:id/update', updateRecipe);
 

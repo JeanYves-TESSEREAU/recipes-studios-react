@@ -546,17 +546,29 @@
   border-radius: 1vw;
   border: 0.4vw rgba(193, 212, 222, 0.081) solid;
 }
-.Home figure::after {
+.Home figure:nth-child(odd)::after {
   position: absolute;
-  color: white;
-  font-family: GeomanistRegular;
+  color: var(--blue-pastel);
+  font-family: Geomanist-Light;
   white-space: nowrap;
   top: 50%;
   transform: translateY(-50%);
   content: attr(data-img);
-  font-size: 5vw;
+  font-size: 4.5vw;
   writing-mode: vertical-lr;
-  left: 80%;
+  left: 81%;
+}
+.Home figure:nth-child(even)::after {
+  position: absolute;
+  color: var(--red-pastel);
+  font-family: Geomanist-Light;
+  white-space: nowrap;
+  top: 50%;
+  transform: translateY(-50%);
+  content: attr(data-img);
+  font-size: 4.5vw;
+  writing-mode: vertical-lr;
+  left: 81%;
 }
 .Home figure figcaption {
   position: absolute;

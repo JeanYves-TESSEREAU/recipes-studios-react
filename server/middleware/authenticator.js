@@ -30,7 +30,7 @@ export const authGlobal = async (req, res, next) => {
   const token = req.headers.authorization;
 
   if (!token) {
-    return res.status(401).send(`accès administrateur`);
+    return res.status(401).send(`accès aux membres enregistrés`);
   }
 
   try {

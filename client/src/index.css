@@ -42,10 +42,13 @@ code {
     url('./assets/fonts/Geomanist/Geomanist-Ultra.ttf') format('truetype');
   font-weight: bold;
 } */
-
+:root {
+  --doc-height: 100%;
+}
 body {
   width: 100vw;
-  height: 100vh;
+  height: 100vh; /* fallback for Js load */
+  height: var(--doc-height);
   background: radial-gradient(
     at 122% 38%,
     rgb(204 208 209) -217%,

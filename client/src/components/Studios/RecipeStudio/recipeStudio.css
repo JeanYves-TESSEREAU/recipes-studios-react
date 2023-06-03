@@ -5,6 +5,8 @@
   align-items: center;
   height: 100vh;
   overflow: hidden;
+  background-color: #e3e5ea;
+  z-index: 0;
 }
 .recipeStudio .searchAlimentOnRecipeStudioClose,
 .recipeStudio .proportionAlimentClose,
@@ -2255,6 +2257,18 @@ input[type='radio']:checked label {
     transform: translateY(-145%) scale(0.8);
     box-shadow: 0.2em 0.5em 0.6em rgba(48, 70, 92, 0.43);
   }
+  #formDietProportionsOptions {
+    height: 90%;
+    min-width: 90%;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    justify-items: center;
+    align-items: unset;
+    align-content: center;
+    animation: cubic-bezier(0.175, 0.685, 0.32, 1.1) 6s;
+    animation-name: dietProportionsOptionsSubmitAnim;
+  }
 }
 /*   -----    HERE IS THE COSMETIC FOR MOBILE FRIENDLY ON LANDSCAPE FOR SMALL TABLETS -----    */
 
@@ -2323,6 +2337,18 @@ input[type='radio']:checked label {
     top: -10%;
     left: 42%;
   }
+  #formDietProportionsOptions {
+    height: 90%;
+    min-width: 90%;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    justify-items: center;
+    align-items: unset;
+    align-content: center;
+    animation: cubic-bezier(0.175, 0.685, 0.32, 1.1) 6s;
+    animation-name: dietProportionsOptionsSubmitAnim;
+  }
 }
 /*   -----    HERE IS THE COSMETIC FOR BIG SCREENS -----    */
 
@@ -2345,5 +2371,17 @@ input[type='radio']:checked label {
       width: 120%;
       transform: translateX(0);
     }
+  }
+  #formDietProportionsOptions {
+    height: 90%;
+    min-width: 90%;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    justify-items: center;
+    align-items: unset;
+    align-content: center;
+    animation: cubic-bezier(0.175, 0.685, 0.32, 1.1) 6s;
+    animation-name: dietProportionsOptionsSubmitAnim;
   }
 }

@@ -150,7 +150,9 @@ const RecipeBook = ({
   /* ______________________             HERE IS THE CONTENT PART                     __________________________ */
 
   return (
-    <div className='recipeBook'>
+    <div
+      className='recipeBook'
+      style={{ background: visibility ? '' : 'none' }}>
       <img
         id='recipeBookImg'
         style={{ opacity: visibility ? '1' : '0' }}

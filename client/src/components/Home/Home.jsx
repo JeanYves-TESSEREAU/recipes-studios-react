@@ -17,10 +17,11 @@ import { BsFillTelephoneOutboundFill } from 'react-icons/bs';
 
 export default function Home() {
   let section2Top = useRef(0);
+  let coeffSizing = useRef(1);
+  let homeWidth = useRef(window.innerWidth);
   let isScrolling;
   let actualScrollPourcent = useRef(0);
   let isScrollingBis;
-  // let isScrollingTer;
   const [visibility, setVisibility] = useState(true);
   let windowHeight = window.innerHeight;
   let windowWidth = window.innerWidth;
@@ -108,6 +109,7 @@ export default function Home() {
     const callback = () => {
       let h1Span = document.querySelectorAll('[data-data]');
       let aside = document.querySelectorAll('aside');
+
       let asidePosition = aside[0].getBoundingClientRect();
       section2Top.current =
         asidePosition.top + asidePosition.height + window.scrollY;
@@ -160,10 +162,11 @@ export default function Home() {
   // RESIZE LISTENER //   // RESIZE LISTENER //   // RESIZE LISTENER //
   useEffect(() => {
     if (window.location.pathname === '/' && visibility) {
-      console.log(window.location.pathname === '/');
       const resizeListener = () => {
         if (window.location.pathname === '/' && visibility) {
           let home = document.querySelector('.Home');
+          coeffSizing.current = window.innerWidth / homeWidth.current;
+
           let aside = document.querySelectorAll('aside');
           let asidePosition = aside[0].getBoundingClientRect();
           section2Top.current =
@@ -198,7 +201,6 @@ export default function Home() {
       };
       window.addEventListener('resize', resizeListener);
     }
-    console.log('hello');
   }, [windowHeight, windowWidth, headerParallax]);
 
   // ENTRANCE ANIM STATE LISTENER //   // ENTRANCE ANIM STATE LISTENER //   // ENTRANCE ANIM STATE LISTENER //
@@ -436,6 +438,7 @@ export default function Home() {
                 section2Open +
                 0.3 * home.offsetHeight -
                 (section2Open + 0.15 * home.offsetHeight);
+              coeffSizing.current = window.innerWidth / homeWidth.current;
 
               // 125 = 125 % of inner width
               let distanceInPourcent = 125 / distanceToTranslate;
@@ -493,14 +496,16 @@ export default function Home() {
                 (section2Open + 0.3 * home.offsetHeight);
 
               centerContentSection2.scrollLeft = `${
-                -windowWidth * 8 +
+                -(windowWidth * coeffSizing.current) * 8 +
                 ((window.scrollY +
                   distanceToTranslate -
                   (section2Open + 0.3 * home.offsetHeight)) /
                   distanceToTranslate) *
-                  windowWidth *
+                  (windowWidth * coeffSizing.current) *
                   8
               } `;
+              centerContentSection2.scrollTop = 0;
+
               for (let i = 0; i < figcaptions.length; i++) {
                 figcaptions[i].style.transform = `translateY(${
                   (figures[i].getBoundingClientRect().right /
@@ -511,6 +516,8 @@ export default function Home() {
               centerContentSection2.style.opacity = '1';
             } else {
               centerContentSection2.style.opacity = '0.05';
+              coeffSizing.current = window.innerWidth / homeWidth.current;
+              centerContentSection2.scrollLeft = 8 * window.innerWidth;
             }
           } else {
             h3[0].style.top = `0`;

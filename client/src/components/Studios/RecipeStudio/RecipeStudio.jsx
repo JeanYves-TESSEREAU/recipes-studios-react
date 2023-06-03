@@ -9,10 +9,7 @@ import EggRightSvg from './EggRightSvg.jsx';
 import EggLeftSvg from './EggLeftSvg.jsx';
 import EggCenterSvg from './EggCenterSvg';
 import Nav from '../../globalComponents/navigation/Nav';
-import {
-  alertPopup,
-  alertGoToRecipeBook,
-} from '../../../assets/fonctions/alertPopup.js';
+import { alertPopup } from '../../../assets/fonctions/alertPopup.js';
 // import ReactQuill from 'react-quill';
 // import 'react-quill/dist/quill.snow.css';
 
@@ -34,6 +31,7 @@ const RecipeStudio = ({
   alimentId,
   listToRecipeStudio,
   createRecipe,
+  isAuthenticated,
 }) => {
   /* ______________________             HERE IS ALL FONCTIONS/STATE AND CONDITIONS PART                       __________________________ */
   /* ______________________             HERE IS ALL FONCTIONS/STATE AND CONDITIONS PART                       __________________________ */
@@ -758,6 +756,12 @@ const RecipeStudio = ({
     setDisplayEggsSvg(!displayEggsSvg);
   };
   const toggleRecipeDetailsRecipeStudio = () => {
+    if (!recipeDetailsOpen && isAuthenticated.isAuthenticated !== true) {
+      alertPopup(
+        'Attention il faut être connecté afin de créer et enregistrer votre recette',
+        'warning'
+      );
+    }
     setRecipeDetailsOpen(!recipeDetailsOpen);
     setDisplayEggsSvg(!displayEggsSvg);
   };
@@ -812,46 +816,53 @@ const RecipeStudio = ({
 
   const onSubmitHandle = (e) => {
     e.preventDefault();
-    const recipeIngredients = AlimentToStudy;
-    if (
-      recipeDiet[recipeDiet.length - 1][
-        Object.keys(recipeDiet[recipeDiet.length - 1])
-      ].lipides &&
-      recipeDiet[recipeDiet.length - 1][
-        Object.keys(recipeDiet[recipeDiet.length - 1])
-      ].glucides &&
-      recipeDiet[recipeDiet.length - 1][
-        Object.keys(recipeDiet[recipeDiet.length - 1])
-      ].protein &&
-      AlimentToStudy.length !== 0
-    ) {
-      setFormRecipe({
-        ...formRecipe,
-        recipeIngredients,
-        recipeDiet: dietChosen,
-        // totalKcal: totalKcal,
-        // totalGrammes: totalGrammes,
-        // totalProtein: totalProtein,
-        // totalCarbs: totalCarbs,
-        // totalFat: totalFat,
-      });
-      createRecipe({
-        ...formRecipe,
-        recipeIngredients,
-        recipeDiet: dietChosen,
-        // totalKcal: totalKcal,
-        // totalGrammes: totalGrammes,
-        // totalProtein: totalProtein,
-        // totalCarbs: totalCarbs,
-        // totalFat: totalFat,
-      });
-      toggleRecipeDetailsRecipeStudio();
-      // setNavigate(!navigate);
-    } else {
+    if (isAuthenticated.isAuthenticated !== true) {
       alertPopup(
-        `il semblerait que vous n'avez pas choisi d'ingrédients ou respecté Les proportions de votre recette, vous devez d'abord Vous rendre à L'étape Numéro 2`,
-        'warning'
+        'Attention il faut être connecté afin de créer et enregistrer votre recette',
+        'error'
       );
+    } else {
+      const recipeIngredients = AlimentToStudy;
+      if (
+        recipeDiet[recipeDiet.length - 1][
+          Object.keys(recipeDiet[recipeDiet.length - 1])
+        ].lipides &&
+        recipeDiet[recipeDiet.length - 1][
+          Object.keys(recipeDiet[recipeDiet.length - 1])
+        ].glucides &&
+        recipeDiet[recipeDiet.length - 1][
+          Object.keys(recipeDiet[recipeDiet.length - 1])
+        ].protein &&
+        AlimentToStudy.length !== 0
+      ) {
+        setFormRecipe({
+          ...formRecipe,
+          recipeIngredients,
+          recipeDiet: dietChosen,
+          // totalKcal: totalKcal,
+          // totalGrammes: totalGrammes,
+          // totalProtein: totalProtein,
+          // totalCarbs: totalCarbs,
+          // totalFat: totalFat,
+        });
+        createRecipe({
+          ...formRecipe,
+          recipeIngredients,
+          recipeDiet: dietChosen,
+          // totalKcal: totalKcal,
+          // totalGrammes: totalGrammes,
+          // totalProtein: totalProtein,
+          // totalCarbs: totalCarbs,
+          // totalFat: totalFat,
+        });
+        toggleRecipeDetailsRecipeStudio();
+        // setNavigate(!navigate);
+      } else {
+        alertPopup(
+          `il semblerait que vous n'avez pas choisi d'ingrédients ou respecté Les proportions de votre recette, vous devez d'abord Vous rendre à L'étape Numéro 2`,
+          'warning'
+        );
+      }
     }
   };
 
@@ -934,7 +945,9 @@ const RecipeStudio = ({
   /* ______________________             HERE IS THE CONTENT PART                     __________________________ */
 
   return (
-    <div className='recipeStudio'>
+    <div
+      style={{ background: visibility ? '' : 'none' }}
+      className='recipeStudio'>
       <img
         id='recetteStudioImg'
         style={{ opacity: visibility ? '1' : '0' }}
@@ -1865,6 +1878,7 @@ const mapStateToProps = (state) => ({
   recipes: state.allRecipes,
   recipeId: state.allRecipes,
   recipeActive: state.allRecipes,
+  isAuthenticated: state.auth,
 });
 export default connect(mapStateToProps, {
   getAliment,

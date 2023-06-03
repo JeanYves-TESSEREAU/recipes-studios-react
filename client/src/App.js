@@ -9,14 +9,19 @@ import RecipeBook from './components/Studios/RecipeBook/RecipeBook.jsx';
 import Home from './components/Home/Home.jsx';
 import Connexion from './components/Connexion/Connexion.jsx';
 import Recipe from './components/multiFonctionComponents/Recipes/Recipe/Recipe';
-// import PublicRoute from './components/Routes/PublicRoute.jsx';
 
 function App() {
   window.onbeforeunload = function () {
-    // setTimeout(() => {
     window.scrollTo(0, 0);
-    // }, 10);
   };
+
+  // This will help to force all fixed pages (without scroll needs) to be up from all tollbars
+  const documentHeight = () => {
+    const doc = document.documentElement;
+    doc.style.setProperty('--doc-height', `${window.innerHeight}px`);
+  };
+  window.addEventListener('resize', documentHeight);
+  documentHeight();
 
   return (
     <div className='App'>

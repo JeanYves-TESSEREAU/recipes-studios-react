@@ -3,8 +3,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: var(--doc-height);
+  min-height: -webkit-fill-available;
   overflow: hidden;
+  background-color: #e3e5ea;
+  z-index: 0;
 }
 
 /* --- HERE IS THE COSMETIC ABOUT THE THREE CLOSED SECTION'S MODAL --- */
