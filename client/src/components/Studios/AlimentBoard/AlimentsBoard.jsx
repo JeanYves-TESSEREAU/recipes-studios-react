@@ -1154,6 +1154,376 @@ const AlimentBoard = ({
                   X
                 </button>
               </th>
+              <th
+                className='agMonoinsaturésG'
+                style={{
+                  display: ` ${
+                    inputChecked.includes('agMonoinsaturésG') ? '' : 'none'
+                  }`,
+                }}>
+                agMonoinsaturés (g)
+                <button
+                  className='sort'
+                  name='agMonoinsaturésG'
+                  onClick={handlesortNutriment}>
+                  ⭥
+                </button>
+                <button
+                  className='bars'
+                  style={{
+                    display: ` ${
+                      filterActive.agMonoinsaturésG ? 'none' : 'block'
+                    }`,
+                  }}
+                  onClick={(e) => {
+                    toggle('agMonoinsaturésG');
+                  }}>
+                  ☰
+                </button>
+                <button
+                  className='bars'
+                  style={{
+                    display: ` ${
+                      filterActive.agMonoinsaturésG ? 'block' : 'none'
+                    }`,
+                  }}
+                  onClick={(e) => {
+                    close('agMonoinsaturésG');
+                  }}>
+                  X
+                </button>
+              </th>
+              <th
+                className='agPolyinsaturésG'
+                style={{
+                  display: ` ${
+                    inputChecked.includes('agPolyinsaturésG') ? '' : 'none'
+                  }`,
+                }}>
+                agPolyinsaturés (g)
+                <button
+                  className='sort'
+                  name='agPolyinsaturésG'
+                  onClick={handlesortNutriment}>
+                  ⭥
+                </button>
+                <button
+                  className='bars'
+                  style={{
+                    display: ` ${
+                      filterActive.agPolyinsaturésG ? 'none' : 'block'
+                    }`,
+                  }}
+                  onClick={(e) => {
+                    toggle('agPolyinsaturésG');
+                  }}>
+                  ☰
+                </button>
+                <button
+                  className='bars'
+                  style={{
+                    display: ` ${
+                      filterActive.agPolyinsaturésG ? 'block' : 'none'
+                    }`,
+                  }}
+                  onClick={(e) => {
+                    close('agPolyinsaturésG');
+                  }}>
+                  X
+                </button>
+              </th>
+              <th
+                className='agButyriqueG'
+                style={{
+                  display: ` ${
+                    inputChecked.includes('agButyriqueG') ? '' : 'none'
+                  }`,
+                }}>
+                agButyrique (g)
+                <button
+                  className='sort'
+                  name='agButyriqueG'
+                  onClick={handlesortNutriment}>
+                  ⭥
+                </button>
+                <button
+                  className='bars'
+                  style={{
+                    display: ` ${filterActive.agButyriqueG ? 'none' : 'block'}`,
+                  }}
+                  onClick={(e) => {
+                    toggle('agButyriqueG');
+                  }}>
+                  ☰
+                </button>
+                <button
+                  className='bars'
+                  style={{
+                    display: ` ${filterActive.agButyriqueG ? 'block' : 'none'}`,
+                  }}
+                  onClick={(e) => {
+                    close('agButyriqueG');
+                  }}>
+                  X
+                </button>
+              </th>
+              <th
+                className='agCaproiqueG'
+                style={{
+                  display: ` ${
+                    inputChecked.includes('agCaproiqueG') ? '' : 'none'
+                  }`,
+                }}>
+                agCaproiqueG (g)
+                <button
+                  className='sort'
+                  name='agCaproiqueG'
+                  onClick={handlesortNutriment}>
+                  ⭥
+                </button>
+                <button
+                  className='bars'
+                  style={{
+                    display: ` ${filterActive.agCaproiqueG ? 'none' : 'block'}`,
+                  }}
+                  onClick={(e) => {
+                    toggle('agCaproiqueG');
+                  }}>
+                  ☰
+                </button>
+                <button
+                  className='bars'
+                  style={{
+                    display: ` ${filterActive.agCaproiqueG ? 'block' : 'none'}`,
+                  }}
+                  onClick={(e) => {
+                    close('agCaproiqueG');
+                  }}>
+                  X
+                </button>
+              </th>
+              <th
+                className='agCapryliqueG'
+                style={{
+                  display: ` ${
+                    inputChecked.includes('agCapryliqueG') ? '' : 'none'
+                  }`,
+                }}>
+                agCaprylique (g)
+                <button
+                  className='sort'
+                  name='agCapryliqueG'
+                  onClick={handlesortNutriment}>
+                  ⭥
+                </button>
+                <button
+                  className='bars'
+                  style={{
+                    display: ` ${
+                      filterActive.agCapryliqueG ? 'none' : 'block'
+                    }`,
+                  }}
+                  onClick={(e) => {
+                    toggle('agCapryliqueG');
+                  }}>
+                  ☰
+                </button>
+                <button
+                  className='bars'
+                  style={{
+                    display: ` ${
+                      filterActive.agCapryliqueG ? 'block' : 'none'
+                    }`,
+                  }}
+                  onClick={(e) => {
+                    close('agCapryliqueG');
+                  }}>
+                  X
+                </button>
+              </th>
+              <th
+                className='agCapriqueG'
+                style={{
+                  display: ` ${
+                    inputChecked.includes('agCapriqueG') ? '' : 'none'
+                  }`,
+                }}>
+                agCaprique (g)
+                <button
+                  className='sort'
+                  name='agCapriqueG'
+                  onClick={handlesortNutriment}>
+                  ⭥
+                </button>
+                <button
+                  className='bars'
+                  style={{
+                    display: ` ${filterActive.agCapriqueG ? 'none' : 'block'}`,
+                  }}
+                  onClick={(e) => {
+                    toggle('agCapriqueG');
+                  }}>
+                  ☰
+                </button>
+                <button
+                  className='bars'
+                  style={{
+                    display: ` ${filterActive.agCapriqueG ? 'block' : 'none'}`,
+                  }}
+                  onClick={(e) => {
+                    close('agCapriqueG');
+                  }}>
+                  X
+                </button>
+              </th>
+              <th
+                className='agLauriqueG'
+                style={{
+                  display: ` ${
+                    inputChecked.includes('agLauriqueG') ? '' : 'none'
+                  }`,
+                }}>
+                agLaurique (g)
+                <button
+                  className='sort'
+                  name='agLauriqueG'
+                  onClick={handlesortNutriment}>
+                  ⭥
+                </button>
+                <button
+                  className='bars'
+                  style={{
+                    display: ` ${filterActive.agLauriqueG ? 'none' : 'block'}`,
+                  }}
+                  onClick={(e) => {
+                    toggle('agLauriqueG');
+                  }}>
+                  ☰
+                </button>
+                <button
+                  className='bars'
+                  style={{
+                    display: ` ${filterActive.agLauriqueG ? 'block' : 'none'}`,
+                  }}
+                  onClick={(e) => {
+                    close('agLauriqueG');
+                  }}>
+                  X
+                </button>
+              </th>
+              <th
+                className='agMyristiqueG'
+                style={{
+                  display: ` ${
+                    inputChecked.includes('agMyristiqueG') ? '' : 'none'
+                  }`,
+                }}>
+                agMyristique (g)
+                <button
+                  className='sort'
+                  name='agMyristiqueG'
+                  onClick={handlesortNutriment}>
+                  ⭥
+                </button>
+                <button
+                  className='bars'
+                  style={{
+                    display: ` ${
+                      filterActive.agMyristiqueG ? 'none' : 'block'
+                    }`,
+                  }}
+                  onClick={(e) => {
+                    toggle('agMyristiqueG');
+                  }}>
+                  ☰
+                </button>
+                <button
+                  className='bars'
+                  style={{
+                    display: ` ${
+                      filterActive.agMyristiqueG ? 'block' : 'none'
+                    }`,
+                  }}
+                  onClick={(e) => {
+                    close('agMyristiqueG');
+                  }}>
+                  X
+                </button>
+              </th>
+              <th
+                className='agPalmitiqueG'
+                style={{
+                  display: ` ${
+                    inputChecked.includes('agPalmitiqueG') ? '' : 'none'
+                  }`,
+                }}>
+                agPalmitique (g)
+                <button
+                  className='sort'
+                  name='agPalmitiqueG'
+                  onClick={handlesortNutriment}>
+                  ⭥
+                </button>
+                <button
+                  className='bars'
+                  style={{
+                    display: ` ${
+                      filterActive.agPalmitiqueG ? 'none' : 'block'
+                    }`,
+                  }}
+                  onClick={(e) => {
+                    toggle('agPalmitiqueG');
+                  }}>
+                  ☰
+                </button>
+                <button
+                  className='bars'
+                  style={{
+                    display: ` ${
+                      filterActive.agPalmitiqueG ? 'block' : 'none'
+                    }`,
+                  }}
+                  onClick={(e) => {
+                    close('agPalmitiqueG');
+                  }}>
+                  X
+                </button>
+              </th>
+              <th
+                className='agSteariqueG'
+                style={{
+                  display: ` ${
+                    inputChecked.includes('agSteariqueG') ? '' : 'none'
+                  }`,
+                }}>
+                agStearique (g)
+                <button
+                  className='sort'
+                  name='agSteariqueG'
+                  onClick={handlesortNutriment}>
+                  ⭥
+                </button>
+                <button
+                  className='bars'
+                  style={{
+                    display: ` ${filterActive.agSteariqueG ? 'none' : 'block'}`,
+                  }}
+                  onClick={(e) => {
+                    toggle('agSteariqueG');
+                  }}>
+                  ☰
+                </button>
+                <button
+                  className='bars'
+                  style={{
+                    display: ` ${filterActive.agSteariqueG ? 'block' : 'none'}`,
+                  }}
+                  onClick={(e) => {
+                    close('agSteariqueG');
+                  }}>
+                  X
+                </button>
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -1360,6 +1730,100 @@ const AlimentBoard = ({
                         }`,
                       }}>
                       {alim.agSaturesG}
+                    </td>
+                    <td
+                      className='agMonoinsaturésG'
+                      style={{
+                        display: ` ${
+                          inputChecked.includes('agMonoinsaturésG')
+                            ? ''
+                            : 'none'
+                        }`,
+                      }}>
+                      {alim.agMonoinsaturésG}
+                    </td>
+                    <td
+                      className='agPolyinsaturésG'
+                      style={{
+                        display: ` ${
+                          inputChecked.includes('agPolyinsaturésG')
+                            ? ''
+                            : 'none'
+                        }`,
+                      }}>
+                      {alim.agPolyinsaturésG}
+                    </td>
+                    <td
+                      className='agButyriqueG'
+                      style={{
+                        display: ` ${
+                          inputChecked.includes('agButyriqueG') ? '' : 'none'
+                        }`,
+                      }}>
+                      {alim.agButyriqueG}
+                    </td>
+                    <td
+                      className='agCaproiqueG'
+                      style={{
+                        display: ` ${
+                          inputChecked.includes('agCaproiqueG') ? '' : 'none'
+                        }`,
+                      }}>
+                      {alim.agCaproiqueG}
+                    </td>
+                    <td
+                      className='agCapryliqueG'
+                      style={{
+                        display: ` ${
+                          inputChecked.includes('agCapryliqueG') ? '' : 'none'
+                        }`,
+                      }}>
+                      {alim.agCapryliqueG}
+                    </td>
+                    <td
+                      className='agCapriqueG'
+                      style={{
+                        display: ` ${
+                          inputChecked.includes('agCapriqueG') ? '' : 'none'
+                        }`,
+                      }}>
+                      {alim.agCapriqueG}
+                    </td>
+                    <td
+                      className='agLauriqueG'
+                      style={{
+                        display: ` ${
+                          inputChecked.includes('agLauriqueG') ? '' : 'none'
+                        }`,
+                      }}>
+                      {alim.agLauriqueG}
+                    </td>
+                    <td
+                      className='agMyristiqueG'
+                      style={{
+                        display: ` ${
+                          inputChecked.includes('agMyristiqueG') ? '' : 'none'
+                        }`,
+                      }}>
+                      {alim.agMyristiqueG}
+                    </td>
+                    <td
+                      className='agPalmitiqueG'
+                      style={{
+                        display: ` ${
+                          inputChecked.includes('agPalmitiqueG') ? '' : 'none'
+                        }`,
+                      }}>
+                      {alim.agPalmitiqueG}
+                    </td>
+                    <td
+                      className='agSteariqueG'
+                      style={{
+                        display: ` ${
+                          inputChecked.includes('agSteariqueG') ? '' : 'none'
+                        }`,
+                      }}>
+                      {alim.agSteariqueG}
                     </td>
                   </tr>
                 );

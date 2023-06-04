@@ -436,6 +436,9 @@
   text-transform: uppercase;
   font-size: max(16px, 1.6vw);
 }
+.Home main section:first-of-type aside article {
+  transition: 0.5s ease-out;
+}
 
 .Home main section:last-of-type {
   overflow-y: hidden;

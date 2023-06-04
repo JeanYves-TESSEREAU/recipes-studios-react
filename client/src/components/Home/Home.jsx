@@ -289,13 +289,13 @@ export default function Home() {
         window.scrollY < home.offsetHeight * 0.07
       ) {
         welcomeH2.style.display = 'block';
-        welcomeH2.style.translate = '0%';
+        welcomeH2.style.left = '35%';
       } else if (
         window.scrollY > home.offsetHeight * 0.07 &&
         welcomeH2Position.top + welcomeH2Position.height + 10 <
           asidePosition.top
       ) {
-        welcomeH2.style.translate = '0%';
+        welcomeH2.style.left = '35%';
         if (browserName !== 'firefox') {
           setTimeout(() => {
             welcomeH2.style.transform = ` translateY(${
@@ -340,7 +340,7 @@ export default function Home() {
             }`;
           }
         }
-        welcomeH2.style.translate = '-55%';
+        welcomeH2.style.left = '5%';
         if (browserName !== 'firefox') {
           setTimeout(() => {
             welcomeH2.style.transform = ` translateY(${
@@ -352,7 +352,7 @@ export default function Home() {
             window.scrollY - home.offsetHeight * 0.06
           }px)`;
       } else {
-        welcomeH2.style.translate = '0%';
+        welcomeH2.style.left = '35%';
 
         for (let index = 0; index < welcomeSpan.length; index++) {
           welcomeSpan[index].style.scale = '1';
