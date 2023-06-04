@@ -551,14 +551,15 @@
   .searchModalExit {
     left: 15vw;
   }
-  .searchByNutrientsRecipeBookClose {
+
+  .searchByNameRecipeBookClose {
     /* left: 4vw; */
     width: 70vw;
     height: 20vw;
     border-radius: 0.5em;
     top: 3vh;
   }
-  .searchByNameRecipeBookClose {
+  .searchByNutrientsRecipeBookClose {
     top: 40vh;
     left: 4vw;
     width: 70vw;

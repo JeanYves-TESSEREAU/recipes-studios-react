@@ -726,6 +726,434 @@ const AlimentBoard = ({
                   X
                 </button>
               </th>
+              <th
+                className='fructoseG'
+                style={{
+                  display: ` ${
+                    inputChecked.includes('fructoseG') ? '' : 'none'
+                  }`,
+                }}>
+                fructose (g)
+                <button
+                  className='sort'
+                  name='fructoseG'
+                  onClick={handlesortNutriment}>
+                  ⭥
+                </button>
+                <button
+                  className='bars'
+                  style={{
+                    display: ` ${filterActive.fructoseG ? 'none' : 'block'}`,
+                  }}
+                  onClick={(e) => {
+                    toggle('fructoseG');
+                  }}>
+                  ☰
+                </button>
+                <button
+                  className='bars'
+                  style={{
+                    display: ` ${filterActive.fructoseG ? 'block' : 'none'}`,
+                  }}
+                  onClick={(e) => {
+                    close('fructoseG');
+                  }}>
+                  X
+                </button>
+              </th>
+              <th
+                className='galactoseG'
+                style={{
+                  display: ` ${
+                    inputChecked.includes('galactoseG') ? '' : 'none'
+                  }`,
+                }}>
+                galactose (g)
+                <button
+                  className='sort'
+                  name='galactoseG'
+                  onClick={handlesortNutriment}>
+                  ⭥
+                </button>
+                <button
+                  className='bars'
+                  style={{
+                    display: ` ${filterActive.galactoseG ? 'none' : 'block'}`,
+                  }}
+                  onClick={(e) => {
+                    toggle('galactoseG');
+                  }}>
+                  ☰
+                </button>
+                <button
+                  className='bars'
+                  style={{
+                    display: ` ${filterActive.galactoseG ? 'block' : 'none'}`,
+                  }}
+                  onClick={(e) => {
+                    close('galactoseG');
+                  }}>
+                  X
+                </button>
+              </th>
+              <th
+                className='glucoseG'
+                style={{
+                  display: ` ${
+                    inputChecked.includes('glucoseG') ? '' : 'none'
+                  }`,
+                }}>
+                glucose (g)
+                <button
+                  className='sort'
+                  name='glucoseG'
+                  onClick={handlesortNutriment}>
+                  ⭥
+                </button>
+                <button
+                  className='bars'
+                  style={{
+                    display: ` ${filterActive.glucoseG ? 'none' : 'block'}`,
+                  }}
+                  onClick={(e) => {
+                    toggle('glucoseG');
+                  }}>
+                  ☰
+                </button>
+                <button
+                  className='bars'
+                  style={{
+                    display: ` ${filterActive.glucoseG ? 'block' : 'none'}`,
+                  }}
+                  onClick={(e) => {
+                    close('glucoseG');
+                  }}>
+                  X
+                </button>
+              </th>
+              <th
+                className='lactoseG'
+                style={{
+                  display: ` ${
+                    inputChecked.includes('lactoseG') ? '' : 'none'
+                  }`,
+                }}>
+                lactose (g)
+                <button
+                  className='sort'
+                  name='lactoseG'
+                  onClick={handlesortNutriment}>
+                  ⭥
+                </button>
+                <button
+                  className='bars'
+                  style={{
+                    display: ` ${filterActive.lactoseG ? 'none' : 'block'}`,
+                  }}
+                  onClick={(e) => {
+                    toggle('lactoseG');
+                  }}>
+                  ☰
+                </button>
+                <button
+                  className='bars'
+                  style={{
+                    display: ` ${filterActive.lactoseG ? 'block' : 'none'}`,
+                  }}
+                  onClick={(e) => {
+                    close('lactoseG');
+                  }}>
+                  X
+                </button>
+              </th>
+              <th
+                className='maltoseG'
+                style={{
+                  display: ` ${
+                    inputChecked.includes('maltoseG') ? '' : 'none'
+                  }`,
+                }}>
+                maltose (g)
+                <button
+                  className='sort'
+                  name='maltoseG'
+                  onClick={handlesortNutriment}>
+                  ⭥
+                </button>
+                <button
+                  className='bars'
+                  style={{
+                    display: ` ${filterActive.maltoseG ? 'none' : 'block'}`,
+                  }}
+                  onClick={(e) => {
+                    toggle('maltoseG');
+                  }}>
+                  ☰
+                </button>
+                <button
+                  className='bars'
+                  style={{
+                    display: ` ${filterActive.maltoseG ? 'block' : 'none'}`,
+                  }}
+                  onClick={(e) => {
+                    close('maltoseG');
+                  }}>
+                  X
+                </button>
+              </th>
+              <th
+                className='saccharoseG'
+                style={{
+                  display: ` ${
+                    inputChecked.includes('saccharoseG') ? '' : 'none'
+                  }`,
+                }}>
+                saccharose (g)
+                <button
+                  className='sort'
+                  name='saccharoseG'
+                  onClick={handlesortNutriment}>
+                  ⭥
+                </button>
+                <button
+                  className='bars'
+                  style={{
+                    display: ` ${filterActive.saccharoseG ? 'none' : 'block'}`,
+                  }}
+                  onClick={(e) => {
+                    toggle('saccharoseG');
+                  }}>
+                  ☰
+                </button>
+                <button
+                  className='bars'
+                  style={{
+                    display: ` ${filterActive.saccharoseG ? 'block' : 'none'}`,
+                  }}
+                  onClick={(e) => {
+                    close('saccharoseG');
+                  }}>
+                  X
+                </button>
+              </th>
+              <th
+                className='amidonG'
+                style={{
+                  display: ` ${inputChecked.includes('amidonG') ? '' : 'none'}`,
+                }}>
+                amidon (g)
+                <button
+                  className='sort'
+                  name='amidonG'
+                  onClick={handlesortNutriment}>
+                  ⭥
+                </button>
+                <button
+                  className='bars'
+                  style={{
+                    display: ` ${filterActive.amidonG ? 'none' : 'block'}`,
+                  }}
+                  onClick={(e) => {
+                    toggle('amidonG');
+                  }}>
+                  ☰
+                </button>
+                <button
+                  className='bars'
+                  style={{
+                    display: ` ${filterActive.amidonG ? 'block' : 'none'}`,
+                  }}
+                  onClick={(e) => {
+                    close('amidonG');
+                  }}>
+                  X
+                </button>
+              </th>
+              <th
+                className='fibresAlimentairesG'
+                style={{
+                  display: ` ${
+                    inputChecked.includes('fibresAlimentairesG') ? '' : 'none'
+                  }`,
+                }}>
+                fibresAlimentaires (g)
+                <button
+                  className='sort'
+                  name='fibresAlimentairesG'
+                  onClick={handlesortNutriment}>
+                  ⭥
+                </button>
+                <button
+                  className='bars'
+                  style={{
+                    display: ` ${
+                      filterActive.fibresAlimentairesG ? 'none' : 'block'
+                    }`,
+                  }}
+                  onClick={(e) => {
+                    toggle('fibresAlimentairesG');
+                  }}>
+                  ☰
+                </button>
+                <button
+                  className='bars'
+                  style={{
+                    display: ` ${
+                      filterActive.fibresAlimentairesG ? 'block' : 'none'
+                    }`,
+                  }}
+                  onClick={(e) => {
+                    close('fibresAlimentairesG');
+                  }}>
+                  X
+                </button>
+              </th>
+              <th
+                className='polyolsTotauxG'
+                style={{
+                  display: ` ${
+                    inputChecked.includes('polyolsTotauxG') ? '' : 'none'
+                  }`,
+                }}>
+                polyolsTotaux (g)
+                <button
+                  className='sort'
+                  name='polyolsTotauxG'
+                  onClick={handlesortNutriment}>
+                  ⭥
+                </button>
+                <button
+                  className='bars'
+                  style={{
+                    display: ` ${
+                      filterActive.polyolsTotauxG ? 'none' : 'block'
+                    }`,
+                  }}
+                  onClick={(e) => {
+                    toggle('polyolsTotauxG');
+                  }}>
+                  ☰
+                </button>
+                <button
+                  className='bars'
+                  style={{
+                    display: ` ${
+                      filterActive.fibresAlimentairesG ? 'block' : 'none'
+                    }`,
+                  }}
+                  onClick={(e) => {
+                    close('polyolsTotauxG');
+                  }}>
+                  X
+                </button>
+              </th>
+              <th
+                className='alcoolG'
+                style={{
+                  display: ` ${inputChecked.includes('alcoolG') ? '' : 'none'}`,
+                }}>
+                alcool (g)
+                <button
+                  className='sort'
+                  name='alcoolG'
+                  onClick={handlesortNutriment}>
+                  ⭥
+                </button>
+                <button
+                  className='bars'
+                  style={{
+                    display: ` ${filterActive.alcoolG ? 'none' : 'block'}`,
+                  }}
+                  onClick={(e) => {
+                    toggle('alcoolG');
+                  }}>
+                  ☰
+                </button>
+                <button
+                  className='bars'
+                  style={{
+                    display: ` ${filterActive.alcoolG ? 'block' : 'none'}`,
+                  }}
+                  onClick={(e) => {
+                    close('alcoolG');
+                  }}>
+                  X
+                </button>
+              </th>
+              <th
+                className='acidesOrganiquesG'
+                style={{
+                  display: ` ${
+                    inputChecked.includes('acidesOrganiquesG') ? '' : 'none'
+                  }`,
+                }}>
+                acidesOrganiques (g)
+                <button
+                  className='sort'
+                  name='acidesOrganiquesG'
+                  onClick={handlesortNutriment}>
+                  ⭥
+                </button>
+                <button
+                  className='bars'
+                  style={{
+                    display: ` ${
+                      filterActive.acidesOrganiquesG ? 'none' : 'block'
+                    }`,
+                  }}
+                  onClick={(e) => {
+                    toggle('acidesOrganiquesG');
+                  }}>
+                  ☰
+                </button>
+                <button
+                  className='bars'
+                  style={{
+                    display: ` ${
+                      filterActive.acidesOrganiquesG ? 'block' : 'none'
+                    }`,
+                  }}
+                  onClick={(e) => {
+                    close('acidesOrganiquesG');
+                  }}>
+                  X
+                </button>
+              </th>
+              <th
+                className='agSaturesG'
+                style={{
+                  display: ` ${
+                    inputChecked.includes('agSaturesG') ? '' : 'none'
+                  }`,
+                }}>
+                agSatures (g)
+                <button
+                  className='sort'
+                  name='agSaturesG'
+                  onClick={handlesortNutriment}>
+                  ⭥
+                </button>
+                <button
+                  className='bars'
+                  style={{
+                    display: ` ${filterActive.agSaturesG ? 'none' : 'block'}`,
+                  }}
+                  onClick={(e) => {
+                    toggle('agSaturesG');
+                  }}>
+                  ☰
+                </button>
+                <button
+                  className='bars'
+                  style={{
+                    display: ` ${filterActive.agSaturesG ? 'block' : 'none'}`,
+                  }}
+                  onClick={(e) => {
+                    close('agSaturesG');
+                  }}>
+                  X
+                </button>
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -820,6 +1248,118 @@ const AlimentBoard = ({
                         }`,
                       }}>
                       {alim.sucresG}
+                    </td>
+                    <td
+                      className='fructoseG'
+                      style={{
+                        display: ` ${
+                          inputChecked.includes('fructoseG') ? '' : 'none'
+                        }`,
+                      }}>
+                      {alim.fructoseG}
+                    </td>
+                    <td
+                      className='galactoseG'
+                      style={{
+                        display: ` ${
+                          inputChecked.includes('galactoseG') ? '' : 'none'
+                        }`,
+                      }}>
+                      {alim.galactoseG}
+                    </td>
+                    <td
+                      className='glucoseG'
+                      style={{
+                        display: ` ${
+                          inputChecked.includes('glucoseG') ? '' : 'none'
+                        }`,
+                      }}>
+                      {alim.glucoseG}
+                    </td>
+                    <td
+                      className='lactoseG'
+                      style={{
+                        display: ` ${
+                          inputChecked.includes('lactoseG') ? '' : 'none'
+                        }`,
+                      }}>
+                      {alim.lactoseG}
+                    </td>
+                    <td
+                      className='maltoseG'
+                      style={{
+                        display: ` ${
+                          inputChecked.includes('maltoseG') ? '' : 'none'
+                        }`,
+                      }}>
+                      {alim.maltoseG}
+                    </td>
+                    <td
+                      className='saccharoseG'
+                      style={{
+                        display: ` ${
+                          inputChecked.includes('saccharoseG') ? '' : 'none'
+                        }`,
+                      }}>
+                      {alim.saccharoseG}
+                    </td>
+                    <td
+                      className='amidonG'
+                      style={{
+                        display: ` ${
+                          inputChecked.includes('amidonG') ? '' : 'none'
+                        }`,
+                      }}>
+                      {alim.amidonG}
+                    </td>
+                    <td
+                      className='fibresAlimentairesG'
+                      style={{
+                        display: ` ${
+                          inputChecked.includes('fibresAlimentairesG')
+                            ? ''
+                            : 'none'
+                        }`,
+                      }}>
+                      {alim.fibresAlimentairesG}
+                    </td>
+                    <td
+                      className='polyolsTotauxG'
+                      style={{
+                        display: ` ${
+                          inputChecked.includes('polyolsTotauxG') ? '' : 'none'
+                        }`,
+                      }}>
+                      {alim.polyolsTotauxG}
+                    </td>
+                    <td
+                      className='alcoolG'
+                      style={{
+                        display: ` ${
+                          inputChecked.includes('alcoolG') ? '' : 'none'
+                        }`,
+                      }}>
+                      {alim.alcoolG}
+                    </td>
+                    <td
+                      className='acidesOrganiquesG'
+                      style={{
+                        display: ` ${
+                          inputChecked.includes('acidesOrganiquesG')
+                            ? ''
+                            : 'none'
+                        }`,
+                      }}>
+                      {alim.acidesOrganiquesG}
+                    </td>
+                    <td
+                      className='agSaturesG'
+                      style={{
+                        display: ` ${
+                          inputChecked.includes('agSaturesG') ? '' : 'none'
+                        }`,
+                      }}>
+                      {alim.agSaturesG}
                     </td>
                   </tr>
                 );

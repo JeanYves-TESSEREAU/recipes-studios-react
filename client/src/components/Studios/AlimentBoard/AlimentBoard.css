@@ -594,6 +594,9 @@ th {
   position: relative;
   height: 12vh;
   max-height: 50px;
+  white-space: nowrap;
+  padding-left: 5px;
+  text-transform: capitalize;
 }
 
 caption {

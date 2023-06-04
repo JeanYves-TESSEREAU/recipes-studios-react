@@ -55,6 +55,7 @@ export default function Nav({ hideFor3dOpening, visibility }) {
     let navLeft = nav.getBoundingClientRect().left;
     let navWidth = nav.getBoundingClientRect().width;
     let navRight = nav.getBoundingClientRect().right;
+    let scrollIndication = document.querySelector('.scrollIndication');
     let w = window.innerWidth;
     li2.style.left = `calc(-${w * 0.5}px + ${Number(w - navRight)}px + ${
       navWidth * 1.75
@@ -75,6 +76,8 @@ export default function Nav({ hideFor3dOpening, visibility }) {
     if (openingNavMenu.current === false && visibility) {
       hideFor3dOpening();
       document.body.style.overflow = 'hidden';
+      scrollIndication.style.display = 'block';
+      scrollIndication.style.color = 'var(--grey-carbon)';
       canvas.style.zIndex = 10;
       connexionAccess.style.display = 'block';
       canvas.style.top = `15vh `;
@@ -184,6 +187,7 @@ export default function Nav({ hideFor3dOpening, visibility }) {
     ) {
       hideFor3dOpening();
       document.body.style.overflow = 'auto';
+      scrollIndication.style.display = 'none';
       openingNavMenuCount.current = 0;
       canvas.style.pointerEvents = 'none';
       canvas.style.left = '2vw';
@@ -590,7 +594,17 @@ export default function Nav({ hideFor3dOpening, visibility }) {
           <div className='drop2'>
             <h2 className='leftDropH2'>recipes studios</h2>
           </div>
-          <div className='drop2'></div>
+          <div className='drop2'>
+            <h3
+              className='scrollIndication'
+              style={
+                {
+                  // opacity: visibility ? '1' : '0',
+                }
+              }>
+              scroll
+            </h3>
+          </div>
         </div>
         <div
           onClick={(e) => toggleConnexion('open')}
