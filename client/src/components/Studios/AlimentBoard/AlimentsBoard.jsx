@@ -51,54 +51,6 @@ const AlimentBoard = ({
   const [onSend, setOnSend] = useState(false);
   const [redirect, setredirect] = useState(false);
   const [visibility, setVisibility] = useState(true);
-  // let mediaSize = window.matchMedia('(min-aspect-ratio: 11/6)').matches;
-
-  // const [scaleForImgAlimentBoard, setScaleForImgAlimentBoard] = useState(
-  //   mediaSize
-  //     ? Number(window.innerWidth / 4096)
-  //     : Number(window.innerHeight / 2160)
-  // );
-
-  // useEffect(() => {
-  //   const resizeListener = () => {
-  //     let img = document.querySelector('#recipeImg');
-  //     console.log(img !== undefined);
-  //     if (img !== undefined) {
-  //       img.style.animation = 'none';
-  //       mediaSize
-  //         ? setScaleForImgAlimentBoard(Number(window.innerWidth / 4096))
-  //         : setScaleForImgAlimentBoard(Number(window.innerHeight / 2160));
-  //     }
-  //     setTimeout(() => {
-  //       mediaSize
-  //         ? setScaleForImgAlimentBoard(Number(window.innerWidth / 4096))
-  //         : setScaleForImgAlimentBoard(Number(window.innerHeight / 2160));
-  //     }, 0);
-  //   };
-
-  //   window.addEventListener('resize', resizeListener);
-  // }, [scaleForImgAlimentBoard, mediaSize]);
-
-  const recipeImgAnimWidth = `
-
-  @keyframes recipeImgAnimWidth {
-    from {
-      transform: scale(1.7) translateX(30vw);
-    }
-  }
-`;
-  injectStyle(recipeImgAnimWidth);
-
-  const recipeImgAnimHeight = `
-
-  @keyframes recipeImgAnimHeight {
-    from {
-      transform: scale(1.2) translateX(30vw);
-    }
-  }
-  
-`;
-  injectStyle(recipeImgAnimHeight);
 
   useEffect(() => {
     automaticCheckedBox();
@@ -120,10 +72,6 @@ const AlimentBoard = ({
     getAliment(e.target.value);
     setAlimentName(e.target.value);
   };
-  // let imgHeight = 2160;
-  // let WindowActualheight = window.innerHeight;
-  // let perfectHeight = WindowActualheight / imgHeight;
-  // console.log(perfectHeight, `WindowActualheight :${WindowActualheight}`);
 
   const modifyRecipeList = (e) => {
     e.preventDefault();
@@ -2632,14 +2580,9 @@ const AlimentBoard = ({
       />
       <img
         id='recipeImg'
-        style={{ opacity: visibility ? '1' : '0' }}
-        // style={{
-        //   transform: mediaSize ? `scale(${scaleForImgAlimentBoard})` : '',
-
-        //   animation: mediaSize
-        //     ? `recipeImgAnimWidth ease-in-out 1.2s`
-        //     : `recipeImgAnimHeight ease-in-out 1.2s`,
-        // }}
+        style={{
+          opacity: visibility ? '1' : '0',
+        }}
         src={recipe}
         alt='recipe'></img>
     </div>

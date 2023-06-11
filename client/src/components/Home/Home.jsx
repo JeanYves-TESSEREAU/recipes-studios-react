@@ -28,6 +28,7 @@ export default function Home() {
   let countForWelcomeSpanAfter = 0;
   let userAgent = navigator.userAgent;
   let browserName;
+
   const preventHrefScrollTop = () => {
     // e.preventDefault();
     // document.body.style.overflow = 'hidden';
@@ -220,6 +221,7 @@ export default function Home() {
 
       //     // THE ABOVE LINE IS ABOUT SOLVE A HARD BUGG LISTENER IN ALL DOM !
     ) {
+      console.log(window.scrollY);
       let h1Span = document.querySelectorAll('[data-data]');
       let sections = document.querySelectorAll('section');
       let imageSlider = document.querySelector('.imageSlider');

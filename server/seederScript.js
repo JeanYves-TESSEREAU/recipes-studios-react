@@ -4,7 +4,7 @@ import alimentsData from './data/aliments.js';
 import connectdB from './config/db.js';
 import Aliment from './models/Aliment.js';
 connectdB();
-
+//
 const importData = async () => {
   try {
     await Aliment.deleteMany({});

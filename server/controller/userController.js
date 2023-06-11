@@ -32,7 +32,7 @@ export const registerRecipeMaker = async (req, res) => {
             .catch((err) => console.log(err));
         });
       });
-      console.log(`BIENVENU ${userName}`);
+      console.log(`BIENVENUE ${userName}`);
     }
   });
 };
