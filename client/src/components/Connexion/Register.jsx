@@ -25,7 +25,7 @@ const Register = ({ register, connexionModule }) => {
   const onSubmit = (e) => {
     e.preventDefault();
     if (password !== password2) {
-      // setAlert('Wrong password', 'error');
+      return;
     } else {
       register({
         userName,

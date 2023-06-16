@@ -45,6 +45,14 @@ const Login = ({ loginUser, logout, connexionModule, isAuthenticated }) => {
     );
   };
 
+  //  DYNAMIC STYLE VARIABLES   //  ON BELOW  //  DYNAMIC STYLE VARIABLES
+  //  DYNAMIC STYLE VARIABLES   //  ON BELOW  //  DYNAMIC STYLE VARIABLES
+  //  DYNAMIC STYLE VARIABLES   //  ON BELOW  //  DYNAMIC STYLE VARIABLES
+  const style = { padding: '1%', background: 'none', border: 'none' };
+  //  DYNAMIC STYLE VARIABLES   //  ABOVE  //  DYNAMIC STYLE VARIABLES
+  //  DYNAMIC STYLE VARIABLES   //  ABOVE  //  DYNAMIC STYLE VARIABLES
+  //  DYNAMIC STYLE VARIABLES   //  ABOVE  //  DYNAMIC STYLE VARIABLES
+
   /* ______________________             HERE IS THE CONTENT PART                     __________________________ */
   /* ______________________             HERE IS THE CONTENT PART                     __________________________ */
   /* ______________________             HERE IS THE CONTENT PART                     __________________________ */
@@ -88,7 +96,7 @@ const Login = ({ loginUser, logout, connexionModule, isAuthenticated }) => {
               <legend>utilisateur</legend>
               <label>
                 <select
-                  style={{ padding: '1%', background: 'none', border: 'none' }}
+                  style={style}
                   name='user'
                   onChange={onChangeHandlerUser}
                   required>

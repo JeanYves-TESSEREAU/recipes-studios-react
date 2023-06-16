@@ -96,6 +96,8 @@ const RecipeBook = ({
     setSearchByNameRecipeBookOpen(!searchByNameRecipeBookOpen);
   };
 
+  //  I NEED WORK ON THIS CODE IN ORDER TO RESIZE IMG FOR EVRY SCREEN SIZES FROM 0 TO INIFINITE WIDTH OR HEIGHT
+
   // let mediaSize = window.matchMedia('(min-aspect-ratio: 11/6)').matches;
 
   // const [scaleForImg, setScaleForImg] = useState(
@@ -145,17 +147,26 @@ const RecipeBook = ({
 `;
   injectStyle(recipeBookImgAnimHeight);
 
+  //  DYNAMIC STYLE VARIABLES   //  ON BELOW  //  DYNAMIC STYLE VARIABLES
+  //  DYNAMIC STYLE VARIABLES   //  ON BELOW  //  DYNAMIC STYLE VARIABLES
+  //  DYNAMIC STYLE VARIABLES   //  ON BELOW  //  DYNAMIC STYLE VARIABLES
+  const menuIsItOpenedStyle = {
+    opacity: visibility ? '1' : '0',
+  };
+  const recipeBookStyle = { background: visibility ? '' : 'none' };
+  //  DYNAMIC STYLE VARIABLES   //  ABOVE  //  DYNAMIC STYLE VARIABLES
+  //  DYNAMIC STYLE VARIABLES   //  ABOVE  //  DYNAMIC STYLE VARIABLES
+  //  DYNAMIC STYLE VARIABLES   //  ABOVE  //  DYNAMIC STYLE VARIABLES
+
   /* ______________________             HERE IS THE CONTENT PART                     __________________________ */
   /* ______________________             HERE IS THE CONTENT PART                     __________________________ */
   /* ______________________             HERE IS THE CONTENT PART                     __________________________ */
 
   return (
-    <div
-      className='recipeBook'
-      style={{ background: visibility ? '' : 'none' }}>
+    <div className='recipeBook' style={recipeBookStyle}>
       <img
         id='recipeBookImg'
-        style={{ opacity: visibility ? '1' : '0' }}
+        style={menuIsItOpenedStyle}
         // style={{
         //   transform: `scale(${scaleForImg})`,
 

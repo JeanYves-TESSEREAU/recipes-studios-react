@@ -4,8 +4,6 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { getAliment } from '../../../../redux/actions/aliments.js';
 import { connect } from 'react-redux';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 function Pagination({
   getAliment,
@@ -21,37 +19,6 @@ function Pagination({
   const pages = new Array(pagesNumber)
     .fill(null)
     .map((unGrandHommageAmrBelmondoJeanPaul, i) => i);
-
-  // HERE IS AN EXERCICE I KEPT
-  //  const allIndexRef = useRef(null);
-  // const [positionLeftParent, setPositionLeftParent] = useState('');
-  // const [positionRightParent, setPositionRightParent] = useState('');
-  // const [leftPos, setLeftPos] = useState('');
-  // const [loaded, setLoaded] = useState(false);
-
-  // useEffect(() => {
-  //   let position = () => {
-  //     let right = allIndexRef.current.getBoundingClientRect().right;
-  //     let left = allIndexRef.current.getBoundingClientRect().left;
-  //     console.log(left);
-  //     setPositionRightParent(right);
-  //     setPositionLeftParent(left);
-  //     const leftP = allIndexRef.current.getBoundingClientRect().left;
-  //     setLeftPos(leftP);
-  //   };
-  //   window.addEventListener('mousemove', position);
-  // }, [allIndexRef]);
-  // console.log(
-  //   positionRightParent,
-  //   'RIGHT',
-  //   positionLeftParent,
-  //   'LEFT',
-  //   leftPos,
-  //   'L'
-  // );
-  // const loadedContent = () => {
-  //   setLoaded(!loaded);
-  // };
 
   useEffect(() => {
     let tab = ['Asc', 'Dsc', 'Def'];

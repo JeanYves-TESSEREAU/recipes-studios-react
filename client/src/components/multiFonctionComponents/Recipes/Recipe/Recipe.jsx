@@ -86,6 +86,237 @@ const Recipe = ({ recipeActived, recipeId, getRecipeByID, visibility }) => {
   const [lag2, setLag2] = useState(0);
   const [transformRotate, setTransformRotate] = useState('0deg');
 
+  //  DYNAMIC STYLE VARIABLES   //  ON BELOW  //  DYNAMIC STYLE VARIABLES
+  //  DYNAMIC STYLE VARIABLES   //  ON BELOW  //  DYNAMIC STYLE VARIABLES
+  //  DYNAMIC STYLE VARIABLES   //  ON BELOW  //  DYNAMIC STYLE VARIABLES
+  const recipeIdImage2Style = {
+    backgroundImage: `url(${recipeId.recipeId.recipeImage})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+  };
+  const section1Style = {
+    width: '100%',
+    height: '3000%',
+    overflow: 'hidden',
+    scrollbarWidth: 'none',
+  };
+  const menuIsItOpenedStyle = {
+    opacity: visibility ? '1' : '0',
+  };
+  const backGroundOfRecipeDiv1Style = {
+    fontSize: 'max(1.2vw,10px)',
+    position: 'absolute',
+    color: 'black',
+    textShadow: '0px 5px 5px rgba(69, 68, 86, 0.3)',
+    opacity: currentLi === 0 ? '0' : '1',
+    transition: 'linear 0.2s',
+    left: '100%',
+    transform:
+      currentLi > 0
+        ? 'translateX(-50%) translateY(-350%)'
+        : 'translateX(-50%) translateY(-200%)',
+  };
+  const backGroundOfRecipeDiv2Style = {
+    fontSize: 'max(1.2vw,10px)',
+    position: 'absolute',
+    opacity: currentLi === 10 ? '0' : '1',
+    color: 'black',
+    textShadow: '0px -5px 5px rgba(69, 68, 86, 0.2)',
+    transition: 'linear 0.2s',
+
+    left: '100%',
+    transform:
+      currentLi === 10
+        ? 'translateX(-50%) translateY(350%)'
+        : 'translateX(-50%) translateY(500%)',
+  };
+  const backGroundOfRecipeAsideStyle = {
+    width: '100%',
+    height: '100%',
+  };
+  const introSectionStyle = {
+    transition:
+      currentLi > prevLi ? '0.3s cubic-bezier(0.745, 0.045, 0.355, 1)' : '',
+    opacity: currentLi > 0 ? '0' : '',
+    transform:
+      currentLi > 0 ? 'scale(0) translateX(50%) translateY(-100%)' : '',
+  };
+  const levelImgStyle = { width: '75%', marginBottom: '15%' };
+  const moneyImgStyle = { width: '75%', marginBottom: '15%' };
+  const ingredientsListSectionStyle = {
+    animation:
+      currentLi === 1 && ingredientListNumber === previngredientListNumber
+        ? 'entranceIngredientsList 1.1s'
+        : '',
+    opacity: ingredientListNumber === previngredientListNumber ? '1' : '0',
+  };
+  const ingredientsListSectionDiv1Style = {
+    position: 'absolute',
+    top: '-5vh',
+    transition: '0.3s cubic-bezier(0.745, 0.045, 0.355, 1)',
+    fontFamily: 'GeomanistExtraLight',
+
+    opacity: currentLi === 1 ? '1' : '0',
+  };
+  const ingredientsListSectionDiv2Style = {
+    transform: currentLi !== 1 ? ' scale(0) translateY(100%)' : '',
+  };
+  const allergenListStyle = {
+    display: currentLi === 2 ? '' : 'none',
+  };
+  const allergenGridStyle = {
+    animation: recipeId.recipeId.peanuts
+      ? '2s allergenUnitAnimActive cubic-bezier(0.19, 1, 0.22, 1.1)'
+      : '',
+    opacity: recipeId.recipeId.peanuts ? '1' : '',
+
+    transform:
+      recipeId.recipeId.peanuts && currentLi === 2 ? '  translateY(-25%)' : '',
+  };
+  const milkStyle = {
+    animation: recipeId.recipeId.milk
+      ? '2s allergenUnitAnimActive cubic-bezier(0.19, 1, 0.22, 1.1)'
+      : '',
+    opacity: recipeId.recipeId.milk ? '1' : '',
+
+    transform:
+      recipeId.recipeId.milk && currentLi === 2 ? '  translateY(-25%)' : '',
+  };
+  const nutsStyle = {
+    animation: recipeId.recipeId.nuts
+      ? '2s allergenUnitAnimActive cubic-bezier(0.19, 1, 0.22, 1.1)'
+      : '',
+    opacity: recipeId.recipeId.nuts ? '1' : '',
+
+    transform:
+      recipeId.recipeId.nuts && currentLi === 2 ? '  translateY(-25%)' : '',
+  };
+  const soyStyle = {
+    animation: recipeId.recipeId.soja
+      ? '2s allergenUnitAnimActive cubic-bezier(0.19, 1, 0.22, 1.1)'
+      : '',
+    opacity: recipeId.recipeId.soja ? '1' : '',
+
+    transform:
+      recipeId.recipeId.soja && currentLi === 2 ? '  translateY(-25%)' : '',
+  };
+  const mustardStyle = {
+    animation: recipeId.recipeId.mustard
+      ? '2s allergenUnitAnimActive cubic-bezier(0.19, 1, 0.22, 1.1)'
+      : '',
+    opacity: recipeId.recipeId.mustard ? '1' : '',
+
+    transform:
+      recipeId.recipeId.mustard && currentLi === 2 ? '  translateY(-25%)' : '',
+  };
+  const glutenStyle = {
+    animation: recipeId.recipeId.gluten
+      ? '2s allergenUnitAnimActive cubic-bezier(0.19, 1, 0.22, 1.1)'
+      : '',
+    opacity: recipeId.recipeId.gluten ? '1' : '',
+
+    transform:
+      recipeId.recipeId.gluten && currentLi === 2 ? '  translateY(-25%)' : '',
+  };
+  const crustaceansStyle = {
+    animation: recipeId.recipeId.shellfish
+      ? '2s allergenUnitAnimActive cubic-bezier(0.19, 1, 0.22, 1.1)'
+      : '',
+    opacity: recipeId.recipeId.shellfish ? '1' : '',
+
+    transform:
+      recipeId.recipeId.nushellfishts && currentLi === 2
+        ? '  translateY(-25%)'
+        : '',
+  };
+  const eggsStyle = {
+    animation: recipeId.recipeId.eggs
+      ? '2s allergenUnitAnimActive cubic-bezier(0.19, 1, 0.22, 1.1)'
+      : '',
+    opacity: recipeId.recipeId.eggs ? '1' : '',
+
+    transform:
+      recipeId.recipeId.eggs && currentLi === 2 ? '  translateY(-25%)' : '',
+  };
+  const molluscsStyle = {
+    animation: recipeId.recipeId.mollusks
+      ? '2s allergenUnitAnimActive cubic-bezier(0.19, 1, 0.22, 1.1)'
+      : '',
+    opacity: recipeId.recipeId.mollusks ? '1' : '',
+
+    transform:
+      recipeId.recipeId.mollusks && currentLi === 2 ? '  translateY(-25%)' : '',
+  };
+  const sulfitesStyle = {
+    animation: recipeId.recipeId.sulphites
+      ? '2s allergenUnitAnimActive cubic-bezier(0.19, 1, 0.22, 1.1)'
+      : '',
+    opacity: recipeId.recipeId.sulphites ? '1' : '',
+
+    transform:
+      recipeId.recipeId.sulphites && currentLi === 2
+        ? '  translateY(-25%)'
+        : '',
+  };
+  const sesameStyle = {
+    animation: recipeId.recipeId.sesameSeeds
+      ? '2s allergenUnitAnimActive cubic-bezier(0.19, 1, 0.22, 1.1)'
+      : '',
+    opacity: recipeId.recipeId.sesameSeeds ? '1' : '',
+
+    transform:
+      recipeId.recipeId.sesameSeeds && currentLi === 2
+        ? '  translateY(-25%)'
+        : '',
+  };
+  const celeryStyle = {
+    animation: recipeId.recipeId.celery
+      ? '2s allergenUnitAnimActive cubic-bezier(0.19, 1, 0.22, 1.1)'
+      : '',
+    opacity: recipeId.recipeId.celery ? '1' : '',
+
+    transform:
+      recipeId.recipeId.celery && currentLi === 2 ? '  translateY(-25%)' : '',
+  };
+  const lupinStyle = {
+    animation: recipeId.recipeId.lupine
+      ? '2s allergenUnitAnimActive cubic-bezier(0.19, 1, 0.22, 1.1)'
+      : '',
+    opacity: recipeId.recipeId.lupine ? '1' : '',
+
+    transform:
+      recipeId.recipeId.lupine && currentLi === 2 ? '  translateY(-25%)' : '',
+  };
+  const fishStyle = {
+    animation: recipeId.recipeId.fish
+      ? '2s allergenUnitAnimActive cubic-bezier(0.19, 1, 0.22, 1.1)'
+      : '',
+    opacity: recipeId.recipeId.fish ? '1' : '',
+
+    transform:
+      recipeId.recipeId.fish && currentLi === 2 ? '  translateY(-25%)' : '',
+  };
+  const sectionSlideBoxStyle = {
+    opacity: currentLi > 3 ? '1' : '0',
+  };
+  const ellipseMacroStyle = {
+    opacity: '0',
+  };
+  const ellipseMacroH2Style = {
+    opacity: scrollForAnim ? '0' : '1',
+  };
+  const ellipseVitMinerauxStyle = {
+    opacity: '0',
+    display: 'none',
+  };
+  const ellipseH2VitMinerauxStyle = {
+    opacity: scrollForAnim ? '0' : '1',
+  };
+  //  DYNAMIC STYLE VARIABLES   //  ABOVE  //  DYNAMIC STYLE VARIABLES
+  //  DYNAMIC STYLE VARIABLES   //  ABOVE  //  DYNAMIC STYLE VARIABLES
+  //  DYNAMIC STYLE VARIABLES   //  ABOVE  //  DYNAMIC STYLE VARIABLES
+
   useEffect(() => {
     getRecipeByID(recipeActived);
 
@@ -118,7 +349,9 @@ const Recipe = ({ recipeActived, recipeId, getRecipeByID, visibility }) => {
     nutriments();
   }, [recipeActived, time, currentLi, transformRotate]);
 
-  // RESIZE LISTENER
+  // RESIZE LISTENER   // RESIZE LISTENER   // RESIZE LISTENER
+  // RESIZE LISTENER   // RESIZE LISTENER   // RESIZE LISTENER
+  // RESIZE LISTENER   // RESIZE LISTENER   // RESIZE LISTENER
   useEffect(() => {
     let roundMenu = document.querySelector('.roundMenu');
     const resizeListener = () => {
@@ -245,7 +478,6 @@ const Recipe = ({ recipeActived, recipeId, getRecipeByID, visibility }) => {
     'Indices',
   ];
   let coefForRecipe = portion / recipeId.recipeId.totalGrammes;
-  console.log(recipeId);
 
   let totalRetinolµg = useRef(0);
   let betaCaroteneµg = useRef(0);
@@ -624,7 +856,6 @@ const Recipe = ({ recipeActived, recipeId, getRecipeByID, visibility }) => {
                         ).toFixed(2)
                     }`);
                 switchOffAnim();
-                // e.target.scrollTop = currentScrollY;
               }, 300);
             }
           }
@@ -750,8 +981,6 @@ const Recipe = ({ recipeActived, recipeId, getRecipeByID, visibility }) => {
                           this.nutritionalProfilNutriment
                         ).toFixed(2)
                     }`);
-
-                // e.target.scrollTop = currentScrollY;
               }, 300);
             }
           }
@@ -894,8 +1123,6 @@ const Recipe = ({ recipeActived, recipeId, getRecipeByID, visibility }) => {
                           this.nutritionalProfilNutriment
                         ).toFixed(2)
                     }`);
-
-                // e.target.scrollTop = currentScrollY;
               }, 300);
             }
           }
@@ -1015,8 +1242,6 @@ const Recipe = ({ recipeActived, recipeId, getRecipeByID, visibility }) => {
                           this.nutritionalProfilNutriment
                         ).toFixed(2)
                     }`);
-
-                // e.target.scrollTop = currentScrollY;
               }, 300);
             }
           }
@@ -1738,6 +1963,10 @@ const Recipe = ({ recipeActived, recipeId, getRecipeByID, visibility }) => {
               'Liste de tous les lipides, glucides, index nutritionnels et autres... Seront bientôt disponible :)',
               'info'
             );
+            //  HERE IS THE  NEXT STEP WHICH I NEED TO CODE        //  HERE IS THE  NEXT STEP WHICH I NEED TO CODE
+            //  HERE IS THE  NEXT STEP WHICH I NEED TO CODE        //  HERE IS THE  NEXT STEP WHICH I NEED TO CODE
+            //  HERE IS THE  NEXT STEP WHICH I NEED TO CODE        //  HERE IS THE  NEXT STEP WHICH I NEED TO CODE
+
             // switchOnAnim();
             // setTimeout(() => {
             //   setCurrentLi(currentLi + 1);
@@ -1808,78 +2037,6 @@ const Recipe = ({ recipeActived, recipeId, getRecipeByID, visibility }) => {
         nutritionalProfil.iodeµg
       );
       iodeScroll.methodeTessereau();
-      // // VITAMINE C  SCROLLING ACTIONS // VITAMINE C SCROLLING ACTIONS
-      // let vitamineCScroll = new VitaminesScrollOnPathActions(
-      //   vitamineC,
-      //   -0.15,
-      //   vitamineCmg,
-      //   vitamineCEllipse,
-      //   nutritionalProfil.vitamineCmg
-      // );
-      // vitamineCScroll.methodeTessereau();
-      // // VITAMINE B1  SCROLLING ACTIONS // VITAMINE B1 SCROLLING ACTIONS
-      // let vitamineB1Scroll = new VitaminesScrollOnPathActions(
-      //   vitamineB1,
-      //   -0.3,
-      //   vitamineB1ThiamineMg,
-      //   vitamineB1Ellipse,
-      //   nutritionalProfil.vitamineB1ThiamineMg
-      // );
-      // vitamineB1Scroll.methodeTessereau();
-      // // VITAMINE B2  SCROLLING ACTIONS // VITAMINE B2 SCROLLING ACTIONS
-      // let vitamineB2Scroll = new VitaminesScrollOnPathActions(
-      //   vitamineB2,
-      //   -0.45,
-      //   vitamineB2RiboflavineMg,
-      //   vitamineB2Ellipse,
-      //   nutritionalProfil.vitamineB2RiboflavineMg
-      // );
-      // vitamineB2Scroll.methodeTessereau();
-      // // VITAMINE B3Pp  SCROLLING ACTIONS // VITAMINE B3Pp SCROLLING ACTIONS
-      // let vitamineB3PpScroll = new VitaminesScrollOnPathActions(
-      //   vitamineB3Pp,
-      //   -0.6,
-      //   vitamineB3PpNiacineMg,
-      //   vitamineB3PpEllipse,
-      //   nutritionalProfil.vitamineB3PpNiacineMg
-      // );
-      // vitamineB3PpScroll.methodeTessereau();
-      // // VITAMINE B5  SCROLLING ACTIONS // VITAMINE B5 SCROLLING ACTIONS
-      // let vitamineB5Scroll = new VitaminesScrollOnPathActions(
-      //   vitamineB5,
-      //   -0.75,
-      //   vitamineB5AcidePantotheniqueMg,
-      //   vitamineB5Ellipse,
-      //   nutritionalProfil.vitamineB5AcidePantotheniqueMg
-      // );
-      // vitamineB5Scroll.methodeTessereau();
-      // // VITAMINE B6  SCROLLING ACTIONS // VITAMINE B6 SCROLLING ACTIONS
-      // let vitamineB6Scroll = new VitaminesScrollOnPathActions(
-      //   vitamineB6,
-      //   -0.9,
-      //   vitamineB6Mg,
-      //   vitamineB6Ellipse,
-      //   nutritionalProfil.vitamineB6Mg
-      // );
-      // vitamineB6Scroll.methodeTessereau();
-      // // VITAMINE B9  SCROLLING ACTIONS // VITAMINE B9 SCROLLING ACTIONS
-      // let vitamineB9Scroll = new VitaminesScrollOnPathActions(
-      //   vitamineB9,
-      //   -1.05,
-      //   vitamineB9FolatesTotauxµg,
-      //   vitamineB9Ellipse,
-      //   nutritionalProfil.vitamineB9FolatesTotauxµg
-      // );
-      // vitamineB9Scroll.methodeTessereau();
-      // // VITAMINE B12  SCROLLING ACTIONS // VITAMINE B12 SCROLLING ACTIONS
-      // let vitamineB12Scroll = new VitaminesScrollOnPathActions(
-      //   vitamineB12,
-      //   -1.2,
-      //   vitamineB12µg,
-      //   vitamineB12Ellipse,
-      //   nutritionalProfil.vitamineB12µg
-      // );
-      // vitamineB12Scroll.methodeTessereau();
     }
 
     setTimeout(() => {
@@ -2079,7 +2236,7 @@ const Recipe = ({ recipeActived, recipeId, getRecipeByID, visibility }) => {
   /* ______________________             HERE IS THE CONTENT PART                     __________________________ */
 
   return (
-    <div style={{ opacity: visibility ? '1' : '0' }}>
+    <div style={menuIsItOpenedStyle}>
       <Fragment>
         <main className='backGroundOfRecipe'>
           {/*  HERE IS THE ROUND MENU AND NAV */
@@ -2087,26 +2244,12 @@ const Recipe = ({ recipeActived, recipeId, getRecipeByID, visibility }) => {
           /*  HERE IS THE ROUND MENU AND NAV */
           /*  HERE IS THE ROUND MENU AND NAV */}
 
-          <section
-            id='sect1'
-            style={{
-              width: '100%',
-              height: '3000%',
-              overflow: 'hidden',
-              scrollbarWidth: 'none',
-            }}>
-            <aside style={{ width: '100%', height: '100%' }}>
+          <section id='sect1' style={section1Style}>
+            <aside style={backGroundOfRecipeAsideStyle}>
               <div className='roundMenu'>
                 <div className='roundMenuBis'>
                   <div id='recipeIdImage'>
-                    <div
-                      style={{
-                        backgroundImage: `url(${recipeId.recipeId.recipeImage})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        backgroundRepeat: 'no-repeat',
-                      }}
-                      id='recipeIdImage2'></div>
+                    <div style={recipeIdImage2Style} id='recipeIdImage2'></div>
                   </div>
 
                   <svg
@@ -2236,24 +2379,7 @@ const Recipe = ({ recipeActived, recipeId, getRecipeByID, visibility }) => {
                 </div>
               </div>
               <nav>
-                <div
-                  // onClick={(e) => setCurrentLi(currentLi - 1)}
-                  style={{
-                    fontSize: 'max(1.2vw,10px)',
-                    position: 'absolute',
-                    color: 'black',
-                    textShadow: '0px 5px 5px rgba(69, 68, 86, 0.3)',
-                    opacity: currentLi === 0 ? '0' : '1',
-                    transition: 'linear 0.2s',
-                    left: '100%',
-                    transform:
-                      currentLi > 0
-                        ? 'translateX(-50%) translateY(-350%)'
-                        : 'translateX(-50%) translateY(-200%)',
-                  }}>
-                  {' '}
-                  &#9650;
-                </div>
+                <div style={backGroundOfRecipeDiv1Style}> &#9650;</div>
                 <ul>
                   {ArrayForNav.map((index, i) => {
                     return (
@@ -2284,25 +2410,7 @@ const Recipe = ({ recipeActived, recipeId, getRecipeByID, visibility }) => {
                     );
                   })}
                 </ul>
-                <div
-                  // onClick={(e) => setCurrentLi(currentLi + 1)}
-                  style={{
-                    fontSize: 'max(1.2vw,10px)',
-                    position: 'absolute',
-                    opacity: currentLi === 10 ? '0' : '1',
-                    color: 'black',
-                    textShadow: '0px -5px 5px rgba(69, 68, 86, 0.2)',
-                    transition: 'linear 0.2s',
-
-                    left: '100%',
-                    transform:
-                      currentLi === 10
-                        ? 'translateX(-50%) translateY(350%)'
-                        : 'translateX(-50%) translateY(500%)',
-                  }}>
-                  {' '}
-                  &#9660;
-                </div>
+                <div style={backGroundOfRecipeDiv2Style}> &#9660;</div>
               </nav>
             </aside>
           </section>
@@ -2312,21 +2420,7 @@ const Recipe = ({ recipeActived, recipeId, getRecipeByID, visibility }) => {
           /* HERE IS THE FIRST MENU SLIDE  */
           /* HERE IS THE FIRST MENU SLIDE  */}
 
-          <section
-            style={{
-              transition:
-                currentLi > prevLi
-                  ? '0.3s cubic-bezier(0.745, 0.045, 0.355, 1)'
-                  : '',
-              opacity: currentLi > 0 ? '0' : '',
-              transform:
-                currentLi > 0
-                  ? 'scale(0) translateX(50%) translateY(-100%)'
-                  : '',
-              // top: currentLi > 0 ? '15%' : '',
-              // right: currentLi > 0 ? '0%' : '',
-            }}
-            id='intro'>
+          <section style={introSectionStyle} id='intro'>
             <header>
               <h2 className={recipeId.recipeId.recipeTitle} id='testH2'>
                 {recipeId.recipeId.recipeTitle}
@@ -2361,7 +2455,7 @@ const Recipe = ({ recipeActived, recipeId, getRecipeByID, visibility }) => {
                   alt='introInfosRecipeLevelImg'
                 />
                 <img
-                  style={{ width: '75%', marginBottom: '15%' }}
+                  style={levelImgStyle}
                   src={
                     recipeId.recipeId.recipeLevel === 'easyLevel'
                       ? `${svgOneStar}`
@@ -2398,7 +2492,7 @@ const Recipe = ({ recipeActived, recipeId, getRecipeByID, visibility }) => {
                   alt='introInfosRecipeMoneyImg'
                 />
                 <img
-                  style={{ width: '75%', marginBottom: '15%' }}
+                  style={moneyImgStyle}
                   src={
                     recipeId.recipeId.recipePrice === 'economic'
                       ? `${svgOneEuro}`
@@ -2425,40 +2519,16 @@ const Recipe = ({ recipeActived, recipeId, getRecipeByID, visibility }) => {
                   <section
                     key={i++}
                     id={i++}
-                    style={{
-                      animation:
-                        currentLi === 1 &&
-                        ingredientListNumber === previngredientListNumber
-                          ? 'entranceIngredientsList 1.1s'
-                          : '',
-                      opacity:
-                        ingredientListNumber === previngredientListNumber
-                          ? '1'
-                          : '0',
-                    }}
+                    style={ingredientsListSectionStyle}
                     className='ingredientsList'>
-                    <div
-                      style={{
-                        position: 'absolute',
-                        top: '-5vh',
-                        transition: '0.3s cubic-bezier(0.745, 0.045, 0.355, 1)',
-                        fontFamily: 'GeomanistExtraLight',
-
-                        opacity: currentLi === 1 ? '1' : '0',
-                      }}>
-                      {' '}
+                    <div style={ingredientsListSectionDiv1Style}>
                       Liste {ingredientListNumber + 1} / {arrayList.length}
                     </div>
                     {arrayList[ingredientListNumber].map((ingredient, i) => {
                       return (
                         <div
                           key={i++}
-                          style={{
-                            transform:
-                              currentLi !== 1
-                                ? ' scale(0) translateY(100%)'
-                                : '',
-                          }}
+                          style={ingredientsListSectionDiv2Style}
                           className='ingredientOnlist'>
                           <div className='ingredientOnlistName'>
                             {ingredient.name}
@@ -2494,251 +2564,79 @@ const Recipe = ({ recipeActived, recipeId, getRecipeByID, visibility }) => {
 
           {/* HERE IS THE THIRD MENU SLIDE  */}
 
-          <section
-            style={{
-              display: currentLi === 2 ? '' : 'none',
-            }}
-            id='allergenList'>
+          <section style={allergenListStyle} id='allergenList'>
             <header>
               {' '}
               <h2>Allergènes Présents: {numberOfAllergens}</h2>
             </header>
             <div className='allergenGrid'>
-              <div
-                style={{
-                  animation: recipeId.recipeId.peanuts
-                    ? '2s allergenUnitAnimActive cubic-bezier(0.19, 1, 0.22, 1.1)'
-                    : '',
-                  opacity: recipeId.recipeId.peanuts ? '1' : '',
-
-                  transform:
-                    recipeId.recipeId.peanuts && currentLi === 2
-                      ? '  translateY(-25%)'
-                      : '',
-                }}
-                className='allergenUnit'>
+              <div style={allergenGridStyle} className='allergenUnit'>
                 <Peanuts />
 
                 <h2>ARACHIDES</h2>
               </div>
-              <div
-                className='allergenUnit'
-                style={{
-                  animation: recipeId.recipeId.milk
-                    ? '2s allergenUnitAnimActive cubic-bezier(0.19, 1, 0.22, 1.1)'
-                    : '',
-                  opacity: recipeId.recipeId.milk ? '1' : '',
-
-                  transform:
-                    recipeId.recipeId.milk && currentLi === 2
-                      ? '  translateY(-25%)'
-                      : '',
-                }}>
+              <div className='allergenUnit' style={milkStyle}>
                 <Milk currently={currentLi} />
 
                 <h2>LACTOSE</h2>
               </div>
-              <div
-                className='allergenUnit'
-                style={{
-                  animation: recipeId.recipeId.nuts
-                    ? '2s allergenUnitAnimActive cubic-bezier(0.19, 1, 0.22, 1.1)'
-                    : '',
-                  opacity: recipeId.recipeId.nuts ? '1' : '',
-
-                  transform:
-                    recipeId.recipeId.nuts && currentLi === 2
-                      ? '  translateY(-25%)'
-                      : '',
-                }}>
+              <div className='allergenUnit' style={nutsStyle}>
                 <Nuts />
 
                 <h2>FRUITS A COQUE</h2>
               </div>
-              <div
-                className='allergenUnit'
-                style={{
-                  animation: recipeId.recipeId.soja
-                    ? '2s allergenUnitAnimActive cubic-bezier(0.19, 1, 0.22, 1.1)'
-                    : '',
-                  opacity: recipeId.recipeId.soja ? '1' : '',
-
-                  transform:
-                    recipeId.recipeId.soja && currentLi === 2
-                      ? '  translateY(-25%)'
-                      : '',
-                }}>
+              <div className='allergenUnit' style={soyStyle}>
                 <Soy />
 
                 <h2>SOJA</h2>
               </div>
 
-              <div
-                className='allergenUnit'
-                style={{
-                  animation: recipeId.recipeId.mustard
-                    ? '2s allergenUnitAnimActive cubic-bezier(0.19, 1, 0.22, 1.1)'
-                    : '',
-                  opacity: recipeId.recipeId.mustard ? '1' : '',
-
-                  transform:
-                    recipeId.recipeId.mustard && currentLi === 2
-                      ? '  translateY(-25%)'
-                      : '',
-                }}>
+              <div className='allergenUnit' style={mustardStyle}>
                 <Mustard />
 
                 <h2>MOUTARDE</h2>
               </div>
-              <div
-                className='allergenUnit'
-                style={{
-                  animation: recipeId.recipeId.gluten
-                    ? '2s allergenUnitAnimActive cubic-bezier(0.19, 1, 0.22, 1.1)'
-                    : '',
-                  opacity: recipeId.recipeId.gluten ? '1' : '',
-
-                  transform:
-                    recipeId.recipeId.gluten && currentLi === 2
-                      ? '  translateY(-25%)'
-                      : '',
-                }}>
+              <div className='allergenUnit' style={glutenStyle}>
                 <Gluten />
 
                 <h2>GLUTEN</h2>
               </div>
-              <div
-                className='allergenUnit'
-                style={{
-                  animation: recipeId.recipeId.shellfish
-                    ? '2s allergenUnitAnimActive cubic-bezier(0.19, 1, 0.22, 1.1)'
-                    : '',
-                  opacity: recipeId.recipeId.shellfish ? '1' : '',
-
-                  transform:
-                    recipeId.recipeId.nushellfishts && currentLi === 2
-                      ? '  translateY(-25%)'
-                      : '',
-                }}>
+              <div className='allergenUnit' style={crustaceansStyle}>
                 <Crustaceans />
 
                 <h2>CRUSTACÉS</h2>
               </div>
-              <div
-                className='allergenUnit'
-                style={{
-                  animation: recipeId.recipeId.eggs
-                    ? '2s allergenUnitAnimActive cubic-bezier(0.19, 1, 0.22, 1.1)'
-                    : '',
-                  opacity: recipeId.recipeId.eggs ? '1' : '',
-
-                  transform:
-                    recipeId.recipeId.eggs && currentLi === 2
-                      ? '  translateY(-25%)'
-                      : '',
-                }}>
+              <div className='allergenUnit' style={eggsStyle}>
                 <Eggs />
 
                 <h2>OEUFS</h2>
               </div>
-              <div
-                className='allergenUnit'
-                style={{
-                  animation: recipeId.recipeId.mollusks
-                    ? '2s allergenUnitAnimActive cubic-bezier(0.19, 1, 0.22, 1.1)'
-                    : '',
-                  opacity: recipeId.recipeId.mollusks ? '1' : '',
-
-                  transform:
-                    recipeId.recipeId.mollusks && currentLi === 2
-                      ? '  translateY(-25%)'
-                      : '',
-                }}>
+              <div className='allergenUnit' style={molluscsStyle}>
                 <Molluscs />
 
                 <h2>MOLLUSQUES</h2>
               </div>
 
-              <div
-                className='allergenUnit'
-                style={{
-                  animation: recipeId.recipeId.sulphites
-                    ? '2s allergenUnitAnimActive cubic-bezier(0.19, 1, 0.22, 1.1)'
-                    : '',
-                  opacity: recipeId.recipeId.sulphites ? '1' : '',
-
-                  transform:
-                    recipeId.recipeId.sulphites && currentLi === 2
-                      ? '  translateY(-25%)'
-                      : '',
-                }}>
+              <div className='allergenUnit' style={sulfitesStyle}>
                 <Sulfites />
 
                 <h2>SULPHITES</h2>
               </div>
-              <div
-                className='allergenUnit'
-                style={{
-                  animation: recipeId.recipeId.sesameSeeds
-                    ? '2s allergenUnitAnimActive cubic-bezier(0.19, 1, 0.22, 1.1)'
-                    : '',
-                  opacity: recipeId.recipeId.sesameSeeds ? '1' : '',
-
-                  transform:
-                    recipeId.recipeId.sesameSeeds && currentLi === 2
-                      ? '  translateY(-25%)'
-                      : '',
-                }}>
+              <div className='allergenUnit' style={sesameStyle}>
                 <Sesame />
 
                 <h2>SÉSAME</h2>
               </div>
-              <div
-                className='allergenUnit'
-                style={{
-                  animation: recipeId.recipeId.celery
-                    ? '2s allergenUnitAnimActive cubic-bezier(0.19, 1, 0.22, 1.1)'
-                    : '',
-                  opacity: recipeId.recipeId.celery ? '1' : '',
-
-                  transform:
-                    recipeId.recipeId.celery && currentLi === 2
-                      ? '  translateY(-25%)'
-                      : '',
-                }}>
+              <div className='allergenUnit' style={celeryStyle}>
                 <Celery />
 
                 <h2>CÉLERI</h2>
               </div>
-              <div
-                className='allergenUnit'
-                style={{
-                  animation: recipeId.recipeId.lupine
-                    ? '2s allergenUnitAnimActive cubic-bezier(0.19, 1, 0.22, 1.1)'
-                    : '',
-                  opacity: recipeId.recipeId.lupine ? '1' : '',
-
-                  transform:
-                    recipeId.recipeId.lupine && currentLi === 2
-                      ? '  translateY(-25%)'
-                      : '',
-                }}>
+              <div className='allergenUnit' style={lupinStyle}>
                 <Lupin />
                 <h2>LUPIN</h2>
               </div>
-              <div
-                className='allergenUnit'
-                style={{
-                  animation: recipeId.recipeId.fish
-                    ? '2s allergenUnitAnimActive cubic-bezier(0.19, 1, 0.22, 1.1)'
-                    : '',
-                  opacity: recipeId.recipeId.fish ? '1' : '',
-
-                  transform:
-                    recipeId.recipeId.fish && currentLi === 2
-                      ? '  translateY(-25%)'
-                      : '',
-                }}>
+              <div className='allergenUnit' style={fishStyle}>
                 <Fish />
 
                 <h2>POISSON</h2>
@@ -2786,11 +2684,7 @@ const Recipe = ({ recipeActived, recipeId, getRecipeByID, visibility }) => {
               })
             : ''}
 
-          <section
-            className='slideBox'
-            style={{
-              opacity: currentLi > 3 ? '1' : '0',
-            }}>
+          <section className='slideBox' style={sectionSlideBoxStyle}>
             <Slide />
             <aside>
               <svg
@@ -2827,17 +2721,8 @@ const Recipe = ({ recipeActived, recipeId, getRecipeByID, visibility }) => {
                 </g>
               </svg>
 
-              <div
-                className='glucidesInfos'
-                style={{
-                  opacity: '0',
-                }}>
-                <h2
-                  style={{
-                    opacity: scrollForAnim ? '0' : '1',
-                  }}>
-                  Glucides
-                </h2>
+              <div className='glucidesInfos' style={ellipseMacroStyle}>
+                <h2 style={ellipseMacroH2Style}>Glucides</h2>
                 <ProgressEllipseGlucides />
 
                 <div>
@@ -2864,17 +2749,8 @@ const Recipe = ({ recipeActived, recipeId, getRecipeByID, visibility }) => {
                   )}
                 </div>
               </div>
-              <div
-                className='proteinesInfos'
-                style={{
-                  opacity: '0',
-                }}>
-                <h2
-                  style={{
-                    opacity: scrollForAnim ? '0' : '1',
-                  }}>
-                  Protéines
-                </h2>
+              <div className='proteinesInfos' style={ellipseMacroStyle}>
+                <h2 style={ellipseMacroH2Style}>Protéines</h2>
                 <ProgressEllipseProteines />
                 <div>
                   {scrollForAnim ? (
@@ -2900,17 +2776,8 @@ const Recipe = ({ recipeActived, recipeId, getRecipeByID, visibility }) => {
                   )}
                 </div>
               </div>
-              <div
-                className='lipidesInfos'
-                style={{
-                  opacity: '0',
-                }}>
-                <h2
-                  style={{
-                    opacity: scrollForAnim ? '0' : '1',
-                  }}>
-                  Lipides
-                </h2>
+              <div className='lipidesInfos' style={ellipseMacroStyle}>
+                <h2 style={ellipseMacroH2Style}>Lipides</h2>
                 <ProgressEllipseLipides />
                 <div>
                   {scrollForAnim ? (
@@ -2936,17 +2803,8 @@ const Recipe = ({ recipeActived, recipeId, getRecipeByID, visibility }) => {
                   )}
                 </div>
               </div>
-              <div
-                className='retinolInfos'
-                style={{
-                  opacity: '0',
-                  display: 'none',
-                }}>
-                <h2
-                  className='h2VitA'
-                  style={{
-                    opacity: scrollForAnim ? '0' : '1',
-                  }}>
+              <div className='retinolInfos' style={ellipseVitMinerauxStyle}>
+                <h2 className='h2VitA' style={ellipseH2VitMinerauxStyle}>
                   Vitamine A
                 </h2>
                 <ProgressEllipseRetinol />
@@ -2978,11 +2836,7 @@ const Recipe = ({ recipeActived, recipeId, getRecipeByID, visibility }) => {
                   display: 'none',
                   transform: ` translate(0,0) , rotate(${transformRotate})`,
                 }}>
-                <h2
-                  className='h2ProVitA'
-                  style={{
-                    opacity: scrollForAnim ? '0' : '1',
-                  }}>
+                <h2 className='h2ProVitA' style={ellipseH2VitMinerauxStyle}>
                   Pro-Vitamine A
                 </h2>
                 <ProgressEllipseBetaCarotene />
@@ -3007,18 +2861,8 @@ const Recipe = ({ recipeActived, recipeId, getRecipeByID, visibility }) => {
                   )}
                 </div>
               </div>
-              <div
-                className='vitamineDInfos'
-                style={{
-                  opacity: '0',
-                  display: 'none',
-                }}>
-                <h2
-                  style={{
-                    opacity: scrollForAnim ? '0' : '1',
-                  }}>
-                  Vitamine D
-                </h2>
+              <div className='vitamineDInfos' style={ellipseVitMinerauxStyle}>
+                <h2 style={ellipseH2VitMinerauxStyle}>Vitamine D</h2>
                 <ProgressEllipseVitamineD />
                 <div>
                   {scrollForAnim ? (
@@ -3041,18 +2885,8 @@ const Recipe = ({ recipeActived, recipeId, getRecipeByID, visibility }) => {
                   )}
                 </div>
               </div>
-              <div
-                className='vitamineEInfos'
-                style={{
-                  opacity: '0',
-                  display: 'none',
-                }}>
-                <h2
-                  style={{
-                    opacity: scrollForAnim ? '0' : '1',
-                  }}>
-                  Vitamine E
-                </h2>
+              <div className='vitamineEInfos' style={ellipseVitMinerauxStyle}>
+                <h2 style={ellipseH2VitMinerauxStyle}>Vitamine E</h2>
                 <ProgressEllipseVitamineE />
                 <div>
                   {scrollForAnim ? (
@@ -3075,18 +2909,8 @@ const Recipe = ({ recipeActived, recipeId, getRecipeByID, visibility }) => {
                   )}
                 </div>
               </div>
-              <div
-                className='vitamineK1Infos'
-                style={{
-                  opacity: '0',
-                  display: 'none',
-                }}>
-                <h2
-                  style={{
-                    opacity: scrollForAnim ? '0' : '1',
-                  }}>
-                  Vitamine K1
-                </h2>
+              <div className='vitamineK1Infos' style={ellipseVitMinerauxStyle}>
+                <h2 style={ellipseH2VitMinerauxStyle}>Vitamine K1</h2>
                 <ProgressEllipseVitamineK1 />
                 <div>
                   {scrollForAnim ? (
@@ -3110,18 +2934,8 @@ const Recipe = ({ recipeActived, recipeId, getRecipeByID, visibility }) => {
                 </div>
               </div>
 
-              <div
-                className='vitamineK2Infos'
-                style={{
-                  opacity: '0',
-                  display: 'none',
-                }}>
-                <h2
-                  style={{
-                    opacity: scrollForAnim ? '0' : '1',
-                  }}>
-                  Vitamine K2
-                </h2>
+              <div className='vitamineK2Infos' style={ellipseVitMinerauxStyle}>
+                <h2 style={ellipseH2VitMinerauxStyle}>Vitamine K2</h2>
                 <ProgressEllipseVitamineK2 />
                 <div>
                   {scrollForAnim ? (
@@ -3144,17 +2958,8 @@ const Recipe = ({ recipeActived, recipeId, getRecipeByID, visibility }) => {
                   )}
                 </div>
               </div>
-              <div
-                className='vitamineCInfos'
-                style={{
-                  opacity: '0',
-                  display: 'none',
-                }}>
-                <h2
-                  className='h2VitamineC'
-                  style={{
-                    opacity: scrollForAnim ? '0' : '1',
-                  }}>
+              <div className='vitamineCInfos' style={ellipseVitMinerauxStyle}>
+                <h2 className='h2VitamineC' style={ellipseH2VitMinerauxStyle}>
                   Vitamine C
                 </h2>
                 <ProgressEllipseVitamineC />
@@ -3179,17 +2984,8 @@ const Recipe = ({ recipeActived, recipeId, getRecipeByID, visibility }) => {
                   )}
                 </div>
               </div>
-              <div
-                className='vitamineB1Infos'
-                style={{
-                  opacity: '0',
-                  display: 'none',
-                }}>
-                <h2
-                  className='h2vitamineB1'
-                  style={{
-                    opacity: scrollForAnim ? '0' : '1',
-                  }}>
+              <div className='vitamineB1Infos' style={ellipseVitMinerauxStyle}>
+                <h2 className='h2vitamineB1' style={ellipseH2VitMinerauxStyle}>
                   Vitamine B1
                 </h2>
                 <ProgressEllipseVitamineB1 />
@@ -3217,17 +3013,8 @@ const Recipe = ({ recipeActived, recipeId, getRecipeByID, visibility }) => {
                   )}
                 </div>
               </div>
-              <div
-                className='vitamineB2Infos'
-                style={{
-                  opacity: '0',
-                  display: 'none',
-                }}>
-                <h2
-                  className='h2VitamineB2'
-                  style={{
-                    opacity: scrollForAnim ? '0' : '1',
-                  }}>
+              <div className='vitamineB2Infos' style={ellipseVitMinerauxStyle}>
+                <h2 className='h2VitamineB2' style={ellipseH2VitMinerauxStyle}>
                   Vitamine B2
                 </h2>
                 <ProgressEllipseVitamineB2 />
@@ -3257,15 +3044,10 @@ const Recipe = ({ recipeActived, recipeId, getRecipeByID, visibility }) => {
               </div>
               <div
                 className='vitamineB3PpInfos'
-                style={{
-                  opacity: '0',
-                  display: 'none',
-                }}>
+                style={ellipseVitMinerauxStyle}>
                 <h2
                   className='h2VitamineB3Pp'
-                  style={{
-                    opacity: scrollForAnim ? '0' : '1',
-                  }}>
+                  style={ellipseH2VitMinerauxStyle}>
                   Vitamine B3PP
                 </h2>
                 <ProgressEllipseVitamineB3Pp />
@@ -3293,17 +3075,8 @@ const Recipe = ({ recipeActived, recipeId, getRecipeByID, visibility }) => {
                   )}
                 </div>
               </div>
-              <div
-                className='vitamineB5Infos'
-                style={{
-                  opacity: '0',
-                  display: 'none',
-                }}>
-                <h2
-                  className='h2VitamineB5'
-                  style={{
-                    opacity: scrollForAnim ? '0' : '1',
-                  }}>
+              <div className='vitamineB5Infos' style={ellipseVitMinerauxStyle}>
+                <h2 className='h2VitamineB5' style={ellipseH2VitMinerauxStyle}>
                   Vitamine B5
                 </h2>
                 <ProgressEllipseVitamineB5 />
@@ -3332,18 +3105,8 @@ const Recipe = ({ recipeActived, recipeId, getRecipeByID, visibility }) => {
                   )}
                 </div>
               </div>
-              <div
-                className='vitamineB6Infos'
-                style={{
-                  opacity: '0',
-                  display: 'none',
-                }}>
-                <h2
-                  style={{
-                    opacity: scrollForAnim ? '0' : '1',
-                  }}>
-                  Vitamine B6
-                </h2>
+              <div className='vitamineB6Infos' style={ellipseVitMinerauxStyle}>
+                <h2 style={ellipseH2VitMinerauxStyle}>Vitamine B6</h2>
                 <ProgressEllipseVitamineB6 />
                 <div>
                   {scrollForAnim ? (
@@ -3366,17 +3129,8 @@ const Recipe = ({ recipeActived, recipeId, getRecipeByID, visibility }) => {
                   )}
                 </div>
               </div>
-              <div
-                className='vitamineB9Infos'
-                style={{
-                  opacity: '0',
-                  display: 'none',
-                }}>
-                <h2
-                  className='h2VitamineB9'
-                  style={{
-                    opacity: scrollForAnim ? '0' : '1',
-                  }}>
+              <div className='vitamineB9Infos' style={ellipseVitMinerauxStyle}>
+                <h2 className='h2VitamineB9' style={ellipseH2VitMinerauxStyle}>
                   Vitamine B9
                 </h2>
                 <ProgressEllipseVitamineB9 />
@@ -3404,18 +3158,8 @@ const Recipe = ({ recipeActived, recipeId, getRecipeByID, visibility }) => {
                   )}
                 </div>
               </div>
-              <div
-                className='vitamineB12Infos'
-                style={{
-                  opacity: '0',
-                  display: 'none',
-                }}>
-                <h2
-                  style={{
-                    opacity: scrollForAnim ? '0' : '1',
-                  }}>
-                  Vitamine B12
-                </h2>
+              <div className='vitamineB12Infos' style={ellipseVitMinerauxStyle}>
+                <h2 style={ellipseH2VitMinerauxStyle}>Vitamine B12</h2>
                 <ProgressEllipseVitamineB12 />
                 <div>
                   {scrollForAnim ? (
@@ -3443,15 +3187,10 @@ const Recipe = ({ recipeActived, recipeId, getRecipeByID, visibility }) => {
 
               <div
                 className='selChlorureDeSodiumInfos'
-                style={{
-                  opacity: '0',
-                  display: 'none',
-                }}>
+                style={ellipseVitMinerauxStyle}>
                 <h2
                   className='h2SelChlorureDeSodium'
-                  style={{
-                    opacity: scrollForAnim ? '0' : '1',
-                  }}>
+                  style={ellipseH2VitMinerauxStyle}>
                   Chlorure De Sodium
                 </h2>
                 <ProgressEllipseSelChlorureDeSodium />
@@ -3479,18 +3218,8 @@ const Recipe = ({ recipeActived, recipeId, getRecipeByID, visibility }) => {
                   )}
                 </div>
               </div>
-              <div
-                className='calciumInfos'
-                style={{
-                  opacity: '0',
-                  display: 'none',
-                }}>
-                <h2
-                  style={{
-                    opacity: scrollForAnim ? '0' : '1',
-                  }}>
-                  Calcium
-                </h2>
+              <div className='calciumInfos' style={ellipseVitMinerauxStyle}>
+                <h2 style={ellipseH2VitMinerauxStyle}>Calcium</h2>
                 <ProgressEllipseCalcium />
                 <div>
                   {scrollForAnim ? (
@@ -3513,18 +3242,8 @@ const Recipe = ({ recipeActived, recipeId, getRecipeByID, visibility }) => {
                   )}
                 </div>
               </div>
-              <div
-                className='chlorureInfos'
-                style={{
-                  opacity: '0',
-                  display: 'none',
-                }}>
-                <h2
-                  style={{
-                    opacity: scrollForAnim ? '0' : '1',
-                  }}>
-                  Chlorure
-                </h2>
+              <div className='chlorureInfos' style={ellipseVitMinerauxStyle}>
+                <h2 style={ellipseH2VitMinerauxStyle}>Chlorure</h2>
                 <ProgressEllipseChlorure />
                 <div>
                   {scrollForAnim ? (
@@ -3547,18 +3266,8 @@ const Recipe = ({ recipeActived, recipeId, getRecipeByID, visibility }) => {
                   )}
                 </div>
               </div>
-              <div
-                className='cuivreInfos'
-                style={{
-                  opacity: '0',
-                  display: 'none',
-                }}>
-                <h2
-                  style={{
-                    opacity: scrollForAnim ? '0' : '1',
-                  }}>
-                  Cuivre
-                </h2>
+              <div className='cuivreInfos' style={ellipseVitMinerauxStyle}>
+                <h2 style={ellipseH2VitMinerauxStyle}>Cuivre</h2>
                 <ProgressEllipseCuivre />
                 <div>
                   {scrollForAnim ? (
@@ -3581,18 +3290,8 @@ const Recipe = ({ recipeActived, recipeId, getRecipeByID, visibility }) => {
                   )}
                 </div>
               </div>
-              <div
-                className='ferInfos'
-                style={{
-                  opacity: '0',
-                  display: 'none',
-                }}>
-                <h2
-                  style={{
-                    opacity: scrollForAnim ? '0' : '1',
-                  }}>
-                  Fer
-                </h2>
+              <div className='ferInfos' style={ellipseVitMinerauxStyle}>
+                <h2 style={ellipseH2VitMinerauxStyle}>Fer</h2>
                 <ProgressEllipseFer />
                 <div>
                   {scrollForAnim ? (
@@ -3613,18 +3312,8 @@ const Recipe = ({ recipeActived, recipeId, getRecipeByID, visibility }) => {
                   )}
                 </div>
               </div>
-              <div
-                className='iodeInfos'
-                style={{
-                  opacity: '0',
-                  display: 'none',
-                }}>
-                <h2
-                  style={{
-                    opacity: scrollForAnim ? '0' : '1',
-                  }}>
-                  Iode
-                </h2>
+              <div className='iodeInfos' style={ellipseVitMinerauxStyle}>
+                <h2 style={ellipseH2VitMinerauxStyle}>Iode</h2>
                 <ProgressEllipseIode />
                 <div>
                   {scrollForAnim ? (

@@ -201,11 +201,6 @@ export function Models({
       ref={ref}
       {...props}
       dispose={null}>
-      {/* <Html rotation={[0, 0, 0]}>
-        <h1 style={{ position: 'fixed', fontSize: '3vh', color: 'black' }}>
-          HELLO
-        </h1>
-      </Html> */}
       <mesh
         scale={[1, 0.6, 1]}
         rotation={[3.15, 0, 0]}

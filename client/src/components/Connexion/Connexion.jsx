@@ -31,14 +31,20 @@ const Connexion = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated]);
 
+  //  DYNAMIC STYLE VARIABLES   //  ON BELOW  //  DYNAMIC STYLE VARIABLES
+  //  DYNAMIC STYLE VARIABLES   //  ON BELOW  //  DYNAMIC STYLE VARIABLES
+  //  DYNAMIC STYLE VARIABLES   //  ON BELOW  //  DYNAMIC STYLE VARIABLES
+  const style = {
+    height: '100vh',
+    width: '100vw',
+    display: connexion === 'close' ? 'none ' : 'block',
+  };
+  //  DYNAMIC STYLE VARIABLES   //  ABOVE  //  DYNAMIC STYLE VARIABLES
+  //  DYNAMIC STYLE VARIABLES   //  ABOVE  //  DYNAMIC STYLE VARIABLES
+  //  DYNAMIC STYLE VARIABLES   //  ABOVE  //  DYNAMIC STYLE VARIABLES
+
   return (
-    <div
-      style={{
-        height: '100vh',
-        width: '100vw',
-        display: connexion === 'close' ? 'none ' : 'block',
-      }}
-      className='account'>
+    <div style={style} className='account'>
       {module === 'login' ? (
         <Login connexionModule={connexionModule} />
       ) : module === 'register' ? (

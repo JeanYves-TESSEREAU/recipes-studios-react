@@ -8,19 +8,38 @@ import { Models } from './3dModels';
 import Connexion from '../../Connexion/Connexion';
 
 export default function Nav({ hideFor3dOpening, visibility }) {
-  // const [dropDelay, setDropDelay] = useState(false);
   const [translateX, setTranslateX] = useState(0);
   const [connexion, setConnexion] = useState('close');
   const [displayedMenuTitle, setDisplayedMenuTitle] = useState('accueil');
   const [profil, setProfil] = useState('connection');
 
-  const [media, setMedia] = useState(
+  const [media] = useState(
     window.matchMedia('(max-aspect-ratio: 6/10)').matches
   );
   let menuDisplay = useRef(false);
   let openingNavMenu = useRef(false);
   let openingNavMenuCount = useRef(0);
   let startClock = useRef(false);
+
+  //  DYNAMIC STYLE VARIABLES   //  ON BELOW  //  DYNAMIC STYLE VARIABLES
+  //  DYNAMIC STYLE VARIABLES   //  ON BELOW  //  DYNAMIC STYLE VARIABLES
+  //  DYNAMIC STYLE VARIABLES   //  ON BELOW  //  DYNAMIC STYLE VARIABLES
+  const canvasStyle = {
+    zIndex: '0',
+    height: '90vh',
+    position: 'fixed',
+    top: '-150vh',
+    left: '2vw',
+    pointerEvents: 'none',
+  };
+
+  const liStyle = {
+    transform: `translateX(${translateX}%)`,
+  };
+  //  DYNAMIC STYLE VARIABLES   //  ABOVE  //  DYNAMIC STYLE VARIABLES
+  //  DYNAMIC STYLE VARIABLES   //  ABOVE  //  DYNAMIC STYLE VARIABLES
+  //  DYNAMIC STYLE VARIABLES   //  ABOVE  //  DYNAMIC STYLE VARIABLES
+
   const titleOnChange = (data) => {
     setDisplayedMenuTitle(data);
   };
@@ -28,14 +47,6 @@ export default function Nav({ hideFor3dOpening, visibility }) {
   const changeProfilTitle = (data) => {
     setProfil(data);
   };
-
-  // const headerAnims = () => {
-  //   document.body.style.overflow = 'hidden';
-  //   setTimeout(() => {
-  //     setDropDelay(!dropDelay);
-  //     document.body.style.overflow = 'auto';
-  //   }, 4500);
-  // };
   const translateXOnNav = (data) => {
     if (menuDisplay.current === true) {
       setTranslateX(data);
@@ -71,6 +82,7 @@ export default function Nav({ hideFor3dOpening, visibility }) {
     ) {
       resizeDropForAnim = '3';
     } else {
+      // eslint-disable-next-line no-unused-vars
       resizeDropForAnim = '';
     }
     if (openingNavMenu.current === false && visibility) {
@@ -120,13 +132,6 @@ export default function Nav({ hideFor3dOpening, visibility }) {
         leftDrop.style.backgroundColor = 'var(--grey-carbon)';
         rightDrop.style.transition = 'all 0.3s ease-in 0s';
         leftDrop.style.transition = 'all 0.3s ease-in 0s';
-        //   const navDropModify = `
-        //   nav .juiceDrop {
-        //     -webkit-filter:none;
-        // filter: none;
-        //   }
-        // `;
-        //   injectStyle(navDropModify);
 
         if (openingNavMenu.current && openingNavMenuCount.current === 0) {
           setTimeout(() => {
@@ -222,14 +227,7 @@ export default function Nav({ hideFor3dOpening, visibility }) {
         }
       `;
       injectStyle(moveMenuIcon);
-      //   const navDropModify = `
-      //   nav .juiceDrop {
-      //     -webkit-filter: url('#juice');
-      // filter: url('#juice');
 
-      //   }
-      // `;
-      //   injectStyle(navDropModify);
       const moveMenuIcon1 = `
         .firstNav ul li:first-of-type::before{
           position: absolute;
@@ -285,6 +283,8 @@ export default function Nav({ hideFor3dOpening, visibility }) {
   };
 
   // LOAD LISTENER //   // LOAD LISTENER //   // LOAD LISTENER //
+  // LOAD LISTENER //   // LOAD LISTENER //   // LOAD LISTENER //
+  // LOAD LISTENER //   // LOAD LISTENER //   // LOAD LISTENER //
   useEffect(() => {
     const callback2 = () => {
       menuDisplay.current = true;
@@ -317,6 +317,7 @@ export default function Nav({ hideFor3dOpening, visibility }) {
       ) {
         resizeDropForAnim = '3';
       } else {
+        // eslint-disable-next-line no-unused-vars
         resizeDropForAnim = '';
       }
       if (openingNavMenu.current === false) {
@@ -365,13 +366,6 @@ export default function Nav({ hideFor3dOpening, visibility }) {
           leftDrop.style.backgroundColor = 'var(--grey-carbon)';
           rightDrop.style.transition = 'all 0.3s ease-in 0s';
           leftDrop.style.transition = 'all 0.3s ease-in 0s';
-          //   const navDropModify = `
-          //   nav .juiceDrop {
-          //     -webkit-filter:none;
-          // filter: none;
-          //   }
-          // `;
-          //   injectStyle(navDropModify);
 
           if (openingNavMenu.current && openingNavMenuCount.current === 0) {
             if (openingNavMenuCount.current === 1) {
@@ -413,7 +407,6 @@ export default function Nav({ hideFor3dOpening, visibility }) {
         li2.style.display = 'none';
         navBox.style.transition = '0s';
         canvas.style.zIndex = 1;
-        // leftDrop.style.animation = `drop${resizeDropForAnim} 2.3s cubic-bezier(1, 0.19, 0.66, 0.12) infinite`;
         leftDrop.style.borderRadius = '50%';
         leftDrop.style.top = '70%';
         leftDrop.style.width = '40%';
@@ -424,7 +417,6 @@ export default function Nav({ hideFor3dOpening, visibility }) {
         leftDrop.style.backgroundColor = 'var(--blue-pastel)';
         leftDrop.style.transition = 'unset';
         connexionAccess.style.display = 'none';
-        // rightDrop.style.animation = `drop${resizeDropForAnim} 2.45s cubic-bezier(1, 0.19, 0.66, 0.12) infinite`;
         rightDrop.style.transition = 'unset';
         rightDrop.style.borderRadius = '50%';
         rightDrop.style.top = '70%';
@@ -439,14 +431,7 @@ export default function Nav({ hideFor3dOpening, visibility }) {
           }
         `;
         injectStyle(moveMenuIcon);
-        //   const navDropModify = `
-        //   nav .juiceDrop {
-        //     -webkit-filter: url('#juice');
-        // filter: url('#juice');
 
-        //   }
-        // `;
-        //   injectStyle(navDropModify);
         const moveMenuIcon1 = `
           .firstNav ul li:first-of-type::before{
             position: absolute;
@@ -513,10 +498,12 @@ export default function Nav({ hideFor3dOpening, visibility }) {
   };
   let windowHeight = window.innerHeight;
   let windowWidth = window.innerWidth;
+
+  // RESIZE LISTENER //   // RESIZE LISTENER //   // RESIZE LISTENER //
+  // RESIZE LISTENER //   // RESIZE LISTENER //   // RESIZE LISTENER //
+  // RESIZE LISTENER //   // RESIZE LISTENER //   // RESIZE LISTENER //
   useEffect(() => {
     const resizeListener = () => {
-      // let mediaSize = window.matchMedia('(max-aspect-ratio: 6/10)').matches;
-      // setMedia(mediaSize);
       let drop = document.querySelectorAll('.drop2');
       let nav = document.querySelector('.juiceDrop');
       let navLeft = nav.getBoundingClientRect().left;
@@ -529,8 +516,6 @@ export default function Nav({ hideFor3dOpening, visibility }) {
       }px)`;
       let leftDrop = drop[0];
       let rightDrop = drop[1];
-      // leftDrop.style.animation = 'none';
-      // rightDrop.style.animation = 'none';
       if (openingNavMenu.current) {
         leftDrop.style.left = ` calc(-${Number(navLeft)}px)`;
         rightDrop.style.right = ` calc(-${Number(
@@ -557,13 +542,7 @@ export default function Nav({ hideFor3dOpening, visibility }) {
 
   return (
     <Fragment>
-      <nav
-        className='firstNav'
-        style={
-          {
-            // display: `${dropDelay ? 'block' : 'none'}`,
-          }
-        }>
+      <nav className='firstNav'>
         <div className='nav'></div>
         <ul>
           <li onClick={displayCanvas}>menu</li>
@@ -580,12 +559,7 @@ export default function Nav({ hideFor3dOpening, visibility }) {
                   : ''
               }`}
               end>
-              <p
-                style={{
-                  transform: `translateX(${translateX}%)`,
-                }}>
-                {displayedMenuTitle}
-              </p>
+              <p style={liStyle}>{displayedMenuTitle}</p>
             </NavLink>
           </li>
         </ul>
@@ -595,15 +569,7 @@ export default function Nav({ hideFor3dOpening, visibility }) {
             <h2 className='leftDropH2'>recipes studios</h2>
           </div>
           <div className='drop2'>
-            <h3
-              className='scrollIndication'
-              style={
-                {
-                  // opacity: visibility ? '1' : '0',
-                }
-              }>
-              scroll
-            </h3>
+            <h3 className='scrollIndication'>scroll</h3>
           </div>
         </div>
         <div
@@ -614,15 +580,7 @@ export default function Nav({ hideFor3dOpening, visibility }) {
       </nav>
       <Canvas
         id='canvas'
-        style={{
-          zIndex: '0',
-          height: '90vh',
-          position: 'fixed',
-          top: '-150vh',
-          // opacity: 0,
-          left: '2vw',
-          pointerEvents: 'none',
-        }}
+        style={canvasStyle}
         shadows
         dpr={[1, 2]}
         camera={{ position: [0, 0, 4], fov: 50 }}>
@@ -653,21 +611,6 @@ export default function Nav({ hideFor3dOpening, visibility }) {
         />
         <Environment preset='city' />
       </Canvas>
-      <svg
-        style={{ display: 'block', height: '0', width: '0' }}
-        xmlns='http://www.w3.org/2000/svg'
-        version='1.1'>
-        <defs>
-          <filter id='juice'>
-            <feGaussianBlur in='SourceGraphic' stdDeviation='8' result='blur' />
-            <feColorMatrix
-              in='blur'
-              values='1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7'
-              result='juice'
-            />
-          </filter>
-        </defs>
-      </svg>
       <Connexion
         changeProfilTitle={changeProfilTitle}
         connexion={connexion}

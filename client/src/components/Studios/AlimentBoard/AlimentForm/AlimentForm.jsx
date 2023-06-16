@@ -48,10 +48,16 @@ const AlimentForm = ({
     setFormAliment(fullDatas);
   };
 
+  //  DYNAMIC STYLE VARIABLES   //  ON BELOW  //  DYNAMIC STYLE VARIABLES
+  //  DYNAMIC STYLE VARIABLES   //  ON BELOW  //  DYNAMIC STYLE VARIABLES
+  //  DYNAMIC STYLE VARIABLES   //  ON BELOW  //  DYNAMIC STYLE VARIABLES
+  const style = { display: `${displayedAlimentForm ? '' : 'none'}` };
+  //  DYNAMIC STYLE VARIABLES   //  ABOVE  //  DYNAMIC STYLE VARIABLES
+  //  DYNAMIC STYLE VARIABLES   //  ABOVE  //  DYNAMIC STYLE VARIABLES
+  //  DYNAMIC STYLE VARIABLES   //  ABOVE  //  DYNAMIC STYLE VARIABLES
+
   return (
-    <div
-      className='AlimentForm'
-      style={{ display: `${displayedAlimentForm ? '' : 'none'}` }}>
+    <div className='AlimentForm' style={style}>
       <button className='exit' onClick={closeAlimentForm}>
         x
       </button>

@@ -252,6 +252,20 @@ const AlimentBoard = ({
       setListToRecipeFinal([]);
     }
   };
+  //  DYNAMIC STYLE VARIABLES   //  ON BELOW  //  DYNAMIC STYLE VARIABLES
+  //  DYNAMIC STYLE VARIABLES   //  ON BELOW  //  DYNAMIC STYLE VARIABLES
+  //  DYNAMIC STYLE VARIABLES   //  ON BELOW  //  DYNAMIC STYLE VARIABLES
+  const menuIsItOpenedStyle = {
+    opacity: visibility ? '1' : '0',
+  };
+  const alimentActionsStyle = {
+    display: ` ${notDisplayedActions ? 'block' : 'none'}`,
+    opacity: visibility ? '1' : '0',
+  };
+  const svgStyle = { color: 'white' };
+  //  DYNAMIC STYLE VARIABLES   //  ABOVE  //  DYNAMIC STYLE VARIABLES
+  //  DYNAMIC STYLE VARIABLES   //  ABOVE  //  DYNAMIC STYLE VARIABLES
+  //  DYNAMIC STYLE VARIABLES   //  ABOVE  //  DYNAMIC STYLE VARIABLES
 
   /* ______________________             HERE IS THE CONTENT PART                     __________________________ */
   /* ______________________             HERE IS THE CONTENT PART                     __________________________ */
@@ -263,9 +277,7 @@ const AlimentBoard = ({
       <Nav hideFor3dOpening={hideFor3dOpening} visibility={visibility} />
 
       <div
-        style={{
-          opacity: visibility ? '1' : '0',
-        }}
+        style={menuIsItOpenedStyle}
         className={`filter ${displayedFilter ? 'displayedFilter' : ''}`}>
         <button
           className='exit'
@@ -314,12 +326,7 @@ const AlimentBoard = ({
 
       {/* ______________________    HERE IS THE MODAL WITH ATIONS SEND TO RECIPE / EDIT AN  DELETE   __________________________ */}
 
-      <div
-        className='alimentActions'
-        style={{
-          display: ` ${notDisplayedActions ? 'block' : 'none'}`,
-          opacity: visibility ? '1' : '0',
-        }}>
+      <div className='alimentActions' style={alimentActionsStyle}>
         <button className='exit' onClick={toggleActionsModal}>
           x
         </button>
@@ -362,11 +369,7 @@ const AlimentBoard = ({
 
       {/* ______________________       HERE IS OUR TABLE WITH ALL ALIMENTS TO STUDY       __________________________ */}
 
-      <div
-        className='pagination'
-        style={{
-          opacity: visibility ? '1' : '0',
-        }}>
+      <div className='pagination' style={menuIsItOpenedStyle}>
         <table className={` ${openTable ? 'openTable' : 'closeTable'}`}>
           <caption>
             {/* <button className='toggleNoActive' onClick={toggleNoActive}>
@@ -376,7 +379,7 @@ const AlimentBoard = ({
 
             <button className='tableMenu' onClick={toggleMenu}>
               <svg
-                style={{ color: 'white' }}
+                style={svgStyle}
                 xmlns='http://www.w3.org/2000/svg'
                 viewBox='0 0 256 256'>
                 <rect width='256' height='256' fill='none'></rect>
@@ -2580,9 +2583,7 @@ const AlimentBoard = ({
       />
       <img
         id='recipeImg'
-        style={{
-          opacity: visibility ? '1' : '0',
-        }}
+        style={menuIsItOpenedStyle}
         src={recipe}
         alt='recipe'></img>
     </div>
