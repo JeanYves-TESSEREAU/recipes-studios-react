@@ -145,6 +145,14 @@ const AlimentBoard = ({
         ...document.querySelectorAll('input[type=checkbox]:checked'),
       ].map((nut) => nut.id);
       setInputChecked(filtered);
+      // let th = document.querySelectorAll('th');
+      // for (let i = 0; i < th.length; i++) {
+      //   for (let element of filtered) {
+      //     if (th[i].className === element || th[i].className === 'alimNom') {
+      //       th[i].style.display = 'none';
+      //     }
+      //   }
+      // }
     }, 1000);
   };
 
@@ -153,6 +161,16 @@ const AlimentBoard = ({
     const filtered = [
       ...document.querySelectorAll('input[type="checkbox"]:checked'),
     ].map((nut) => nut.id);
+    // let th = document.querySelectorAll('th');
+    // for (let i = 0; i < th.length; i++) {
+    //   for (let element of filtered) {
+    //     if (th[i].className === element || th[i].className === 'alimNom') {
+    //       th[i].style.display = '';
+    //     } else {
+    //       th[i].style.display = 'none';
+    //     }
+    //   }
+    // }
     setInputChecked(filtered);
   };
 
@@ -263,6 +281,10 @@ const AlimentBoard = ({
     opacity: visibility ? '1' : '0',
   };
   const svgStyle = { color: 'white' };
+  const menuStyle = {
+    display: `${displayedMenu ? 'flex' : 'none'}`,
+    opacity: visibility ? '1' : '0',
+  };
   //  DYNAMIC STYLE VARIABLES   //  ABOVE  //  DYNAMIC STYLE VARIABLES
   //  DYNAMIC STYLE VARIABLES   //  ABOVE  //  DYNAMIC STYLE VARIABLES
   //  DYNAMIC STYLE VARIABLES   //  ABOVE  //  DYNAMIC STYLE VARIABLES
@@ -1784,12 +1806,7 @@ const AlimentBoard = ({
 
         {/* ________________________________       HERE IS THE MODAL WITH OPTIONS DISPLAYER          ____________________________ */}
 
-        <div
-          className='menu'
-          style={{
-            display: `${displayedMenu ? 'flex' : 'none'}`,
-            opacity: visibility ? '1' : '0',
-          }}>
+        <div className='menu' style={menuStyle}>
           <h2>OPTIONS +</h2>
 
           <section>

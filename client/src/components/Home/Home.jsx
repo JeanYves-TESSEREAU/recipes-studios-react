@@ -227,211 +227,201 @@ export default function Home() {
   // SCROLL LISTENER //   // SCROLL LISTENER //   // SCROLL LISTENER //
   // SCROLL LISTENER //   // SCROLL LISTENER //   // SCROLL LISTENER //
 
-  // const scrollActionsDebounced = useDebouncedCallback(
+  // const scrollActionsDebounced = useDebounce(
   //   () => {
-  //     // THE NEXT LINE IS ABOUT SOLVE A HARD BUGG LISTENER IN ALL DOM !
-  //     if (
-  //       window.location.pathname === '/' &&
-  //       `${!visibility ? visibility : !visibility}`
+  // // THE NEXT LINE IS ABOUT SOLVE A HARD BUGG LISTENER IN ALL DOM !
+  //   if (
+  //     window.location.pathname === '/' &&
+  //     `${!visibility ? visibility : !visibility}`
 
-  //       //     // THE ABOVE LINE IS ABOUT SOLVE A HARD BUGG LISTENER IN ALL DOM !
-  //     ) {
-  //       console.log(window.scrollY, window.pageYOffset);
-  //       let h1Span = document.querySelectorAll('[data-data]');
-  //       let sections = document.querySelectorAll('section');
-  //       let imageSlider = document.querySelector('.imageSlider');
-  //       let section2 = sections[1];
-  //       let aside = document.querySelectorAll('aside');
-  //       let asidePosition = aside[0].getBoundingClientRect();
-  //       let welcomeSpan = document.querySelectorAll('.welcomeSpan');
-  //       let welcomeH2 = document.querySelector('.welcomeH2');
-  //       let welcomeH2Position = welcomeH2.getBoundingClientRect();
-  //       let welcomeH3 = document.querySelectorAll('.welcomeH3');
-  //       let home = document.querySelector('.Home');
-  //       actualScrollPourcent.current =
-  //         (window.scrollY / home.offsetHeight) * 100;
+  //     //     // THE ABOVE LINE IS ABOUT SOLVE A HARD BUGG LISTENER IN ALL DOM !
+  //   ) {
+  //     console.log(window.scrollY, window.pageYOffset);
+  //     let h1Span = document.querySelectorAll('[data-data]');
+  //     let sections = document.querySelectorAll('section');
+  //     let imageSlider = document.querySelector('.imageSlider');
+  //     let section2 = sections[1];
+  //     let aside = document.querySelectorAll('aside');
+  //     let asidePosition = aside[0].getBoundingClientRect();
+  //     let welcomeSpan = document.querySelectorAll('.welcomeSpan');
+  //     let welcomeH2 = document.querySelector('.welcomeH2');
+  //     let welcomeH2Position = welcomeH2.getBoundingClientRect();
+  //     let welcomeH3 = document.querySelectorAll('.welcomeH3');
+  //     let home = document.querySelector('.Home');
+  //     actualScrollPourcent.current = (window.scrollY / home.offsetHeight) * 100;
 
-  //       // SCROLL ACTIONS FOR HEADER AND NAV //
+  //     // SCROLL ACTIONS FOR HEADER AND NAV //
 
-  //       {
-  //         // if (browserName !== 'firefox') {
-  //         //   window.clearTimeout(isScrolling);
-  //         //   let drop2 = document.querySelectorAll('.drop2');
+  //     {
 
-  //         //   drop2[0].style.animation = 'none';
-  //         //   drop2[1].style.animation = 'none';
-  //         //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  //         //   isScrolling = setTimeout(() => {
-  //         //     drop2[0].style.animation = '';
-  //         //     drop2[1].style.animation = '';
-  //         //   }, 300);
-  //         // }
+  //       let h2 = document.querySelector('h2');
 
-  //         let h2 = document.querySelector('h2');
-
-  //         h2.style.opacity = `${1 - 0.02 * window.scrollY}`;
-  //         for (let index = 0; index < h1Span.length; index++) {
-  //           if (index > 6) {
-  //             h1Span[index].style.transition = `ease-out ${
-  //               headerParallax[index] * 0.2
-  //             }s`;
-  //             h1Span[index].style.transform = `translateY(-${
-  //               window.scrollY * headerParallax[index] * 0.4
-  //             }px) `;
-  //           } else {
-  //             h1Span[index].style.transition = `ease-out ${
-  //               headerParallax[index] * 0.2
-  //             }s`;
-  //             h1Span[index].style.transform = ` translateY(calc(-${
-  //               window.scrollY * headerParallax[index] * 0.75
-  //             }px - ${h1Span[index].offsetHeight}px))`;
-  //           }
-  //         }
-  //       }
-  //       // SCROLL ACTIONS FOR FIRST SECTION //
-
-  //       if (
-  //         window.scrollY > home.offsetHeight * 0.08 &&
-  //         countForWelcomeSpanAfter < 1
-  //       ) {
-  //         const h1After = `
-  //     .Home main section:first-of-type h2 span::after {
-  //       display: initial;
-  //     }
-  //   `;
-  //         injectStyle(h1After);
-  //         countForWelcomeSpanAfter++;
-  //       }
-  //       if (
-  //         window.scrollY > home.offsetHeight * 0.05 &&
-  //         window.scrollY < home.offsetHeight * 0.07
-  //       ) {
-  //         welcomeH2.style.display = 'block';
-  //         welcomeH2.style.left = '35%';
-  //       } else if (
-  //         window.scrollY > home.offsetHeight * 0.07 &&
-  //         welcomeH2Position.top + welcomeH2Position.height + 10 <
-  //           asidePosition.top
-  //       ) {
-  //         welcomeH2.style.left = '35%';
-  //         if (browserName !== 'firefox') {
-  //           // setTimeout(() => {
-  //           welcomeH2.style.transform = ` translateY(${
-  //             window.scrollY - home.offsetHeight * 0.07
-  //           }px)`;
-  //           // }, 10);
-  //         } else
-  //           welcomeH2.style.transform = ` translateY(${
-  //             window.scrollY - home.offsetHeight * 0.07
-  //           }px)`;
-
-  //         for (let index = 0; index < welcomeSpan.length; index++) {
-  //           welcomeSpan[index].style.scale = '1';
-  //         }
-  //       } else if (
-  //         asidePosition.top + asidePosition.height >
-  //           welcomeH2Position.height *
-  //             (window.matchMedia('(max-aspect-ratio: 8/10)').matches
-  //               ? 1
-  //               : 0.5) &&
-  //         window.scrollY > home.offsetHeight * 0.05
-  //       ) {
-  //         window.clearTimeout(isScrollingBis);
-  //         for (let i = 0; i < welcomeH3.length; i++) {
-  //           welcomeH3[i].style.paddingTop = `15%`;
-  //         }
-  //         welcomeH2.style.paddingBottom = '8%';
-  //         isScrollingBis = setTimeout(() => {
-  //           for (let i = 0; i < welcomeH3.length; i++) {
-  //             welcomeH3[i].style.paddingTop = `12%`;
-  //           }
-  //           welcomeH2.style.paddingBottom = '2%';
-  //         }, 100);
-  //         if (window.matchMedia('(max-aspect-ratio: 8/10)').matches) {
-  //           for (let index = 0; index < welcomeSpan.length; index++) {
-  //             welcomeSpan[index].style.scale = `${
-  //               welcomeSpan[index].style.scale === 0 ? '' : 0
-  //             }`;
-  //           }
+  //       h2.style.opacity = `${1 - 0.02 * window.scrollY}`;
+  //       for (let index = 0; index < h1Span.length; index++) {
+  //         if (index > 6) {
+  //           h1Span[index].style.transition = `ease-out ${
+  //             headerParallax[index] * 0.2
+  //           }s`;
+  //           h1Span[index].style.transform = `translateY(-${
+  //             window.scrollY * headerParallax[index] * 0.4
+  //           }px) `;
   //         } else {
-  //           for (let index = 0; index < welcomeSpan.length; index++) {
-  //             welcomeSpan[index].style.scale = `${
-  //               welcomeSpan[index].style.scale === 1 ? '' : 1
-  //             }`;
-  //           }
-  //         }
-  //         welcomeH2.style.left = '5%';
-  //         if (browserName !== 'firefox') {
-  //           // setTimeout(() => {
-  //           welcomeH2.style.transform = ` translateY(${
-  //             window.scrollY - home.offsetHeight * 0.06
-  //           }px)`;
-  //           // }, 10);
-  //         } else
-  //           welcomeH2.style.transform = ` translateY(${
-  //             window.scrollY - home.offsetHeight * 0.06
-  //           }px)`;
-  //       } else {
-  //         welcomeH2.style.left = '35%';
-
-  //         for (let index = 0; index < welcomeSpan.length; index++) {
-  //           welcomeSpan[index].style.scale = '1';
+  //           h1Span[index].style.transition = `ease-out ${
+  //             headerParallax[index] * 0.2
+  //           }s`;
+  //           h1Span[index].style.transform = ` translateY(calc(-${
+  //             window.scrollY * headerParallax[index] * 0.75
+  //           }px - ${h1Span[index].offsetHeight}px))`;
   //         }
   //       }
+  //     }
+  //     // SCROLL ACTIONS FOR FIRST SECTION //
+  //     // SCROLL ACTIONS FOR FIRST SECTION //
+  //     // SCROLL ACTIONS FOR FIRST SECTION //
+  //     // SCROLL ACTIONS FOR FIRST SECTION //
+
+  //     if (
+  //       window.scrollY > home.offsetHeight * 0.08 &&
+  //       countForWelcomeSpanAfter < 1
+  //     ) {
+  //       const h1After = `
+  //   .Home main section:first-of-type h2 span::after {
+  //     display: initial;
+  //   }
+  // `;
+  //       injectStyle(h1After);
+  //       countForWelcomeSpanAfter++;
+  //     }
+  //     if (
+  //       window.scrollY > home.offsetHeight * 0.05 &&
+  //       window.scrollY < home.offsetHeight * 0.07
+  //     ) {
+  //       welcomeH2.style.display = 'block';
+  //       welcomeH2.style.left = '35%';
+  //     } else if (
+  //       window.scrollY > home.offsetHeight * 0.07 &&
+  //       welcomeH2Position.top + welcomeH2Position.height + 10 <
+  //         asidePosition.top
+  //     ) {
+  //       welcomeH2.style.left = '35%';
+  //       if (browserName !== 'firefox') {
+  //         setTimeout(() => {
+  //           welcomeH2.style.transform = ` translateY(${
+  //             window.scrollY - home.offsetHeight * 0.07
+  //           }px)`;
+  //         }, 10);
+  //       } else
+  //         welcomeH2.style.transform = ` translateY(${
+  //           window.scrollY - home.offsetHeight * 0.07
+  //         }px)`;
 
   //       for (let index = 0; index < welcomeSpan.length; index++) {
-  //         welcomeSpan[index].style.opacity = '1';
-  //         welcomeSpan[index].style.top = `
-  //          calc(${2 * welcomeSpan[index].offsetHeight}px + ${
-  //           welcomeSpan[index].offsetHeight * index
-  //         }px)`;
-  //         welcomeSpan[index].style.transform = ` translateY(${
-  //           -window.scrollY * 0.1
-  //         }%)`;
+  //         welcomeSpan[index].style.scale = '1';
   //       }
+  //     } else if (
+  //       asidePosition.top + asidePosition.height >
+  //         welcomeH2Position.height *
+  //           (window.matchMedia('(max-aspect-ratio: 8/10)').matches ? 1 : 0.5) &&
+  //       window.scrollY > home.offsetHeight * 0.05
+  //     ) {
+  //       window.clearTimeout(isScrollingBis);
+  //       for (let i = 0; i < welcomeH3.length; i++) {
+  //         welcomeH3[i].style.paddingTop = `15%`;
+  //       }
+  //       welcomeH2.style.paddingBottom = '8%';
+  //       isScrollingBis = setTimeout(() => {
+  //         for (let i = 0; i < welcomeH3.length; i++) {
+  //           welcomeH3[i].style.paddingTop = `12%`;
+  //         }
+  //         welcomeH2.style.paddingBottom = '2%';
+  //       }, 100);
+  //       if (window.matchMedia('(max-aspect-ratio: 8/10)').matches) {
+  //         for (let index = 0; index < welcomeSpan.length; index++) {
+  //           welcomeSpan[index].style.scale = `${
+  //             welcomeSpan[index].style.scale === 0 ? '' : 0
+  //           }`;
+  //         }
+  //       } else {
+  //         for (let index = 0; index < welcomeSpan.length; index++) {
+  //           welcomeSpan[index].style.scale = `${
+  //             welcomeSpan[index].style.scale === 1 ? '' : 1
+  //           }`;
+  //         }
+  //       }
+  //       welcomeH2.style.left = '5%';
+  //       if (browserName !== 'firefox') {
+  //         setTimeout(() => {
+  //           welcomeH2.style.transform = ` translateY(${
+  //             window.scrollY - home.offsetHeight * 0.06
+  //           }px)`;
+  //         }, 10);
+  //       } else
+  //         welcomeH2.style.transform = ` translateY(${
+  //           window.scrollY - home.offsetHeight * 0.06
+  //         }px)`;
+  //     } else {
+  //       welcomeH2.style.left = '35%';
 
-  //       // SCROLL ACTIONS FOR SECOND SECTION //
-  //       {
-  //         let centerContentSection2 = document.querySelector(
-  //           '.centerContentSection2'
-  //         );
-  //         let h4Center = centerContentSection2.querySelector('h4');
-  //         let figcaptions = document.querySelectorAll('figcaption');
-  //         let figures = document.querySelectorAll('figure');
-  //         let h3 = section2.querySelectorAll('h3');
-  //         let section2Open =
-  //           section2Top.current + welcomeH2Position.height * 2.5;
-  //         if (window.scrollY > section2Open) {
-  //           section2.style.position = 'fixed'
-  //             ? ''
-  //             : (section2.style.position = 'fixed') &&
-  //               (section2.style.top = '0') &&
-  //               (section2.style.left = '0') &&
-  //               (h3[0].style.transform = 'translateX(0)') &&
-  //               (h3[1].style.transform = 'translateX(0)');
-  //           section2.style.position = 'fixed';
-  //           section2.style.top = '0';
-  //           section2.style.left = '0';
-  //           h3[0].style.transform = 'translateX(0)';
-  //           h3[1].style.transform = 'translateX(0)';
-  //           if (window.scrollY > section2Open + 0.02 * home.offsetHeight) {
-  //             h3[0].style.top = `-20%`;
-  //             h3[1].style.bottom = `-20%`;
-  //             if (
-  //               window.scrollY > section2Open + 0.02 * home.offsetHeight &&
-  //               window.scrollY < section2Open + 0.025 * home.offsetHeight
-  //             ) {
-  //               h4Center.style.opacity = 0;
-  //               h4Center.style.scale = 0;
-  //             } else if (
-  //               window.scrollY > section2Open + 0.025 * home.offsetHeight &&
-  //               window.scrollY < section2Open + 0.15 * home.offsetHeight
-  //             ) {
-  //               let distanceToScale =
-  //                 section2Open +
-  //                 0.15 * home.offsetHeight -
-  //                 (section2Open + 0.025 * home.offsetHeight);
-  //               // setTimeout(() => {
+  //       for (let index = 0; index < welcomeSpan.length; index++) {
+  //         welcomeSpan[index].style.scale = '1';
+  //       }
+  //     }
+
+  //     for (let index = 0; index < welcomeSpan.length; index++) {
+  //       welcomeSpan[index].style.opacity = '1';
+  //       welcomeSpan[index].style.top = `
+  //        calc(${2 * welcomeSpan[index].offsetHeight}px + ${
+  //         welcomeSpan[index].offsetHeight * index
+  //       }px)`;
+  //       welcomeSpan[index].style.transform = ` translateY(${
+  //         -window.scrollY * 0.1
+  //       }%)`;
+  //     }
+
+  //     // SCROLL ACTIONS FOR SECOND SECTION //
+  //     // SCROLL ACTIONS FOR SECOND SECTION //
+  //     // SCROLL ACTIONS FOR SECOND SECTION //
+  //     // SCROLL ACTIONS FOR SECOND SECTION //
+  //     {
+  //       let centerContentSection2 = document.querySelector(
+  //         '.centerContentSection2'
+  //       );
+  //       let h4Center = centerContentSection2.querySelector('h4');
+  //       let figcaptions = document.querySelectorAll('figcaption');
+  //       let figures = document.querySelectorAll('figure');
+  //       let h3 = section2.querySelectorAll('h3');
+  //       let section2Open = section2Top.current + welcomeH2Position.height * 2.5;
+  //       if (window.scrollY > section2Open) {
+  //         section2.style.position = 'fixed'
+  //           ? ''
+  //           : (section2.style.position = 'fixed') &&
+  //             (section2.style.top = '0') &&
+  //             (section2.style.left = '0') &&
+  //             (h3[0].style.transform = 'translateX(0)') &&
+  //             (h3[1].style.transform = 'translateX(0)');
+  //         section2.style.position = 'fixed';
+  //         section2.style.top = '0';
+  //         section2.style.left = '0';
+  //         h3[0].style.transform = 'translateX(0)';
+  //         h3[1].style.transform = 'translateX(0)';
+  //         if (window.scrollY > section2Open + 0.02 * home.offsetHeight) {
+  //           h3[0].style.top = `-40%`;
+  //           h3[1].style.bottom = `-40%`;
+  //           if (
+  //             window.scrollY > section2Open + 0.02 * home.offsetHeight &&
+  //             window.scrollY < section2Open + 0.025 * home.offsetHeight
+  //           ) {
+  //             h4Center.style.opacity = 0;
+  //             h4Center.style.scale = 0;
+  //           } else if (
+  //             window.scrollY > section2Open + 0.025 * home.offsetHeight &&
+  //             window.scrollY < section2Open + 0.15 * home.offsetHeight
+  //           ) {
+  //             let distanceToScale =
+  //               section2Open +
+  //               0.15 * home.offsetHeight -
+  //               (section2Open + 0.025 * home.offsetHeight);
+  //             setTimeout(() => {
   //               h4Center.style.scale = `${
   //                 (window.scrollY +
   //                   distanceToScale -
@@ -445,349 +435,37 @@ export default function Home() {
   //                   (section2Open + 0.15 * home.offsetHeight)) /
   //                 distanceToScale
   //               }`;
-  //               // }, 10);
-  //               centerContentSection2.scrollLeft = 0;
-  //             } else if (
-  //               window.scrollY > section2Open + 0.15 * home.offsetHeight &&
-  //               window.scrollY < section2Open + 0.3 * home.offsetHeight
-  //             ) {
-  //               let distanceToTranslate =
-  //                 section2Open +
-  //                 0.3 * home.offsetHeight -
-  //                 (section2Open + 0.15 * home.offsetHeight);
-  //               coeffSizing.current = window.innerWidth / homeWidth.current;
+  //             }, 10);
+  //             centerContentSection2.scrollLeft = 0;
+  //           } else if (
+  //             window.scrollY > section2Open + 0.15 * home.offsetHeight &&
+  //             window.scrollY < section2Open + 0.3 * home.offsetHeight
+  //           ) {
+  //             let distanceToTranslate =
+  //               section2Open +
+  //               0.3 * home.offsetHeight -
+  //               (section2Open + 0.15 * home.offsetHeight);
+  //             coeffSizing.current = window.innerWidth / homeWidth.current;
 
-  //               // 125 = 125 % of inner width
-  //               let distanceInPourcent = 125 / distanceToTranslate;
-  //               if (browserName === 'firefox') {
-  //                 h4Center.style.transform = `translate(${
-  //                   -50 -
-  //                   (window.scrollY -
-  //                     (section2Open + 0.15 * home.offsetHeight)) *
-  //                     distanceInPourcent
-  //                 }%, -50%)`;
+  //             // 125 = 125 % of inner width because the image slider component start from a 125% left position
+  //             let distanceInPourcent = 125 / distanceToTranslate;
+  //             if (browserName === 'firefox') {
+  //               h4Center.style.transform = `translate(${
+  //                 -50 -
+  //                 (window.scrollY - (section2Open + 0.15 * home.offsetHeight)) *
+  //                   distanceInPourcent
+  //               }%, -50%)`;
 
-  //                 imageSlider.style.transform = `translate(${
-  //                   (-(
-  //                     window.scrollY -
-  //                     (section2Open + 0.15 * home.offsetHeight)
-  //                   ) *
-  //                     distanceInPourcent) /
-  //                   8
-  //                 }%, 0%)`;
-  //               } else {
-  //                 // setTimeout(() => {
-  //                 h4Center.style.transform = `translate(${
-  //                   -50 -
-  //                   (window.scrollY -
-  //                     (section2Open + 0.15 * home.offsetHeight)) *
-  //                     distanceInPourcent
-  //                 }%, -50%)`;
-
-  //                 imageSlider.style.transform = `translate(${
-  //                   (-(
-  //                     window.scrollY -
-  //                     (section2Open + 0.15 * home.offsetHeight)
-  //                   ) *
-  //                     distanceInPourcent) /
-  //                   8
-  //                 }%, 0%)`;
-  //                 // }, 20);
-  //               }
-  //             } else if (
-  //               window.scrollY > section2Open + 0.3 * home.offsetHeight &&
-  //               window.scrollY < section2Open + 0.9 * home.offsetHeight
-  //             ) {
-  //               window.clearTimeout(isScrolling);
-  //               for (let i = 0; i < figures.length; i++) {
-  //                 figures[i].style.scale = `0.75`;
-  //               }
-
-  //               isScrolling = setTimeout(() => {
-  //                 for (let i = 0; i < figures.length; i++) {
-  //                   figures[i].style.scale = `1`;
-  //                 }
-  //               }, 300);
-  //               let distanceToTranslate =
-  //                 section2Open +
-  //                 0.9 * home.offsetHeight -
-  //                 (section2Open + 0.3 * home.offsetHeight);
-
-  //               centerContentSection2.scrollLeft = `${
-  //                 -(windowWidth * coeffSizing.current) * 8 +
-  //                 ((window.scrollY +
-  //                   distanceToTranslate -
-  //                   (section2Open + 0.3 * home.offsetHeight)) /
-  //                   distanceToTranslate) *
-  //                   (windowWidth * coeffSizing.current) *
-  //                   8
-  //               } `;
-  //               centerContentSection2.scrollTop = 0;
-
-  //               for (let i = 0; i < figcaptions.length; i++) {
-  //                 figcaptions[i].style.transform = `translateY(${
-  //                   (figures[i].getBoundingClientRect().right /
-  //                     figures[i].getBoundingClientRect().width) *
-  //                   100
-  //                 }%)`;
-  //               }
-  //               centerContentSection2.style.opacity = '1';
+  //               imageSlider.style.transform = `translate(${
+  //                 (-(
+  //                   window.scrollY -
+  //                   (section2Open + 0.15 * home.offsetHeight)
+  //                 ) *
+  //                   distanceInPourcent) /
+  //                 8
+  //               }%, 0%)`;
   //             } else {
-  //               centerContentSection2.style.opacity = '0.05';
-  //               coeffSizing.current = window.innerWidth / homeWidth.current;
-  //               centerContentSection2.scrollLeft = 8 * window.innerWidth;
-  //             }
-  //           } else {
-  //             h3[0].style.top = `0`;
-  //             h3[1].style.bottom = `0`;
-  //           }
-  //         } else {
-  //           section2.style.position = 'absolute';
-  //           section2.style.top = `${
-  //             welcomeH2Position.height * 2.5 + section2Top.current
-  //           }px`;
-  //           section2.style.left = '0';
-  //         }
-  //       }
-  //     }
-  //   },
-  //   // delay in ms
-  //   1
-  // );
-
-  // const scrollActionsDebounced = useDebounce(
-  //   () => {
-  //     // THE NEXT LINE IS ABOUT SOLVE A HARD BUGG LISTENER IN ALL DOM !
-  //     if (
-  //       window.location.pathname === '/' &&
-  //       `${!visibility ? visibility : !visibility}`
-
-  //       //     // THE ABOVE LINE IS ABOUT SOLVE A HARD BUGG LISTENER IN ALL DOM !
-  //     ) {
-  //       console.log(window.scrollY, window.pageYOffset);
-  //       let h1Span = document.querySelectorAll('[data-data]');
-  //       let sections = document.querySelectorAll('section');
-  //       let imageSlider = document.querySelector('.imageSlider');
-  //       let section2 = sections[1];
-  //       let aside = document.querySelectorAll('aside');
-  //       let asidePosition = aside[0].getBoundingClientRect();
-  //       let welcomeSpan = document.querySelectorAll('.welcomeSpan');
-  //       let welcomeH2 = document.querySelector('.welcomeH2');
-  //       let welcomeH2Position = welcomeH2.getBoundingClientRect();
-  //       let welcomeH3 = document.querySelectorAll('.welcomeH3');
-  //       let home = document.querySelector('.Home');
-  //       actualScrollPourcent.current =
-  //         (window.scrollY / home.offsetHeight) * 100;
-
-  //       // SCROLL ACTIONS FOR HEADER AND NAV //
-
-  //       {
-  //         // if (browserName !== 'firefox') {
-  //         //   window.clearTimeout(isScrolling);
-  //         //   let drop2 = document.querySelectorAll('.drop2');
-
-  //         //   drop2[0].style.animation = 'none';
-  //         //   drop2[1].style.animation = 'none';
-  //         //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  //         //   isScrolling = setTimeout(() => {
-  //         //     drop2[0].style.animation = '';
-  //         //     drop2[1].style.animation = '';
-  //         //   }, 300);
-  //         // }
-
-  //         let h2 = document.querySelector('h2');
-
-  //         h2.style.opacity = `${1 - 0.02 * window.scrollY}`;
-  //         for (let index = 0; index < h1Span.length; index++) {
-  //           if (index > 6) {
-  //             h1Span[index].style.transition = `ease-out ${
-  //               headerParallax[index] * 0.2
-  //             }s`;
-  //             h1Span[index].style.transform = `translateY(-${
-  //               window.scrollY * headerParallax[index] * 0.4
-  //             }px) `;
-  //           } else {
-  //             h1Span[index].style.transition = `ease-out ${
-  //               headerParallax[index] * 0.2
-  //             }s`;
-  //             h1Span[index].style.transform = ` translateY(calc(-${
-  //               window.scrollY * headerParallax[index] * 0.75
-  //             }px - ${h1Span[index].offsetHeight}px))`;
-  //           }
-  //         }
-  //       }
-  //       // SCROLL ACTIONS FOR FIRST SECTION //
-
-  //       if (
-  //         window.scrollY > home.offsetHeight * 0.08 &&
-  //         countForWelcomeSpanAfter < 1
-  //       ) {
-  //         const h1After = `
-  //     .Home main section:first-of-type h2 span::after {
-  //       display: initial;
-  //     }
-  //   `;
-  //         injectStyle(h1After);
-  //         countForWelcomeSpanAfter++;
-  //       }
-  //       if (
-  //         window.scrollY > home.offsetHeight * 0.05 &&
-  //         window.scrollY < home.offsetHeight * 0.07
-  //       ) {
-  //         welcomeH2.style.display = 'block';
-  //         welcomeH2.style.left = '35%';
-  //       } else if (
-  //         window.scrollY > home.offsetHeight * 0.07 &&
-  //         welcomeH2Position.top + welcomeH2Position.height + 10 <
-  //           asidePosition.top
-  //       ) {
-  //         welcomeH2.style.left = '35%';
-  //         if (browserName !== 'firefox') {
-  //           setTimeout(() => {
-  //             welcomeH2.style.transform = ` translateY(${
-  //               window.scrollY - home.offsetHeight * 0.07
-  //             }px)`;
-  //           }, 10);
-  //         } else
-  //           welcomeH2.style.transform = ` translateY(${
-  //             window.scrollY - home.offsetHeight * 0.07
-  //           }px)`;
-
-  //         for (let index = 0; index < welcomeSpan.length; index++) {
-  //           welcomeSpan[index].style.scale = '1';
-  //         }
-  //       } else if (
-  //         asidePosition.top + asidePosition.height >
-  //           welcomeH2Position.height *
-  //             (window.matchMedia('(max-aspect-ratio: 8/10)').matches
-  //               ? 1
-  //               : 0.5) &&
-  //         window.scrollY > home.offsetHeight * 0.05
-  //       ) {
-  //         window.clearTimeout(isScrollingBis);
-  //         for (let i = 0; i < welcomeH3.length; i++) {
-  //           welcomeH3[i].style.paddingTop = `15%`;
-  //         }
-  //         welcomeH2.style.paddingBottom = '8%';
-  //         isScrollingBis = setTimeout(() => {
-  //           for (let i = 0; i < welcomeH3.length; i++) {
-  //             welcomeH3[i].style.paddingTop = `12%`;
-  //           }
-  //           welcomeH2.style.paddingBottom = '2%';
-  //         }, 100);
-  //         if (window.matchMedia('(max-aspect-ratio: 8/10)').matches) {
-  //           for (let index = 0; index < welcomeSpan.length; index++) {
-  //             welcomeSpan[index].style.scale = `${
-  //               welcomeSpan[index].style.scale === 0 ? '' : 0
-  //             }`;
-  //           }
-  //         } else {
-  //           for (let index = 0; index < welcomeSpan.length; index++) {
-  //             welcomeSpan[index].style.scale = `${
-  //               welcomeSpan[index].style.scale === 1 ? '' : 1
-  //             }`;
-  //           }
-  //         }
-  //         welcomeH2.style.left = '5%';
-  //         if (browserName !== 'firefox') {
-  //           setTimeout(() => {
-  //             welcomeH2.style.transform = ` translateY(${
-  //               window.scrollY - home.offsetHeight * 0.06
-  //             }px)`;
-  //           }, 10);
-  //         } else
-  //           welcomeH2.style.transform = ` translateY(${
-  //             window.scrollY - home.offsetHeight * 0.06
-  //           }px)`;
-  //       } else {
-  //         welcomeH2.style.left = '35%';
-
-  //         for (let index = 0; index < welcomeSpan.length; index++) {
-  //           welcomeSpan[index].style.scale = '1';
-  //         }
-  //       }
-
-  //       for (let index = 0; index < welcomeSpan.length; index++) {
-  //         welcomeSpan[index].style.opacity = '1';
-  //         welcomeSpan[index].style.top = `
-  //          calc(${2 * welcomeSpan[index].offsetHeight}px + ${
-  //           welcomeSpan[index].offsetHeight * index
-  //         }px)`;
-  //         welcomeSpan[index].style.transform = ` translateY(${
-  //           -window.scrollY * 0.1
-  //         }%)`;
-  //       }
-
-  //       // SCROLL ACTIONS FOR SECOND SECTION //
-  //       {
-  //         let centerContentSection2 = document.querySelector(
-  //           '.centerContentSection2'
-  //         );
-  //         let h4Center = centerContentSection2.querySelector('h4');
-  //         let figcaptions = document.querySelectorAll('figcaption');
-  //         let figures = document.querySelectorAll('figure');
-  //         let h3 = section2.querySelectorAll('h3');
-  //         let section2Open =
-  //           section2Top.current + welcomeH2Position.height * 2.5;
-  //         if (window.scrollY > section2Open) {
-  //           section2.style.position = 'fixed'
-  //             ? ''
-  //             : (section2.style.position = 'fixed') &&
-  //               (section2.style.top = '0') &&
-  //               (section2.style.left = '0') &&
-  //               (h3[0].style.transform = 'translateX(0)') &&
-  //               (h3[1].style.transform = 'translateX(0)');
-  //           section2.style.position = 'fixed';
-  //           section2.style.top = '0';
-  //           section2.style.left = '0';
-  //           h3[0].style.transform = 'translateX(0)';
-  //           h3[1].style.transform = 'translateX(0)';
-  //           if (window.scrollY > section2Open + 0.02 * home.offsetHeight) {
-  //             h3[0].style.top = `-20%`;
-  //             h3[1].style.bottom = `-20%`;
-  //             if (
-  //               window.scrollY > section2Open + 0.02 * home.offsetHeight &&
-  //               window.scrollY < section2Open + 0.025 * home.offsetHeight
-  //             ) {
-  //               h4Center.style.opacity = 0;
-  //               h4Center.style.scale = 0;
-  //             } else if (
-  //               window.scrollY > section2Open + 0.025 * home.offsetHeight &&
-  //               window.scrollY < section2Open + 0.15 * home.offsetHeight
-  //             ) {
-  //               let distanceToScale =
-  //                 section2Open +
-  //                 0.15 * home.offsetHeight -
-  //                 (section2Open + 0.025 * home.offsetHeight);
   //               setTimeout(() => {
-  //                 h4Center.style.scale = `${
-  //                   (window.scrollY +
-  //                     distanceToScale -
-  //                     (section2Open + 0.15 * home.offsetHeight)) /
-  //                   distanceToScale
-  //                 }`;
-
-  //                 h4Center.style.opacity = `${
-  //                   (window.scrollY +
-  //                     distanceToScale -
-  //                     (section2Open + 0.15 * home.offsetHeight)) /
-  //                   distanceToScale
-  //                 }`;
-  //               }, 10);
-  //               centerContentSection2.scrollLeft = 0;
-  //             } else if (
-  //               window.scrollY > section2Open + 0.15 * home.offsetHeight &&
-  //               window.scrollY < section2Open + 0.3 * home.offsetHeight
-  //             ) {
-  //               let distanceToTranslate =
-  //                 section2Open +
-  //                 0.3 * home.offsetHeight -
-  //                 (section2Open + 0.15 * home.offsetHeight);
-  //               coeffSizing.current = window.innerWidth / homeWidth.current;
-
-  //               // 125 = 125 % of inner width
-  //               let distanceInPourcent = 125 / distanceToTranslate;
-  //               if (browserName === 'firefox') {
   //                 h4Center.style.transform = `translate(${
   //                   -50 -
   //                   (window.scrollY -
@@ -803,55 +481,53 @@ export default function Home() {
   //                     distanceInPourcent) /
   //                   8
   //                 }%, 0%)`;
-  //               } else {
-  //                 setTimeout(() => {
-  //                   h4Center.style.transform = `translate(${
-  //                     -50 -
-  //                     (window.scrollY -
-  //                       (section2Open + 0.15 * home.offsetHeight)) *
-  //                       distanceInPourcent
-  //                   }%, -50%)`;
+  //               }, 20);
+  //             }
+  //           } else if (
+  //             window.scrollY > section2Open + 0.3 * home.offsetHeight &&
+  //             window.scrollY < section2Open + 0.9 * home.offsetHeight
+  //           ) {
+  //             window.clearTimeout(isScrolling);
+  //             for (let i = 0; i < figures.length; i++) {
+  //               figures[i].style.scale = `0.75`;
+  //             }
 
-  //                   imageSlider.style.transform = `translate(${
-  //                     (-(
-  //                       window.scrollY -
-  //                       (section2Open + 0.15 * home.offsetHeight)
-  //                     ) *
-  //                       distanceInPourcent) /
-  //                     8
-  //                   }%, 0%)`;
-  //                 }, 20);
-  //               }
-  //             } else if (
-  //               window.scrollY > section2Open + 0.3 * home.offsetHeight &&
-  //               window.scrollY < section2Open + 0.9 * home.offsetHeight
-  //             ) {
-  //               window.clearTimeout(isScrolling);
+  //             isScrolling = setTimeout(() => {
   //               for (let i = 0; i < figures.length; i++) {
-  //                 figures[i].style.scale = `0.75`;
+  //                 figures[i].style.scale = `1`;
   //               }
+  //             }, 300);
+  //             let distanceToTranslate =
+  //               section2Open +
+  //               0.9 * home.offsetHeight -
+  //               (section2Open + 0.3 * home.offsetHeight);
+  //             // THIS CODE BELOW IS ABOUT IMAGE SLIDER  SCROLLING TO LEFT EFFECT ! BUT !  WITH  PROBLEMS BECAUSE OF WINDOW.SCROLLY NOT SCROLLING SMOOTHLY AND JUMPING
 
-  //               isScrolling = setTimeout(() => {
-  //                 for (let i = 0; i < figures.length; i++) {
-  //                   figures[i].style.scale = `1`;
-  //                 }
-  //               }, 300);
-  //               let distanceToTranslate =
-  //                 section2Open +
-  //                 0.9 * home.offsetHeight -
-  //                 (section2Open + 0.3 * home.offsetHeight);
+  //             // centerContentSection2.scrollLeft = `${
+  //             //   -(windowWidth * coeffSizing.current) * 8 +
+  //             //   ((window.scrollY +
+  //             //     distanceToTranslate -
+  //             //     (section2Open + 0.3 * home.offsetHeight)) /
+  //             //     distanceToTranslate) *
+  //             //     (windowWidth * coeffSizing.current) *
+  //             //     8
+  //             // } `;
 
-  //               centerContentSection2.scrollLeft = `${
-  //                 -(windowWidth * coeffSizing.current) * 8 +
+  //             // THIS CODE BELOW IS ABOUT IMAGE SLIDER  SCROLLING TO LEFT EFFECT ! BUT !  WITH TRANSLATE IN ORDER TO SOLVE JUMPING PROBLEMS
+
+  //             setTimeout(() => {
+  //               imageSlider.style.transform = `translateX(calc(${
+  //                 -1.25 * window.innerWidth
+  //               }px - ${
+  //                 -window.innerWidth * 6.95 +
   //                 ((window.scrollY +
   //                   distanceToTranslate -
   //                   (section2Open + 0.3 * home.offsetHeight)) /
   //                   distanceToTranslate) *
-  //                   (windowWidth * coeffSizing.current) *
-  //                   8
-  //               } `;
+  //                   window.innerWidth *
+  //                   6.95
+  //               }px))`;
   //               centerContentSection2.scrollTop = 0;
-
   //               for (let i = 0; i < figcaptions.length; i++) {
   //                 figcaptions[i].style.transform = `translateY(${
   //                   (figures[i].getBoundingClientRect().right /
@@ -859,32 +535,40 @@ export default function Home() {
   //                   100
   //                 }%)`;
   //               }
-  //               centerContentSection2.style.opacity = '1';
-  //             } else {
-  //               centerContentSection2.style.opacity = '0.05';
-  //               coeffSizing.current = window.innerWidth / homeWidth.current;
-  //               centerContentSection2.scrollLeft = 8 * window.innerWidth;
-  //             }
+  //             }, 10);
+  //             centerContentSection2.style.opacity = '1';
   //           } else {
-  //             h3[0].style.top = `0`;
-  //             h3[1].style.bottom = `0`;
+  //             centerContentSection2.style.opacity = '0.05';
+  //             coeffSizing.current = window.innerWidth / homeWidth.current;
+  //             // centerContentSection2.scrollLeft = 8 * window.innerWidth;
+  //             imageSlider.style.transform = `translateX(-${
+  //               8.15 * window.innerWidth
+  //             }px)`;
   //           }
   //         } else {
-  //           section2.style.position = 'absolute';
-  //           section2.style.top = `${
-  //             welcomeH2Position.height * 2.5 + section2Top.current
-  //           }px`;
-  //           section2.style.left = '0';
+  //           h3[0].style.top = `0`;
+  //           h3[1].style.bottom = `0`;
   //         }
+  //       } else {
+  //         section2.style.position = 'absolute';
+  //         section2.style.top = `${
+  //           welcomeH2Position.height * 2.5 + section2Top.current
+  //         }px`;
+  //         section2.style.left = '0';
   //       }
   //     }
+  //   }
   //   },
   //   // delay in ms
-  //   1
+  //   10
   // );
+
+  // let timer;
+
   onscroll = function () {
     // scrollActionsDebounced();
 
+    // THE NEXT LINE IS ABOUT SOLVE A HARD BUGG LISTENER IN ALL DOM !
     if (
       window.location.pathname === '/' &&
       `${!visibility ? visibility : !visibility}`
@@ -908,19 +592,6 @@ export default function Home() {
       // SCROLL ACTIONS FOR HEADER AND NAV //
 
       {
-        // if (browserName !== 'firefox') {
-        //   window.clearTimeout(isScrolling);
-        //   let drop2 = document.querySelectorAll('.drop2');
-
-        //   drop2[0].style.animation = 'none';
-        //   drop2[1].style.animation = 'none';
-        //   // eslint-disable-next-line react-hooks/exhaustive-deps
-        //   isScrolling = setTimeout(() => {
-        //     drop2[0].style.animation = '';
-        //     drop2[1].style.animation = '';
-        //   }, 300);
-        // }
-
         let h2 = document.querySelector('h2');
 
         h2.style.opacity = `${1 - 0.02 * window.scrollY}`;
@@ -972,6 +643,8 @@ export default function Home() {
       ) {
         welcomeH2.style.left = '35%';
         if (browserName !== 'firefox') {
+          // clearTimeout(timer);
+          // timer =
           setTimeout(() => {
             welcomeH2.style.transform = ` translateY(${
               window.scrollY - home.offsetHeight * 0.07
@@ -1017,6 +690,8 @@ export default function Home() {
         }
         welcomeH2.style.left = '5%';
         if (browserName !== 'firefox') {
+          // clearTimeout(timer);
+          // timer =
           setTimeout(() => {
             welcomeH2.style.transform = ` translateY(${
               window.scrollY - home.offsetHeight * 0.06
@@ -1072,8 +747,8 @@ export default function Home() {
           h3[0].style.transform = 'translateX(0)';
           h3[1].style.transform = 'translateX(0)';
           if (window.scrollY > section2Open + 0.02 * home.offsetHeight) {
-            h3[0].style.top = `-20%`;
-            h3[1].style.bottom = `-20%`;
+            h3[0].style.top = `-40%`;
+            h3[1].style.bottom = `-40%`;
             if (
               window.scrollY > section2Open + 0.02 * home.offsetHeight &&
               window.scrollY < section2Open + 0.025 * home.offsetHeight
@@ -1088,7 +763,23 @@ export default function Home() {
                 section2Open +
                 0.15 * home.offsetHeight -
                 (section2Open + 0.025 * home.offsetHeight);
-              setTimeout(() => {
+              if (browserName !== 'firefox') {
+                setTimeout(() => {
+                  h4Center.style.scale = `${
+                    (window.scrollY +
+                      distanceToScale -
+                      (section2Open + 0.15 * home.offsetHeight)) /
+                    distanceToScale
+                  }`;
+
+                  h4Center.style.opacity = `${
+                    (window.scrollY +
+                      distanceToScale -
+                      (section2Open + 0.15 * home.offsetHeight)) /
+                    distanceToScale
+                  }`;
+                }, 10);
+              } else {
                 h4Center.style.scale = `${
                   (window.scrollY +
                     distanceToScale -
@@ -1102,7 +793,7 @@ export default function Home() {
                     (section2Open + 0.15 * home.offsetHeight)) /
                   distanceToScale
                 }`;
-              }, 10);
+              }
               centerContentSection2.scrollLeft = 0;
             } else if (
               window.scrollY > section2Open + 0.15 * home.offsetHeight &&
@@ -1114,7 +805,7 @@ export default function Home() {
                 (section2Open + 0.15 * home.offsetHeight);
               coeffSizing.current = window.innerWidth / homeWidth.current;
 
-              // 125 = 125 % of inner width
+              // 125 = 125 % of inner width because the image slider component start from a 125% left position
               let distanceInPourcent = 125 / distanceToTranslate;
               if (browserName === 'firefox') {
                 h4Center.style.transform = `translate(${
@@ -1132,6 +823,8 @@ export default function Home() {
                   8
                 }%, 0%)`;
               } else {
+                // clearTimeout(timer);
+                // timer =
                 setTimeout(() => {
                   h4Center.style.transform = `translate(${
                     -50 -
@@ -1148,7 +841,7 @@ export default function Home() {
                       distanceInPourcent) /
                     8
                   }%, 0%)`;
-                }, 20);
+                }, 5);
               }
             } else if (
               window.scrollY > section2Open + 0.3 * home.offsetHeight &&
@@ -1168,30 +861,84 @@ export default function Home() {
                 section2Open +
                 0.9 * home.offsetHeight -
                 (section2Open + 0.3 * home.offsetHeight);
+              // THIS CODE BELOW IS ABOUT IMAGE SLIDER  SCROLLING TO LEFT EFFECT ! BUT !  WITH  PROBLEMS BECAUSE OF WINDOW.SCROLLY NOT SCROLLING SMOOTHLY AND JUMPING
+              //  clearTimeout(timer);
+              //               timer =
+              //               setTimeout(() => {
+              //               centerContentSection2.scrollLeft = `${
+              //                 -(windowWidth * coeffSizing.current) * 8 +
+              //                 ((window.scrollY +
+              //                   distanceToTranslate -
+              //                   (section2Open + 0.3 * home.offsetHeight)) /
+              //                   distanceToTranslate) *
+              //                   (windowWidth * coeffSizing.current) *
+              //                   8
+              //               } `;
+              // centerContentSection2.scrollTop = 0;
+              // for (let i = 0; i < figcaptions.length; i++) {
+              //   figcaptions[i].style.transform = `translateY(${
+              //     (figures[i].getBoundingClientRect().right /
+              //       figures[i].getBoundingClientRect().width) *
+              //     100
+              //   }%)`;
+              // }
+              // }, 5);
 
-              centerContentSection2.scrollLeft = `${
-                -(windowWidth * coeffSizing.current) * 8 +
-                ((window.scrollY +
-                  distanceToTranslate -
-                  (section2Open + 0.3 * home.offsetHeight)) /
-                  distanceToTranslate) *
-                  (windowWidth * coeffSizing.current) *
-                  8
-              } `;
-              centerContentSection2.scrollTop = 0;
+              // THIS CODE BELOW IS ABOUT IMAGE SLIDER  SCROLLING TO LEFT EFFECT ! BUT !  WITH TRANSLATE IN ORDER TO SOLVE JUMPING PROBLEMS
 
-              for (let i = 0; i < figcaptions.length; i++) {
-                figcaptions[i].style.transform = `translateY(${
-                  (figures[i].getBoundingClientRect().right /
-                    figures[i].getBoundingClientRect().width) *
-                  100
-                }%)`;
+              if (browserName !== 'firefox') {
+                // clearTimeout(timer);
+                // timer =
+                setTimeout(() => {
+                  imageSlider.style.transform = `translateX(calc(${
+                    -1.25 * window.innerWidth
+                  }px - ${
+                    -window.innerWidth * 6.95 +
+                    ((window.scrollY +
+                      distanceToTranslate -
+                      (section2Open + 0.3 * home.offsetHeight)) /
+                      distanceToTranslate) *
+                      window.innerWidth *
+                      6.95
+                  }px))`;
+                  centerContentSection2.scrollTop = 0;
+                  for (let i = 0; i < figcaptions.length; i++) {
+                    figcaptions[i].style.transform = `translateY(${
+                      (figures[i].getBoundingClientRect().right /
+                        figures[i].getBoundingClientRect().width) *
+                      100
+                    }%)`;
+                  }
+                }, 5);
+              } else {
+                imageSlider.style.transform = `translateX(calc(${
+                  -1.25 * window.innerWidth
+                }px - ${
+                  -window.innerWidth * 6.95 +
+                  ((window.scrollY +
+                    distanceToTranslate -
+                    (section2Open + 0.3 * home.offsetHeight)) /
+                    distanceToTranslate) *
+                    window.innerWidth *
+                    6.95
+                }px))`;
+                centerContentSection2.scrollTop = 0;
+                for (let i = 0; i < figcaptions.length; i++) {
+                  figcaptions[i].style.transform = `translateY(${
+                    (figures[i].getBoundingClientRect().right /
+                      figures[i].getBoundingClientRect().width) *
+                    100
+                  }%)`;
+                }
               }
               centerContentSection2.style.opacity = '1';
             } else {
               centerContentSection2.style.opacity = '0.05';
               coeffSizing.current = window.innerWidth / homeWidth.current;
-              centerContentSection2.scrollLeft = 8 * window.innerWidth;
+              // centerContentSection2.scrollLeft = 8 * window.innerWidth;
+              imageSlider.style.transform = `translateX(-${
+                8.15 * window.innerWidth
+              }px)`;
             }
           } else {
             h3[0].style.top = `0`;

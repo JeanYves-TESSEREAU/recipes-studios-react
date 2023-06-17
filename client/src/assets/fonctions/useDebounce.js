@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (func, milliseconds) => {
-  const time = 4;
+  const time = 10;
   let timer;
 
   return (event) => {

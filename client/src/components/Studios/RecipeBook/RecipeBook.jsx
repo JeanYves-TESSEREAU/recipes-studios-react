@@ -149,12 +149,10 @@ const RecipeBook = ({
 
   //  DYNAMIC STYLE VARIABLES   //  ON BELOW  //  DYNAMIC STYLE VARIABLES
   //  DYNAMIC STYLE VARIABLES   //  ON BELOW  //  DYNAMIC STYLE VARIABLES
-  //  DYNAMIC STYLE VARIABLES   //  ON BELOW  //  DYNAMIC STYLE VARIABLES
   const menuIsItOpenedStyle = {
     opacity: visibility ? '1' : '0',
   };
   const recipeBookStyle = { background: visibility ? '' : 'none' };
-  //  DYNAMIC STYLE VARIABLES   //  ABOVE  //  DYNAMIC STYLE VARIABLES
   //  DYNAMIC STYLE VARIABLES   //  ABOVE  //  DYNAMIC STYLE VARIABLES
   //  DYNAMIC STYLE VARIABLES   //  ABOVE  //  DYNAMIC STYLE VARIABLES
 
@@ -167,13 +165,6 @@ const RecipeBook = ({
       <img
         id='recipeBookImg'
         style={menuIsItOpenedStyle}
-        // style={{
-        //   transform: `scale(${scaleForImg})`,
-
-        //   animation: mediaSize
-        //     ? `recipeBookImgAnimWidth ease-in-out 1.2s`
-        //     : `recipeBookImgAnimHeight ease-in-out 1.2s`,
-        // }}
         src={recipeBookImg}
         alt='recipeBookImg'></img>
 

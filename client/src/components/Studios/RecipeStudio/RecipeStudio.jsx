@@ -10,8 +10,6 @@ import EggLeftSvg from './EggLeftSvg.jsx';
 import EggCenterSvg from './EggCenterSvg';
 import Nav from '../../globalComponents/navigation/Nav';
 import { alertPopup } from '../../../assets/fonctions/alertPopup.js';
-// import ReactQuill from 'react-quill';
-// import 'react-quill/dist/quill.snow.css';
 
 import {
   getAliment,
