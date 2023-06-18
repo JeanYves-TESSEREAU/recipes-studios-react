@@ -14,9 +14,9 @@ import svgTwoEuros from '../../../assets/img/twoEuros.svg';
 import svgThreeEuros from '../../../assets/img/threeEuros.svg';
 import injectStyle from '../../../assets/fonctions/injectStyle';
 import { alertPopup } from '../../../assets/fonctions/alertPopup.js';
-import Nav from '../../globalComponents/navigation/Nav';
+import Nav from '../../GlobalComponents/navigation/Nav';
 
-import Recipe from '../../multiFonctionComponents/Recipes/Recipe/Recipe';
+import Recipe from '../../MultiFonctionComponents/Recipes/Recipe/Recipe';
 import { getAliment, getAlimentByID } from '../../../redux/actions/aliments';
 import {
   getRecipe,
@@ -153,6 +153,51 @@ const RecipeBook = ({
     opacity: visibility ? '1' : '0',
   };
   const recipeBookStyle = { background: visibility ? '' : 'none' };
+
+  const searchModalExitStyle = {
+    opacity: visibility ? '1' : '0',
+    display:
+      searchByNameRecipeBookOpen && recipeActived === '' ? 'block' : 'none',
+  };
+
+  const searchByNameSectionStyle = {
+    opacity: visibility ? '1' : '0',
+    display: `${
+      searchByCategoryRecipeBookOpen ||
+      searchByNutrientsRecipeBookOpen ||
+      recipeActived !== ''
+        ? 'none'
+        : ''
+    }`,
+  };
+  const recipeActiveStyle = {
+    top: `${recipeActived !== '' ? 0 : ''}`,
+    padding: `${recipeActived !== '' ? 0 : ''}`,
+    height: `${recipeActived !== '' ? '100vh' : ''}`,
+  };
+  const recipeAnimStyle = {
+    animation: animationSearchByName
+      ? 'recipeOnListFromRecipeViewAnim2 cubic-bezier(0.175, 0.885, 0.32, 1.275) 2.5s'
+      : '',
+  };
+  const recipeActiveDiv1Style = { marginTop: '15%' };
+
+  const recipeLevelSyle = { height: '20%', marginTop: '60%' };
+  const euroImgStyle = { height: '20%', marginTop: '60%' };
+  const searchByCategoryStyle = {
+    opacity: visibility ? '1' : '0',
+    display: `${
+      searchByNameRecipeBookOpen || searchByNutrientsRecipeBookOpen
+        ? 'none'
+        : ''
+    }`,
+  };
+  const searchByNutrientsStyle = {
+    opacity: visibility ? '1' : '0',
+    display: `${
+      searchByNameRecipeBookOpen || searchByCategoryRecipeBookOpen ? 'none' : ''
+    }`,
+  };
   //  DYNAMIC STYLE VARIABLES   //  ABOVE  //  DYNAMIC STYLE VARIABLES
   //  DYNAMIC STYLE VARIABLES   //  ABOVE  //  DYNAMIC STYLE VARIABLES
 
@@ -170,13 +215,7 @@ const RecipeBook = ({
 
       <Nav hideFor3dOpening={hideFor3dOpening} visibility={visibility} />
       <button
-        style={{
-          opacity: visibility ? '1' : '0',
-          display:
-            searchByNameRecipeBookOpen && recipeActived === ''
-              ? 'block'
-              : 'none',
-        }}
+        style={searchModalExitStyle}
         className='searchModalExit'
         onClick={searchModalExit}>
         X
@@ -190,16 +229,7 @@ const RecipeBook = ({
         onClick={
           searchByNameRecipeBookOpen ? null : toggleSearchByNameRecipeBookOpen
         }
-        style={{
-          opacity: visibility ? '1' : '0',
-          display: `${
-            searchByCategoryRecipeBookOpen ||
-            searchByNutrientsRecipeBookOpen ||
-            recipeActived !== ''
-              ? 'none'
-              : ''
-          }`,
-        }}>
+        style={searchByNameSectionStyle}>
         {searchByNameRecipeBookOpen ? (
           <Fragment>
             {recipeActived === '' ? (
@@ -223,12 +253,7 @@ const RecipeBook = ({
               ''
             )}
 
-            <div
-              style={{
-                top: `${recipeActived !== '' ? 0 : ''}`,
-                padding: `${recipeActived !== '' ? 0 : ''}`,
-                height: `${recipeActived !== '' ? '100vh' : ''}`,
-              }}>
+            <div style={recipeActiveStyle}>
               {recipes &&
                 recipes.map((recipe, i) => {
                   return recipe._id ? (
@@ -240,28 +265,14 @@ const RecipeBook = ({
                             : 'recipeView'
                         }
                         key={recipe._id}
-                        style={{
-                          animation: animationSearchByName
-                            ? 'recipeOnListFromRecipeViewAnim2 cubic-bezier(0.175, 0.885, 0.32, 1.275) 2.5s'
-                            : '',
-                        }}
+                        style={recipeAnimStyle}
                         onClick={(e) => activeRecipeChanges(recipe._id)}>
                         <div
                           className='recipeOnList'
                           onClick={(e) => setRecipeName('')}>
-                          <div
-                            // style={{
-                            //   backgroundImage: `url(${recipe.recipeImage})`,
-                            //   backgroundSize: 'cover',
-                            //   backgroundPosition: 'center',
-                            //   backgroundRepeat: 'no-repeat',
-                            // }}
-                            className='recipeImage'
-
-                            // src={recipe.recipeImage}
-                            // alt='recipeImage'
-                          >
+                          <div className='recipeImage'>
                             <div
+                              // NO OTHER OPTION THAT CREATE INLINE CSS BECAUSE OF MAPING
                               style={{
                                 backgroundImage: `url(${recipe.recipeImage})`,
                                 backgroundSize: 'cover',
@@ -272,7 +283,7 @@ const RecipeBook = ({
                               }}
                               className='recipeImage2'></div>
                           </div>{' '}
-                          <div style={{ marginTop: '15%' }}>
+                          <div style={recipeActiveDiv1Style}>
                             <h2>{recipe.recipeTitle}</h2>
                             <h3>
                               {recipe.recipeDiet === `GenericDiet`
@@ -296,7 +307,7 @@ const RecipeBook = ({
                                 alt='firstInfosRecipeLevelImg'
                               />
                               <img
-                                style={{ height: '20%', marginTop: '60%' }}
+                                style={recipeLevelSyle}
                                 src={
                                   recipe.recipeLevel === 'easyLevel'
                                     ? `${svgOneStar}`
@@ -329,7 +340,7 @@ const RecipeBook = ({
                               <img
                                 id={`firstInfosRecipeMoneyStarsImg${i}`}
                                 className='firstInfosRecipeMoneyStarsImg'
-                                style={{ height: '20%', marginTop: '60%' }}
+                                style={euroImgStyle}
                                 src={
                                   recipe.recipePrice === 'economic'
                                     ? `${svgOneEuro}`
@@ -372,14 +383,7 @@ const RecipeBook = ({
             : toggleSearchByCategoryRecipeBookOpen && optionNotDispo
         }
         // onMouseUp={searchByCategoryRecipeBookOpen ? optionNotDispo : null}
-        style={{
-          opacity: visibility ? '1' : '0',
-          display: `${
-            searchByNameRecipeBookOpen || searchByNutrientsRecipeBookOpen
-              ? 'none'
-              : ''
-          }`,
-        }}>
+        style={searchByCategoryStyle}>
         {searchByCategoryRecipeBookOpen ? (
           <Fragment>
             <div
@@ -412,14 +416,7 @@ const RecipeBook = ({
             : toggleSearchByNutrientsRecipeBookOpen && optionNotDispo
         }
         // onMouseUp={searchByNutrientsRecipeBookOpen ? optionNotDispo : null}
-        style={{
-          opacity: visibility ? '1' : '0',
-          display: `${
-            searchByNameRecipeBookOpen || searchByCategoryRecipeBookOpen
-              ? 'none'
-              : ''
-          }`,
-        }}>
+        style={searchByNutrientsStyle}>
         {searchByNutrientsRecipeBookOpen ? (
           <Fragment>
             <div
@@ -446,7 +443,7 @@ const RecipeBook = ({
         <Fragment>
           <Recipe visibility={visibility} recipeActived={recipeActived} />{' '}
           <button
-            style={{ opacity: visibility ? '1' : '0' }}
+            style={menuIsItOpenedStyle}
             className='recipeDetailedExit'
             onClick={exitModalRecipeDetails}>
             X

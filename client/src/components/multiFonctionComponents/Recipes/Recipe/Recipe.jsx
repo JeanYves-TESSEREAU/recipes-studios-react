@@ -15,20 +15,20 @@ import svgOneEuro from '../../../../assets/img/oneEuro.svg';
 import svgTwoEuros from '../../../../assets/img/twoEuros.svg';
 import svgThreeEuros from '../../../../assets/img/threeEuros.svg';
 import svgHeat from '../../../../assets/img/heatingTime.svg';
-import Fish from '../../../svgComponents/Allergen/Fish';
-import Peanuts from '../../../svgComponents/Allergen/Peanuts';
-import Milk from '../../../svgComponents/Allergen/Milk';
-import Nuts from '../../../svgComponents/Allergen/Nuts';
-import Molluscs from '../../../svgComponents/Allergen/Molluscs';
-import Mustard from '../../../svgComponents/Allergen/Mustard';
-import Gluten from '../../../svgComponents/Allergen/Gluten';
-import Crustaceans from '../../../svgComponents/Allergen/Crustaceans';
-import Eggs from '../../../svgComponents/Allergen/Eggs';
-import Soy from '../../../svgComponents/Allergen/Soy';
-import Sulfites from '../../../svgComponents/Allergen/Sulfites';
-import Sesame from '../../../svgComponents/Allergen/Sesame';
-import Celery from '../../../svgComponents/Allergen/Celery';
-import Lupin from '../../../svgComponents/Allergen/Lupin';
+import Fish from '../../../SvgComponents/Allergen/Fish';
+import Peanuts from '../../../SvgComponents/Allergen/Peanuts';
+import Milk from '../../../SvgComponents/Allergen/Milk';
+import Nuts from '../../../SvgComponents/Allergen/Nuts';
+import Molluscs from '../../../SvgComponents/Allergen/Molluscs';
+import Mustard from '../../../SvgComponents/Allergen/Mustard';
+import Gluten from '../../../SvgComponents/Allergen/Gluten';
+import Crustaceans from '../../../SvgComponents/Allergen/Crustaceans';
+import Eggs from '../../../SvgComponents/Allergen/Eggs';
+import Soy from '../../../SvgComponents/Allergen/Soy';
+import Sulfites from '../../../SvgComponents/Allergen/Sulfites';
+import Sesame from '../../../SvgComponents/Allergen/Sesame';
+import Celery from '../../../SvgComponents/Allergen/Celery';
+import Lupin from '../../../SvgComponents/Allergen/Lupin';
 import {
   ProgressEllipseGlucides,
   ProgressEllipseProteines,
@@ -53,11 +53,11 @@ import {
   ProgressEllipseCuivre,
   ProgressEllipseFer,
   ProgressEllipseIode,
-} from '../../../svgComponents/ProgressEllipse';
+} from '../../../SvgComponents/ProgressEllipse';
 import { Adult2000Kcal } from '../../../../assets/fonctions/nutrimentsNeeds';
 import { alertPopup } from '../../../../assets/fonctions/alertPopup.js';
 
-import Slide from '../../../svgComponents/Slide';
+import Slide from '../../../SvgComponents/Slide';
 
 const Recipe = ({ recipeActived, recipeId, getRecipeByID, visibility }) => {
   /* ______________________             HERE IS ALL FONCTIONS/STATE AND CONDITIONS PART                     __________________________ */

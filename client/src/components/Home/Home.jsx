@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useRef, useState } from 'react';
 import './home.css';
-import Nav from '../globalComponents/navigation/Nav';
+import Nav from '../GlobalComponents/navigation/Nav';
 import injectStyle from '../../assets/fonctions/injectStyle.js';
 import imgAliment1 from '../../assets/img/aliment1.png';
 import imgAliment2 from '../../assets/img/aliment2.png';

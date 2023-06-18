@@ -1,12 +1,12 @@
 /* eslint-disable no-unused-vars */
-import './AlimentBoard.css';
+import './alimentBoard.css';
 import React, { useState, useEffect, Fragment } from 'react';
 import { Navigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Pagination from './pagination/Pagination.jsx';
+import Pagination from './Pagination/Pagination.jsx';
 import AlimentForm from './AlimentForm/AlimentForm.jsx';
 import injectStyle from '../../../assets/fonctions/injectStyle';
-import Nav from '../../globalComponents/navigation/Nav';
+import Nav from '../../GlobalComponents/navigation/Nav';
 import { connect } from 'react-redux';
 import {
   getAliment,
@@ -41,7 +41,7 @@ const AlimentBoard = ({
   const [openTable, setOpenTable] = useState(true);
   const [filteredValues, setFilteredValues] = useState({});
   const [filterActive, setFilterActive] = useState({});
-  const [inputChecked, setInputChecked] = useState([]);
+
   const [saveFilters, setSaveFilters] = useState([]);
   const [checkedBox, setCheckedBox] = useState(false);
   const [listToRecipe, setListToRecipe] = useState([]);
@@ -52,10 +52,22 @@ const AlimentBoard = ({
   const [redirect, setredirect] = useState(false);
   const [visibility, setVisibility] = useState(true);
 
+  // LOAD LISTENER //   // LOAD LISTENER //   // LOAD LISTENER //
+  // LOAD LISTENER //   // LOAD LISTENER //   // LOAD LISTENER //
+  // LOAD LISTENER //   // LOAD LISTENER //   // LOAD LISTENER //
   useEffect(() => {
-    automaticCheckedBox();
-    showAutomaticCheckedBoxes();
+    const callback = () => {
+      automaticCheckedBox();
+      showAutomaticCheckedBoxes();
+    };
+    if (document.readyState === 'complete') {
+      callback();
+    } else {
+      window.addEventListener('load', callback);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   useEffect(() => {
     if (listToRecipeFinal.length > 0) {
       getAlimentList(listToRecipeFinal);
@@ -72,7 +84,30 @@ const AlimentBoard = ({
     getAliment(e.target.value);
     setAlimentName(e.target.value);
   };
+  const displayNutrimentInfos = () => {
+    let checkbox = document.querySelectorAll('input[type=checkbox]');
+    let td = document.querySelectorAll('td');
+    let th = document.querySelectorAll('th');
+    for (let i = 0; i < th.length; i++) {
+      checkbox.forEach((el) => {
+        if (el.checked && el.id === th[i].className) {
+          th[i].style.display = '';
+        } else if (!el.checked && el.id === th[i].className) {
+          th[i].style.display = 'none';
+        }
+      });
+    }
 
+    for (let i = 0; i < td.length; i++) {
+      checkbox.forEach((el) => {
+        if (el.checked && el.id === td[i].className) {
+          td[i].style.display = '';
+        } else if (!el.checked && el.id === td[i].className) {
+          td[i].style.display = 'none';
+        }
+      });
+    }
+  };
   const modifyRecipeList = (e) => {
     e.preventDefault();
     let sendToRecipe = document.querySelector('input[id=sendToRecipe]');
@@ -138,47 +173,46 @@ const AlimentBoard = ({
     document.getElementById('lipidesG').checked = true;
     document.getElementById('sucresG').checked = true;
   };
-
-  const showAutomaticCheckedBoxes = () => {
+  useEffect(() => {
+    let interval;
+    interval = setInterval(() => {
+      displayNutrimentInfos();
+    }, 5);
     setTimeout(() => {
-      const filtered = [
-        ...document.querySelectorAll('input[type=checkbox]:checked'),
-      ].map((nut) => nut.id);
-      setInputChecked(filtered);
-      // let th = document.querySelectorAll('th');
-      // for (let i = 0; i < th.length; i++) {
-      //   for (let element of filtered) {
-      //     if (th[i].className === element || th[i].className === 'alimNom') {
-      //       th[i].style.display = 'none';
-      //     }
-      //   }
-      // }
-    }, 1000);
+      clearInterval(interval);
+    }, 500);
+    let filterActiveKeys = Object.entries(filterActive);
+    let openedFilterStyle = document.querySelectorAll('th .bars:nth-child(2)');
+    let closedFilterStyle = document.querySelectorAll('th .bars:last-of-type');
+    openedFilterStyle.forEach((el) => {
+      el.style.display = '';
+      filterActiveKeys.forEach((value) => {
+        if (el.name === value[0] && value[1] === true) {
+          el.style.display = 'none';
+        }
+      });
+    });
+    closedFilterStyle.forEach((el) => {
+      el.style.display = 'none';
+      filterActiveKeys.forEach((value) => {
+        if (el.name === value[0] && value[1] === true) {
+          el.style.display = '';
+        }
+      });
+    });
+  }, [sortCount, filterActive]);
+  const showAutomaticCheckedBoxes = () => {
+    displayNutrimentInfos();
   };
 
   const onSubmitMenu = (e) => {
     e.preventDefault();
-    const filtered = [
-      ...document.querySelectorAll('input[type="checkbox"]:checked'),
-    ].map((nut) => nut.id);
-    // let th = document.querySelectorAll('th');
-    // for (let i = 0; i < th.length; i++) {
-    //   for (let element of filtered) {
-    //     if (th[i].className === element || th[i].className === 'alimNom') {
-    //       th[i].style.display = '';
-    //     } else {
-    //       th[i].style.display = 'none';
-    //     }
-    //   }
-    // }
-    setInputChecked(filtered);
+    displayNutrimentInfos();
   };
-
   const toggle = (id = '') => {
     setDisplayedFilter(!displayedFilter);
 
     setNutrimentId(id);
-    console.log(id);
   };
   const toggleMenu = () => {
     setDisplayedMenu(!displayedMenu);
@@ -224,6 +258,7 @@ const AlimentBoard = ({
     if (sortCount === 2) {
       setSortCount(0);
     }
+    displayNutrimentInfos();
   };
   let checkedToSend = document.querySelectorAll('input[groupe=list]:checked');
   let unCheckedToDelete = document.querySelectorAll(
@@ -428,13 +463,7 @@ const AlimentBoard = ({
                   </label>
                 </form>
               </th>
-              <th
-                className='alimGrpCode'
-                style={{
-                  display: ` ${
-                    inputChecked.includes('alimGrpCode') ? '' : 'none'
-                  }`,
-                }}>
+              <th className='alimGrpCode'>
                 Aliment Groupe Code
                 <button
                   className='sort'
@@ -444,32 +473,22 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${filterActive.alimGrpCode ? 'none' : ''}`,
-                  }}
+                  name='alimGrpCode'
                   onClick={(e) => {
                     toggle('alimGrpCode');
                   }}>
                   ☰
                 </button>
                 <button
+                  name='alimGrpCode'
                   className='bars'
-                  style={{
-                    display: ` ${filterActive.alimGrpCode ? '' : 'none'}`,
-                  }}
                   onClick={(e) => {
                     close('alimGrpCode');
                   }}>
                   X
                 </button>
               </th>
-              <th
-                className='alimGrpNom'
-                style={{
-                  display: ` ${
-                    inputChecked.includes('alimGrpNom') ? '' : 'none'
-                  }`,
-                }}>
+              <th className='alimGrpNom'>
                 Aliment Groupe Nom
                 <button
                   className='sort'
@@ -478,13 +497,7 @@ const AlimentBoard = ({
                   ⭥
                 </button>
               </th>
-              <th
-                className='alimSgrpNom'
-                style={{
-                  display: ` ${
-                    inputChecked.includes('alimSgrpNom') ? '' : 'none'
-                  }`,
-                }}>
+              <th className='alimSgrpNom'>
                 Aliment Sous Groupe Nom
                 <button
                   className='sort'
@@ -493,13 +506,7 @@ const AlimentBoard = ({
                   ⭥
                 </button>
               </th>
-              <th
-                className='energieKcal'
-                style={{
-                  display: ` ${
-                    inputChecked.includes('energieKcal') ? '' : 'none'
-                  }`,
-                }}>
+              <th>
                 Energie (Kcal)
                 <button
                   className='sort'
@@ -509,9 +516,7 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${filterActive.energieKcal ? 'none' : ''}`,
-                  }}
+                  name='energieKcal'
                   onClick={(e) => {
                     toggle('energieKcal');
                   }}>
@@ -519,20 +524,14 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${filterActive.energieKcal ? '' : 'none'}`,
-                  }}
+                  name='energieKcal'
                   onClick={(e) => {
                     close('energieKcal');
                   }}>
                   X
                 </button>
               </th>
-              <th
-                className='eauG'
-                style={{
-                  display: ` ${inputChecked.includes('eauG') ? '' : 'none'}`,
-                }}>
+              <th className='eauG'>
                 Eau (g)
                 <button
                   className='sort'
@@ -542,9 +541,7 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${filterActive.eauG ? 'none' : 'block'}`,
-                  }}
+                  name='eauG'
                   onClick={(e) => {
                     toggle('eauG');
                   }}>
@@ -552,22 +549,14 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${filterActive.eauG ? 'block' : 'none'}`,
-                  }}
+                  name='eauG'
                   onClick={(e) => {
                     close('eauG');
                   }}>
                   X
                 </button>
               </th>
-              <th
-                className='proteinesG'
-                style={{
-                  display: ` ${
-                    inputChecked.includes('proteinesG') ? '' : 'none'
-                  }`,
-                }}>
+              <th className='proteinesG'>
                 Protéines (g)
                 <button
                   className='sort'
@@ -577,9 +566,7 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${filterActive.proteinesG ? 'none' : 'block'}`,
-                  }}
+                  name='proteinesG'
                   onClick={(e) => {
                     toggle('proteinesG');
                   }}>
@@ -587,22 +574,14 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${filterActive.proteinesG ? 'block' : 'none'}`,
-                  }}
+                  name='proteinesG'
                   onClick={(e) => {
                     close('proteinesG');
                   }}>
                   X
                 </button>
               </th>
-              <th
-                className='glucidesG'
-                style={{
-                  display: ` ${
-                    inputChecked.includes('glucidesG') ? '' : 'none'
-                  }`,
-                }}>
+              <th className='glucidesG'>
                 Glucides (g)
                 <button
                   className='sort'
@@ -612,9 +591,7 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${filterActive.glucidesG ? 'none' : 'block'}`,
-                  }}
+                  name='glucidesG'
                   onClick={(e) => {
                     toggle('glucidesG');
                   }}>
@@ -622,22 +599,14 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${filterActive.glucidesG ? 'block' : 'none'}`,
-                  }}
+                  name='glucidesG'
                   onClick={(e) => {
                     close('glucidesG');
                   }}>
                   X
                 </button>
               </th>
-              <th
-                className='lipidesG'
-                style={{
-                  display: ` ${
-                    inputChecked.includes('lipidesG') ? '' : 'none'
-                  }`,
-                }}>
+              <th className='lipidesG'>
                 Lipides (g)
                 <button
                   className='sort'
@@ -647,9 +616,7 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${filterActive.lipidesG ? 'none' : 'block'}`,
-                  }}
+                  name='lipidesG'
                   onClick={(e) => {
                     toggle('lipidesG');
                   }}>
@@ -657,20 +624,14 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${filterActive.lipidesG ? 'block' : 'none'}`,
-                  }}
+                  name='lipidesG'
                   onClick={(e) => {
                     close('lipidesG');
                   }}>
                   X
                 </button>
               </th>
-              <th
-                className='sucresG'
-                style={{
-                  display: ` ${inputChecked.includes('sucresG') ? '' : 'none'}`,
-                }}>
+              <th className='sucresG'>
                 Sucres (g)
                 <button
                   className='sort'
@@ -680,9 +641,7 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${filterActive.sucresG ? 'none' : 'block'}`,
-                  }}
+                  name='sucresG'
                   onClick={(e) => {
                     toggle('sucresG');
                   }}>
@@ -690,22 +649,14 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${filterActive.sucresG ? 'block' : 'none'}`,
-                  }}
+                  name='sucresG'
                   onClick={(e) => {
                     close('sucresG');
                   }}>
                   X
                 </button>
               </th>
-              <th
-                className='fructoseG'
-                style={{
-                  display: ` ${
-                    inputChecked.includes('fructoseG') ? '' : 'none'
-                  }`,
-                }}>
+              <th className='fructoseG'>
                 fructose (g)
                 <button
                   className='sort'
@@ -715,9 +666,7 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${filterActive.fructoseG ? 'none' : 'block'}`,
-                  }}
+                  name='fructoseG'
                   onClick={(e) => {
                     toggle('fructoseG');
                   }}>
@@ -725,22 +674,14 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${filterActive.fructoseG ? 'block' : 'none'}`,
-                  }}
+                  name='fructoseG'
                   onClick={(e) => {
                     close('fructoseG');
                   }}>
                   X
                 </button>
               </th>
-              <th
-                className='galactoseG'
-                style={{
-                  display: ` ${
-                    inputChecked.includes('galactoseG') ? '' : 'none'
-                  }`,
-                }}>
+              <th className='galactoseG'>
                 galactose (g)
                 <button
                   className='sort'
@@ -750,9 +691,7 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${filterActive.galactoseG ? 'none' : 'block'}`,
-                  }}
+                  name='galactoseG'
                   onClick={(e) => {
                     toggle('galactoseG');
                   }}>
@@ -760,22 +699,14 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${filterActive.galactoseG ? 'block' : 'none'}`,
-                  }}
+                  name='galactoseG'
                   onClick={(e) => {
                     close('galactoseG');
                   }}>
                   X
                 </button>
               </th>
-              <th
-                className='glucoseG'
-                style={{
-                  display: ` ${
-                    inputChecked.includes('glucoseG') ? '' : 'none'
-                  }`,
-                }}>
+              <th className='glucoseG'>
                 glucose (g)
                 <button
                   className='sort'
@@ -785,9 +716,7 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${filterActive.glucoseG ? 'none' : 'block'}`,
-                  }}
+                  name='glucoseG'
                   onClick={(e) => {
                     toggle('glucoseG');
                   }}>
@@ -795,22 +724,14 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${filterActive.glucoseG ? 'block' : 'none'}`,
-                  }}
+                  name='glucoseG'
                   onClick={(e) => {
                     close('glucoseG');
                   }}>
                   X
                 </button>
               </th>
-              <th
-                className='lactoseG'
-                style={{
-                  display: ` ${
-                    inputChecked.includes('lactoseG') ? '' : 'none'
-                  }`,
-                }}>
+              <th className='lactoseG'>
                 lactose (g)
                 <button
                   className='sort'
@@ -820,9 +741,7 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${filterActive.lactoseG ? 'none' : 'block'}`,
-                  }}
+                  name='lactoseG'
                   onClick={(e) => {
                     toggle('lactoseG');
                   }}>
@@ -830,22 +749,14 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${filterActive.lactoseG ? 'block' : 'none'}`,
-                  }}
+                  name='lactoseG'
                   onClick={(e) => {
                     close('lactoseG');
                   }}>
                   X
                 </button>
               </th>
-              <th
-                className='maltoseG'
-                style={{
-                  display: ` ${
-                    inputChecked.includes('maltoseG') ? '' : 'none'
-                  }`,
-                }}>
+              <th className='maltoseG'>
                 maltose (g)
                 <button
                   className='sort'
@@ -855,9 +766,7 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${filterActive.maltoseG ? 'none' : 'block'}`,
-                  }}
+                  name='maltoseG'
                   onClick={(e) => {
                     toggle('maltoseG');
                   }}>
@@ -865,22 +774,14 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${filterActive.maltoseG ? 'block' : 'none'}`,
-                  }}
+                  name='maltoseG'
                   onClick={(e) => {
                     close('maltoseG');
                   }}>
                   X
                 </button>
               </th>
-              <th
-                className='saccharoseG'
-                style={{
-                  display: ` ${
-                    inputChecked.includes('saccharoseG') ? '' : 'none'
-                  }`,
-                }}>
+              <th className='saccharoseG'>
                 saccharose (g)
                 <button
                   className='sort'
@@ -890,9 +791,7 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${filterActive.saccharoseG ? 'none' : 'block'}`,
-                  }}
+                  name='saccharoseG'
                   onClick={(e) => {
                     toggle('saccharoseG');
                   }}>
@@ -900,20 +799,14 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${filterActive.saccharoseG ? 'block' : 'none'}`,
-                  }}
+                  name='saccharoseG'
                   onClick={(e) => {
                     close('saccharoseG');
                   }}>
                   X
                 </button>
               </th>
-              <th
-                className='amidonG'
-                style={{
-                  display: ` ${inputChecked.includes('amidonG') ? '' : 'none'}`,
-                }}>
+              <th className='amidonG'>
                 amidon (g)
                 <button
                   className='sort'
@@ -923,9 +816,7 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${filterActive.amidonG ? 'none' : 'block'}`,
-                  }}
+                  name='amidonG'
                   onClick={(e) => {
                     toggle('amidonG');
                   }}>
@@ -933,22 +824,14 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${filterActive.amidonG ? 'block' : 'none'}`,
-                  }}
+                  name='amidonG'
                   onClick={(e) => {
                     close('amidonG');
                   }}>
                   X
                 </button>
               </th>
-              <th
-                className='fibresAlimentairesG'
-                style={{
-                  display: ` ${
-                    inputChecked.includes('fibresAlimentairesG') ? '' : 'none'
-                  }`,
-                }}>
+              <th className='fibresAlimentairesG'>
                 fibresAlimentaires (g)
                 <button
                   className='sort'
@@ -958,11 +841,7 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${
-                      filterActive.fibresAlimentairesG ? 'none' : 'block'
-                    }`,
-                  }}
+                  name='fibresAlimentairesG'
                   onClick={(e) => {
                     toggle('fibresAlimentairesG');
                   }}>
@@ -970,24 +849,14 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${
-                      filterActive.fibresAlimentairesG ? 'block' : 'none'
-                    }`,
-                  }}
+                  name='fibresAlimentairesG'
                   onClick={(e) => {
                     close('fibresAlimentairesG');
                   }}>
                   X
                 </button>
               </th>
-              <th
-                className='polyolsTotauxG'
-                style={{
-                  display: ` ${
-                    inputChecked.includes('polyolsTotauxG') ? '' : 'none'
-                  }`,
-                }}>
+              <th className='polyolsTotauxG'>
                 polyolsTotaux (g)
                 <button
                   className='sort'
@@ -997,11 +866,7 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${
-                      filterActive.polyolsTotauxG ? 'none' : 'block'
-                    }`,
-                  }}
+                  name='polyolsTotauxG'
                   onClick={(e) => {
                     toggle('polyolsTotauxG');
                   }}>
@@ -1009,22 +874,14 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${
-                      filterActive.fibresAlimentairesG ? 'block' : 'none'
-                    }`,
-                  }}
+                  name='polyolsTotauxG'
                   onClick={(e) => {
                     close('polyolsTotauxG');
                   }}>
                   X
                 </button>
               </th>
-              <th
-                className='alcoolG'
-                style={{
-                  display: ` ${inputChecked.includes('alcoolG') ? '' : 'none'}`,
-                }}>
+              <th className='alcoolG'>
                 alcool (g)
                 <button
                   className='sort'
@@ -1034,9 +891,7 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${filterActive.alcoolG ? 'none' : 'block'}`,
-                  }}
+                  name='alcoolG'
                   onClick={(e) => {
                     toggle('alcoolG');
                   }}>
@@ -1044,22 +899,14 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${filterActive.alcoolG ? 'block' : 'none'}`,
-                  }}
+                  name='alcoolG'
                   onClick={(e) => {
                     close('alcoolG');
                   }}>
                   X
                 </button>
               </th>
-              <th
-                className='acidesOrganiquesG'
-                style={{
-                  display: ` ${
-                    inputChecked.includes('acidesOrganiquesG') ? '' : 'none'
-                  }`,
-                }}>
+              <th className='acidesOrganiquesG'>
                 acidesOrganiques (g)
                 <button
                   className='sort'
@@ -1069,11 +916,7 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${
-                      filterActive.acidesOrganiquesG ? 'none' : 'block'
-                    }`,
-                  }}
+                  name='acidesOrganiquesG'
                   onClick={(e) => {
                     toggle('acidesOrganiquesG');
                   }}>
@@ -1081,24 +924,14 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${
-                      filterActive.acidesOrganiquesG ? 'block' : 'none'
-                    }`,
-                  }}
+                  name='acidesOrganiquesG'
                   onClick={(e) => {
                     close('acidesOrganiquesG');
                   }}>
                   X
                 </button>
               </th>
-              <th
-                className='agSaturesG'
-                style={{
-                  display: ` ${
-                    inputChecked.includes('agSaturesG') ? '' : 'none'
-                  }`,
-                }}>
+              <th className='agSaturesG'>
                 agSatures (g)
                 <button
                   className='sort'
@@ -1108,9 +941,7 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${filterActive.agSaturesG ? 'none' : 'block'}`,
-                  }}
+                  name='agSaturesG'
                   onClick={(e) => {
                     toggle('agSaturesG');
                   }}>
@@ -1118,22 +949,14 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${filterActive.agSaturesG ? 'block' : 'none'}`,
-                  }}
+                  name='agSaturesG'
                   onClick={(e) => {
                     close('agSaturesG');
                   }}>
                   X
                 </button>
               </th>
-              <th
-                className='agMonoinsaturésG'
-                style={{
-                  display: ` ${
-                    inputChecked.includes('agMonoinsaturésG') ? '' : 'none'
-                  }`,
-                }}>
+              <th className='agMonoinsaturésG'>
                 agMonoinsaturés (g)
                 <button
                   className='sort'
@@ -1143,11 +966,7 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${
-                      filterActive.agMonoinsaturésG ? 'none' : 'block'
-                    }`,
-                  }}
+                  name='agMonoinsaturésG'
                   onClick={(e) => {
                     toggle('agMonoinsaturésG');
                   }}>
@@ -1155,24 +974,14 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${
-                      filterActive.agMonoinsaturésG ? 'block' : 'none'
-                    }`,
-                  }}
+                  name='agMonoinsaturésG'
                   onClick={(e) => {
                     close('agMonoinsaturésG');
                   }}>
                   X
                 </button>
               </th>
-              <th
-                className='agPolyinsaturésG'
-                style={{
-                  display: ` ${
-                    inputChecked.includes('agPolyinsaturésG') ? '' : 'none'
-                  }`,
-                }}>
+              <th className='agPolyinsaturésG'>
                 agPolyinsaturés (g)
                 <button
                   className='sort'
@@ -1182,11 +991,7 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${
-                      filterActive.agPolyinsaturésG ? 'none' : 'block'
-                    }`,
-                  }}
+                  name='agPolyinsaturésG'
                   onClick={(e) => {
                     toggle('agPolyinsaturésG');
                   }}>
@@ -1194,24 +999,14 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${
-                      filterActive.agPolyinsaturésG ? 'block' : 'none'
-                    }`,
-                  }}
+                  name='agPolyinsaturésG'
                   onClick={(e) => {
                     close('agPolyinsaturésG');
                   }}>
                   X
                 </button>
               </th>
-              <th
-                className='agButyriqueG'
-                style={{
-                  display: ` ${
-                    inputChecked.includes('agButyriqueG') ? '' : 'none'
-                  }`,
-                }}>
+              <th className='agButyriqueG'>
                 agButyrique (g)
                 <button
                   className='sort'
@@ -1221,9 +1016,7 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${filterActive.agButyriqueG ? 'none' : 'block'}`,
-                  }}
+                  name='agButyriqueG'
                   onClick={(e) => {
                     toggle('agButyriqueG');
                   }}>
@@ -1231,22 +1024,14 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${filterActive.agButyriqueG ? 'block' : 'none'}`,
-                  }}
+                  name='agButyriqueG'
                   onClick={(e) => {
                     close('agButyriqueG');
                   }}>
                   X
                 </button>
               </th>
-              <th
-                className='agCaproiqueG'
-                style={{
-                  display: ` ${
-                    inputChecked.includes('agCaproiqueG') ? '' : 'none'
-                  }`,
-                }}>
+              <th className='agCaproiqueG'>
                 agCaproiqueG (g)
                 <button
                   className='sort'
@@ -1256,9 +1041,7 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${filterActive.agCaproiqueG ? 'none' : 'block'}`,
-                  }}
+                  name='agCaproiqueG'
                   onClick={(e) => {
                     toggle('agCaproiqueG');
                   }}>
@@ -1266,22 +1049,14 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${filterActive.agCaproiqueG ? 'block' : 'none'}`,
-                  }}
+                  name='agCaproiqueG'
                   onClick={(e) => {
                     close('agCaproiqueG');
                   }}>
                   X
                 </button>
               </th>
-              <th
-                className='agCapryliqueG'
-                style={{
-                  display: ` ${
-                    inputChecked.includes('agCapryliqueG') ? '' : 'none'
-                  }`,
-                }}>
+              <th className='agCapryliqueG'>
                 agCaprylique (g)
                 <button
                   className='sort'
@@ -1291,11 +1066,7 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${
-                      filterActive.agCapryliqueG ? 'none' : 'block'
-                    }`,
-                  }}
+                  name='agCapryliqueG'
                   onClick={(e) => {
                     toggle('agCapryliqueG');
                   }}>
@@ -1303,24 +1074,14 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${
-                      filterActive.agCapryliqueG ? 'block' : 'none'
-                    }`,
-                  }}
+                  name='agCapryliqueG'
                   onClick={(e) => {
                     close('agCapryliqueG');
                   }}>
                   X
                 </button>
               </th>
-              <th
-                className='agCapriqueG'
-                style={{
-                  display: ` ${
-                    inputChecked.includes('agCapriqueG') ? '' : 'none'
-                  }`,
-                }}>
+              <th className='agCapriqueG'>
                 agCaprique (g)
                 <button
                   className='sort'
@@ -1330,9 +1091,7 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${filterActive.agCapriqueG ? 'none' : 'block'}`,
-                  }}
+                  name='agCapriqueG'
                   onClick={(e) => {
                     toggle('agCapriqueG');
                   }}>
@@ -1340,22 +1099,14 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${filterActive.agCapriqueG ? 'block' : 'none'}`,
-                  }}
+                  name='agCapriqueG'
                   onClick={(e) => {
                     close('agCapriqueG');
                   }}>
                   X
                 </button>
               </th>
-              <th
-                className='agLauriqueG'
-                style={{
-                  display: ` ${
-                    inputChecked.includes('agLauriqueG') ? '' : 'none'
-                  }`,
-                }}>
+              <th className='agLauriqueG'>
                 agLaurique (g)
                 <button
                   className='sort'
@@ -1365,9 +1116,7 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${filterActive.agLauriqueG ? 'none' : 'block'}`,
-                  }}
+                  name='agLauriqueG'
                   onClick={(e) => {
                     toggle('agLauriqueG');
                   }}>
@@ -1375,22 +1124,14 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${filterActive.agLauriqueG ? 'block' : 'none'}`,
-                  }}
+                  name='agLauriqueG'
                   onClick={(e) => {
                     close('agLauriqueG');
                   }}>
                   X
                 </button>
               </th>
-              <th
-                className='agMyristiqueG'
-                style={{
-                  display: ` ${
-                    inputChecked.includes('agMyristiqueG') ? '' : 'none'
-                  }`,
-                }}>
+              <th className='agMyristiqueG'>
                 agMyristique (g)
                 <button
                   className='sort'
@@ -1400,11 +1141,7 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${
-                      filterActive.agMyristiqueG ? 'none' : 'block'
-                    }`,
-                  }}
+                  name='agMyristiqueG'
                   onClick={(e) => {
                     toggle('agMyristiqueG');
                   }}>
@@ -1412,24 +1149,14 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${
-                      filterActive.agMyristiqueG ? 'block' : 'none'
-                    }`,
-                  }}
+                  name='agMyristiqueG'
                   onClick={(e) => {
                     close('agMyristiqueG');
                   }}>
                   X
                 </button>
               </th>
-              <th
-                className='agPalmitiqueG'
-                style={{
-                  display: ` ${
-                    inputChecked.includes('agPalmitiqueG') ? '' : 'none'
-                  }`,
-                }}>
+              <th className='agPalmitiqueG'>
                 agPalmitique (g)
                 <button
                   className='sort'
@@ -1439,11 +1166,7 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${
-                      filterActive.agPalmitiqueG ? 'none' : 'block'
-                    }`,
-                  }}
+                  name='agPalmitiqueG'
                   onClick={(e) => {
                     toggle('agPalmitiqueG');
                   }}>
@@ -1451,24 +1174,14 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${
-                      filterActive.agPalmitiqueG ? 'block' : 'none'
-                    }`,
-                  }}
+                  name='agPalmitiqueG'
                   onClick={(e) => {
                     close('agPalmitiqueG');
                   }}>
                   X
                 </button>
               </th>
-              <th
-                className='agSteariqueG'
-                style={{
-                  display: ` ${
-                    inputChecked.includes('agSteariqueG') ? '' : 'none'
-                  }`,
-                }}>
+              <th className='agSteariqueG'>
                 agStearique (g)
                 <button
                   className='sort'
@@ -1478,9 +1191,7 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${filterActive.agSteariqueG ? 'none' : 'block'}`,
-                  }}
+                  name='agSteariqueG'
                   onClick={(e) => {
                     toggle('agSteariqueG');
                   }}>
@@ -1488,9 +1199,7 @@ const AlimentBoard = ({
                 </button>
                 <button
                   className='bars'
-                  style={{
-                    display: ` ${filterActive.agSteariqueG ? 'block' : 'none'}`,
-                  }}
+                  name='agSteariqueG'
                   onClick={(e) => {
                     close('agSteariqueG');
                   }}>
@@ -1511,293 +1220,45 @@ const AlimentBoard = ({
                     }}
                     key={alim._id}>
                     <td className='alimNom'>{alim.alimNom}</td>
-                    <td
-                      className='alimGrpCode'
-                      style={{
-                        display: ` ${
-                          inputChecked.includes('alimGrpCode') ? '' : 'none'
-                        }`,
-                      }}>
-                      {alim.alimGrpCode}{' '}
-                    </td>
-                    <td
-                      className='alimGrpNom'
-                      style={{
-                        display: ` ${
-                          inputChecked.includes('alimGrpNom') ? '' : 'none'
-                        }`,
-                      }}>
-                      {alim.alimGrpNom}
-                    </td>
-                    <td
-                      className='alimSgrpNom'
-                      style={{
-                        display: ` ${
-                          inputChecked.includes('alimSgrpNom') ? '' : 'none'
-                        }`,
-                      }}>
-                      {alim.alimSgrpNom}
-                    </td>
-                    <td
-                      className='energieKcal'
-                      style={{
-                        display: ` ${
-                          inputChecked.includes('energieKcal') ? '' : 'none'
-                        }`,
-                      }}>
-                      {alim.energieKcal}
-                    </td>
-                    <td
-                      className='eauG'
-                      style={{
-                        display: ` ${
-                          inputChecked.includes('eauG') ? '' : 'none'
-                        }`,
-                      }}>
-                      {alim.eauG}
-                    </td>
-                    <td
-                      className='proteinesG'
-                      style={{
-                        display: ` ${
-                          inputChecked.includes('proteinesG') ? '' : 'none'
-                        }`,
-                      }}>
-                      {alim.proteinesG}
-                    </td>
-                    <td
-                      className='glucidesG'
-                      style={{
-                        display: ` ${
-                          inputChecked.includes('glucidesG') ? '' : 'none'
-                        }`,
-                      }}>
-                      {alim.glucidesG}
-                    </td>
-                    <td
-                      className='lipidesG'
-                      style={{
-                        display: ` ${
-                          inputChecked.includes('lipidesG') ? '' : 'none'
-                        }`,
-                      }}>
-                      {alim.lipidesG}
-                    </td>
-                    <td
-                      className='sucresG'
-                      style={{
-                        display: ` ${
-                          inputChecked.includes('sucresG') ? '' : 'none'
-                        }`,
-                      }}>
-                      {alim.sucresG}
-                    </td>
-                    <td
-                      className='fructoseG'
-                      style={{
-                        display: ` ${
-                          inputChecked.includes('fructoseG') ? '' : 'none'
-                        }`,
-                      }}>
-                      {alim.fructoseG}
-                    </td>
-                    <td
-                      className='galactoseG'
-                      style={{
-                        display: ` ${
-                          inputChecked.includes('galactoseG') ? '' : 'none'
-                        }`,
-                      }}>
-                      {alim.galactoseG}
-                    </td>
-                    <td
-                      className='glucoseG'
-                      style={{
-                        display: ` ${
-                          inputChecked.includes('glucoseG') ? '' : 'none'
-                        }`,
-                      }}>
-                      {alim.glucoseG}
-                    </td>
-                    <td
-                      className='lactoseG'
-                      style={{
-                        display: ` ${
-                          inputChecked.includes('lactoseG') ? '' : 'none'
-                        }`,
-                      }}>
-                      {alim.lactoseG}
-                    </td>
-                    <td
-                      className='maltoseG'
-                      style={{
-                        display: ` ${
-                          inputChecked.includes('maltoseG') ? '' : 'none'
-                        }`,
-                      }}>
-                      {alim.maltoseG}
-                    </td>
-                    <td
-                      className='saccharoseG'
-                      style={{
-                        display: ` ${
-                          inputChecked.includes('saccharoseG') ? '' : 'none'
-                        }`,
-                      }}>
-                      {alim.saccharoseG}
-                    </td>
-                    <td
-                      className='amidonG'
-                      style={{
-                        display: ` ${
-                          inputChecked.includes('amidonG') ? '' : 'none'
-                        }`,
-                      }}>
-                      {alim.amidonG}
-                    </td>
-                    <td
-                      className='fibresAlimentairesG'
-                      style={{
-                        display: ` ${
-                          inputChecked.includes('fibresAlimentairesG')
-                            ? ''
-                            : 'none'
-                        }`,
-                      }}>
+                    <td className='alimGrpCode'>{alim.alimGrpCode} </td>
+                    <td className='alimGrpNom'>{alim.alimGrpNom}</td>
+                    <td className='alimSgrpNom'>{alim.alimSgrpNom}</td>
+                    <td className='energieKcal'>{alim.energieKcal}</td>
+                    <td className='eauG'>{alim.eauG}</td>
+                    <td className='proteinesG'>{alim.proteinesG}</td>
+                    <td className='glucidesG'>{alim.glucidesG}</td>
+                    <td className='lipidesG'>{alim.lipidesG}</td>
+                    <td className='sucresG'>{alim.sucresG}</td>
+                    <td className='fructoseG'>{alim.fructoseG}</td>
+                    <td className='galactoseG'>{alim.galactoseG}</td>
+                    <td className='glucoseG'>{alim.glucoseG}</td>
+                    <td className='lactoseG'>{alim.lactoseG}</td>
+                    <td className='maltoseG'>{alim.maltoseG}</td>
+                    <td className='saccharoseG'>{alim.saccharoseG}</td>
+                    <td className='amidonG'>{alim.amidonG}</td>
+                    <td className='fibresAlimentairesG'>
                       {alim.fibresAlimentairesG}
                     </td>
-                    <td
-                      className='polyolsTotauxG'
-                      style={{
-                        display: ` ${
-                          inputChecked.includes('polyolsTotauxG') ? '' : 'none'
-                        }`,
-                      }}>
-                      {alim.polyolsTotauxG}
-                    </td>
-                    <td
-                      className='alcoolG'
-                      style={{
-                        display: ` ${
-                          inputChecked.includes('alcoolG') ? '' : 'none'
-                        }`,
-                      }}>
-                      {alim.alcoolG}
-                    </td>
-                    <td
-                      className='acidesOrganiquesG'
-                      style={{
-                        display: ` ${
-                          inputChecked.includes('acidesOrganiquesG')
-                            ? ''
-                            : 'none'
-                        }`,
-                      }}>
+                    <td className='polyolsTotauxG'>{alim.polyolsTotauxG}</td>
+                    <td className='alcoolG'>{alim.alcoolG}</td>
+                    <td className='acidesOrganiquesG'>
                       {alim.acidesOrganiquesG}
                     </td>
-                    <td
-                      className='agSaturesG'
-                      style={{
-                        display: ` ${
-                          inputChecked.includes('agSaturesG') ? '' : 'none'
-                        }`,
-                      }}>
-                      {alim.agSaturesG}
-                    </td>
-                    <td
-                      className='agMonoinsaturésG'
-                      style={{
-                        display: ` ${
-                          inputChecked.includes('agMonoinsaturésG')
-                            ? ''
-                            : 'none'
-                        }`,
-                      }}>
+                    <td className='agSaturesG'>{alim.agSaturesG}</td>
+                    <td className='agMonoinsaturésG'>
                       {alim.agMonoinsaturésG}
                     </td>
-                    <td
-                      className='agPolyinsaturésG'
-                      style={{
-                        display: ` ${
-                          inputChecked.includes('agPolyinsaturésG')
-                            ? ''
-                            : 'none'
-                        }`,
-                      }}>
+                    <td className='agPolyinsaturésG'>
                       {alim.agPolyinsaturésG}
                     </td>
-                    <td
-                      className='agButyriqueG'
-                      style={{
-                        display: ` ${
-                          inputChecked.includes('agButyriqueG') ? '' : 'none'
-                        }`,
-                      }}>
-                      {alim.agButyriqueG}
-                    </td>
-                    <td
-                      className='agCaproiqueG'
-                      style={{
-                        display: ` ${
-                          inputChecked.includes('agCaproiqueG') ? '' : 'none'
-                        }`,
-                      }}>
-                      {alim.agCaproiqueG}
-                    </td>
-                    <td
-                      className='agCapryliqueG'
-                      style={{
-                        display: ` ${
-                          inputChecked.includes('agCapryliqueG') ? '' : 'none'
-                        }`,
-                      }}>
-                      {alim.agCapryliqueG}
-                    </td>
-                    <td
-                      className='agCapriqueG'
-                      style={{
-                        display: ` ${
-                          inputChecked.includes('agCapriqueG') ? '' : 'none'
-                        }`,
-                      }}>
-                      {alim.agCapriqueG}
-                    </td>
-                    <td
-                      className='agLauriqueG'
-                      style={{
-                        display: ` ${
-                          inputChecked.includes('agLauriqueG') ? '' : 'none'
-                        }`,
-                      }}>
-                      {alim.agLauriqueG}
-                    </td>
-                    <td
-                      className='agMyristiqueG'
-                      style={{
-                        display: ` ${
-                          inputChecked.includes('agMyristiqueG') ? '' : 'none'
-                        }`,
-                      }}>
-                      {alim.agMyristiqueG}
-                    </td>
-                    <td
-                      className='agPalmitiqueG'
-                      style={{
-                        display: ` ${
-                          inputChecked.includes('agPalmitiqueG') ? '' : 'none'
-                        }`,
-                      }}>
-                      {alim.agPalmitiqueG}
-                    </td>
-                    <td
-                      className='agSteariqueG'
-                      style={{
-                        display: ` ${
-                          inputChecked.includes('agSteariqueG') ? '' : 'none'
-                        }`,
-                      }}>
-                      {alim.agSteariqueG}
-                    </td>
+                    <td className='agButyriqueG'>{alim.agButyriqueG}</td>
+                    <td className='agCaproiqueG'>{alim.agCaproiqueG}</td>
+                    <td className='agCapryliqueG'>{alim.agCapryliqueG}</td>
+                    <td className='agCapriqueG'>{alim.agCapriqueG}</td>
+                    <td className='agLauriqueG'>{alim.agLauriqueG}</td>
+                    <td className='agMyristiqueG'>{alim.agMyristiqueG}</td>
+                    <td className='agPalmitiqueG'>{alim.agPalmitiqueG}</td>
+                    <td className='agSteariqueG'>{alim.agSteariqueG}</td>
                   </tr>
                 );
               })}

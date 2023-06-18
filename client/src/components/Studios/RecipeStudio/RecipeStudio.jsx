@@ -8,7 +8,7 @@ import recetteStudioImg from '../../../assets/img/recipeStudiokWhiteFinal.png';
 import EggRightSvg from './EggRightSvg.jsx';
 import EggLeftSvg from './EggLeftSvg.jsx';
 import EggCenterSvg from './EggCenterSvg';
-import Nav from '../../globalComponents/navigation/Nav';
+import Nav from '../../GlobalComponents/navigation/Nav';
 import { alertPopup } from '../../../assets/fonctions/alertPopup.js';
 
 import {
@@ -938,30 +938,102 @@ const RecipeStudio = ({
     console.log(document.querySelector('input[type=radio]:checked'));
   };
 
+  //  DYNAMIC STYLE VARIABLES   //  ON BELOW  //  DYNAMIC STYLE VARIABLES
+  //  DYNAMIC STYLE VARIABLES   //  ON BELOW  //  DYNAMIC STYLE VARIABLES
+  const menuIsItOpenedStyle = {
+    opacity: visibility ? '1' : '0',
+  };
+
+  const dietProportionsOptionsStyle = {
+    display: ` ${proportionAlimentOpen && count === 0 ? 'block' : 'none'}`,
+    opacity: visibility ? '1' : '0',
+  };
+  const searchAlimentOnRecipeStudioStyle = {
+    display: `${recipeDetailsOpen || proportionAlimentOpen ? 'none' : ''}`,
+    opacity: visibility ? '1' : '0',
+  };
+  const tbodyStyle = { display: `${searchType ? '' : 'none'}` };
+  const tbodyStyle2 = { display: `${!searchType ? '' : 'none'}` };
+  const linkStyle = {
+    textDecoration: 'none',
+    color: 'rgba(8, 6, 30,0.6)',
+    fontFamily: 'Geomanist-ExtraLight',
+    whiteSpace: 'nowrap',
+  };
+  const proportionAlimentStyle = {
+    display: `${
+      searchAlimentOnRecipeStudioOpen || recipeDetailsOpen ? 'none' : ''
+    }`,
+    opacity: visibility ? '1' : '0',
+  };
+  const centerEggContainerStyle = {
+    display: `${proportionAlimentOpen && visibility ? 'none' : ''}`,
+  };
+  const footerStyle = {
+    display: `${proportionAlimentOpen ? '' : 'none'}`,
+    opacity: visibility ? '1' : '0',
+  };
+  const glucidesTotalStyle = {
+    borderColor: `${
+      recipeDiet[recipeDiet.length - 1][
+        Object.keys(recipeDiet[recipeDiet.length - 1])
+      ].glucides
+        ? 'lightGreen'
+        : ''
+    }`,
+  };
+  const proteinesTotalStyle = {
+    borderColor: `${
+      recipeDiet[recipeDiet.length - 1][
+        Object.keys(recipeDiet[recipeDiet.length - 1])
+      ].protein
+        ? 'lightGreen'
+        : ''
+    }`,
+  };
+  const lipidesTotalStyle = {
+    borderColor: `${
+      recipeDiet[recipeDiet.length - 1][
+        Object.keys(recipeDiet[recipeDiet.length - 1])
+      ].lipides
+        ? 'lightGreen'
+        : ''
+    }`,
+  };
+  const toggleproportionAlimentRecipeStudioStyle = {
+    display: `${proportionAlimentOpen ? '' : 'none'}`,
+  };
+
+  const recipeDetailsStyle = {
+    display: `${
+      searchAlimentOnRecipeStudioOpen || proportionAlimentOpen ? 'none' : ''
+    }`,
+    opacity: visibility ? '1' : '0',
+  };
+  const stepsStyle = { background: 'white', cursor: 'pointer' };
+  const asideStyle = {
+    display: `${recipeDetailsOpen ? '' : 'none'}`,
+    opacity: visibility ? '1' : '0',
+  };
+  //  DYNAMIC STYLE VARIABLES   //  ABOVE  //  DYNAMIC STYLE VARIABLES
+  //  DYNAMIC STYLE VARIABLES   //  ABOVE  //  DYNAMIC STYLE VARIABLES
+
   /* ______________________             HERE IS THE CONTENT PART                     __________________________ */
   /* ______________________             HERE IS THE CONTENT PART                     __________________________ */
   /* ______________________             HERE IS THE CONTENT PART                     __________________________ */
 
   return (
-    <div
-      style={{ background: visibility ? '' : 'none' }}
-      className='recipeStudio'>
+    <div style={menuIsItOpenedStyle} className='recipeStudio'>
+      {/*  _________     HERE IS  THE BACKGROUND IMAGE WHICH SHOULD HAVE DIFFERENT ANIMATIONS AND SIZE DEPENDING OF DEVICES AND RATIOS, STILL NOT DONE FOR WIDE SCREENS   ___________ */}
       <img
         id='recetteStudioImg'
-        style={{ opacity: visibility ? '1' : '0' }}
+        style={menuIsItOpenedStyle}
         src={recetteStudioImg}
         alt='recetteStudioImage'></img>
       <Nav hideFor3dOpening={hideFor3dOpening} visibility={visibility} />
       {/* ______________________    HERE IS THE MODAL WITH OPTIONS OF DIET'S PROPORTIONS   __________________________ */}
 
-      <div
-        id='dietProportionsOptions'
-        style={{
-          display: ` ${
-            proportionAlimentOpen && count === 0 ? 'block' : 'none'
-          }`,
-          opacity: visibility ? '1' : '0',
-        }}>
+      <div id='dietProportionsOptions' style={dietProportionsOptionsStyle}>
         <button className='exit' onClick={(e) => setCount(1)}>
           X
         </button>
@@ -1037,9 +1109,7 @@ const RecipeStudio = ({
 
       {/*  _________     HERE IS THE  MODAL TO SHOW THE ALIMENT JUST ADDED OR ALREADY ADDED TO THE PROPORTION ALIMENT'S SECTION ___________ */}
 
-      <aside
-        className='modalSucces'
-        style={{ opacity: visibility ? '1' : '0' }}>
+      <aside className='modalSucces' style={menuIsItOpenedStyle}>
         <span>{AlimentToStudy.length > 0 ? messageModal : ''}</span>
       </aside>
 
@@ -1056,12 +1126,7 @@ const RecipeStudio = ({
             ? null
             : togglesearchAlimentOnRecipeStudio
         }
-        style={{
-          display: `${
-            recipeDetailsOpen || proportionAlimentOpen ? 'none' : ''
-          }`,
-          opacity: visibility ? '1' : '0',
-        }}>
+        style={searchAlimentOnRecipeStudioStyle}>
         <h3>ETAPE N° 1</h3>
         <h2>Ajouter Des Aliments</h2>
         <div
@@ -1092,7 +1157,7 @@ const RecipeStudio = ({
                 </th>
               </tr>
             </thead>
-            <tbody style={{ display: `${searchType ? '' : 'none'}` }}>
+            <tbody style={tbodyStyle}>
               {aliments &&
                 aliments.map((alim) => {
                   return (
@@ -1119,18 +1184,11 @@ const RecipeStudio = ({
                 </th>
               </tr>
             </thead>
-            <tbody style={{ display: `${!searchType ? '' : 'none'}` }}>
+            <tbody style={tbodyStyle2}>
               {listToRecipeStudio.listToRecipeStudio.length === 0 ? (
                 <tr>
                   <td>
-                    <Link
-                      style={{
-                        textDecoration: 'none',
-                        color: 'rgba(8, 6, 30,0.6)',
-                        fontFamily: 'Geomanist-ExtraLight',
-                        whiteSpace: 'nowrap',
-                      }}
-                      to='/aliments-studio'>
+                    <Link style={linkStyle} to='/aliments-studio'>
                       Votre Liste est Vide, Aller Au Studio Des Aliments
                     </Link>
                   </td>
@@ -1146,14 +1204,7 @@ const RecipeStudio = ({
                       </tr>
                       <tr>
                         <td>
-                          <Link
-                            style={{
-                              textDecoration: 'none',
-                              color: 'rgba(8, 6, 30,0.6)',
-                              fontFamily: 'Geomanist-ExtraLight',
-                              whiteSpace: 'nowrap',
-                            }}
-                            to='/aliments-studio'>
+                          <Link style={linkStyle} to='/aliments-studio'>
                             Recherche Avancée ? Aller Au Studio Des Aliments
                           </Link>
                         </td>
@@ -1184,19 +1235,10 @@ const RecipeStudio = ({
         onClick={
           proportionAlimentOpen ? null : toggleproportionAlimentRecipeStudio
         }
-        style={{
-          display: `${
-            searchAlimentOnRecipeStudioOpen || recipeDetailsOpen ? 'none' : ''
-          }`,
-          opacity: visibility ? '1' : '0',
-        }}>
+        style={proportionAlimentStyle}>
         <h3>ETAPE N° 2</h3>
         <h2>Proportions Des Aliments</h2>
-        <div
-          className='centerEggContainer'
-          style={{
-            display: `${proportionAlimentOpen && visibility ? 'none' : ''}`,
-          }}>
+        <div className='centerEggContainer' style={centerEggContainerStyle}>
           <EggCenterSvg displayEggsSvg={displayEggsSvg} />
         </div>
 
@@ -1267,22 +1309,8 @@ const RecipeStudio = ({
           })}
         </div>
       </section>
-      <footer
-        style={{
-          display: `${proportionAlimentOpen ? '' : 'none'}`,
-          opacity: visibility ? '1' : '0',
-        }}>
-        <div
-          className='glucidesTotal'
-          style={{
-            borderColor: `${
-              recipeDiet[recipeDiet.length - 1][
-                Object.keys(recipeDiet[recipeDiet.length - 1])
-              ].glucides
-                ? 'lightGreen'
-                : ''
-            }`,
-          }}>
+      <footer style={footerStyle}>
+        <div className='glucidesTotal' style={glucidesTotalStyle}>
           {' '}
           <h5>Total Glucides</h5>
           <h4> {totalCarbs.toFixed(2)} G</h4>
@@ -1293,17 +1321,7 @@ const RecipeStudio = ({
             % <span>(Kcal)</span>
           </h3>
         </div>
-        <div
-          className='proteinesTotal'
-          style={{
-            borderColor: `${
-              recipeDiet[recipeDiet.length - 1][
-                Object.keys(recipeDiet[recipeDiet.length - 1])
-              ].protein
-                ? 'lightGreen'
-                : ''
-            }`,
-          }}>
+        <div className='proteinesTotal' style={proteinesTotalStyle}>
           <h5> Total Protéines</h5>
           <h4> {totalProtein.toFixed(2)} G</h4>
 
@@ -1314,17 +1332,7 @@ const RecipeStudio = ({
             % <span>(Kcal)</span>
           </h3>
         </div>
-        <div
-          className='lipidesTotal'
-          style={{
-            borderColor: `${
-              recipeDiet[recipeDiet.length - 1][
-                Object.keys(recipeDiet[recipeDiet.length - 1])
-              ].lipides
-                ? 'lightGreen'
-                : ''
-            }`,
-          }}>
+        <div className='lipidesTotal' style={lipidesTotalStyle}>
           <h5>Total Lipides</h5> <h4>{totalFat.toFixed(2)} G</h4>
           <h3>
             {totalFat === 0
@@ -1345,7 +1353,7 @@ const RecipeStudio = ({
         <button
           onClick={toggleproportionAlimentRecipeStudio}
           className='sendpProportionAlimentRecipeStudio'
-          style={{ display: `${proportionAlimentOpen ? '' : 'none'}` }}>
+          style={toggleproportionAlimentRecipeStudioStyle}>
           {recipeDiet[recipeDiet.length - 1][
             Object.keys(recipeDiet[recipeDiet.length - 1])
           ].lipides &&
@@ -1367,19 +1375,10 @@ const RecipeStudio = ({
           recipeDetailsOpen ? 'recipeDetailsOpen' : 'recipeDetailsClose'
         }
         onClick={recipeDetailsOpen ? null : toggleRecipeDetailsRecipeStudio}
-        style={{
-          display: `${
-            searchAlimentOnRecipeStudioOpen || proportionAlimentOpen
-              ? 'none'
-              : ''
-          }`,
-          opacity: visibility ? '1' : '0',
-        }}>
+        style={recipeDetailsStyle}>
         <h3>ETAPE N° 3</h3>
         <h2>Détails Et Instructions</h2>
-        <div
-          className='rightEggContainer'
-          style={{ display: visibility ? 'block' : 'none' }}>
+        <div className='rightEggContainer' style={menuIsItOpenedStyle}>
           <EggRightSvg displayEggsSvg={displayEggsSvg} />
         </div>
         {recipeDetailsOpen ? (
@@ -1567,14 +1566,14 @@ const RecipeStudio = ({
                 <button
                   className='addStep'
                   onClick={addInstructionStep}
-                  style={{ background: 'white', cursor: 'pointer' }}>
+                  style={stepsStyle}>
                   Ajouter Une Etape
                 </button>
                 {instructions.length > 1 ? (
                   <button
                     className='deleteStep'
                     onClick={deleteInstructionStep}
-                    style={{ background: 'white', cursor: 'pointer' }}>
+                    style={stepsStyle}>
                     Supprimer Cette Etape
                   </button>
                 ) : (
@@ -1850,20 +1849,14 @@ const RecipeStudio = ({
           ''
         )}
       </section>
-      <aside
-        style={{
-          display: `${recipeDetailsOpen ? '' : 'none'}`,
-          opacity: visibility ? '1' : '0',
-        }}>
+      <aside style={asideStyle}>
         <button
-          style={{ opacity: visibility ? '1' : '0' }}
+          style={menuIsItOpenedStyle}
           onClick={toggleRecipeDetailsRecipeStudio}
           className='sendpRecipeDetailsRecipeStudio'>
           Revenir Aux Étapes Précédentes
         </button>
       </aside>
-
-      {/*  _________     HERE IS  THE BACKGROUND IMAGE WHICH SHOULD HAVE DIFFERENT ANIMATIONS AND SIZE DEPENDING OF DEVICES AND RATIOS   ___________ */}
 
       {goToRecipe ? <Navigate to='/recettes-book'></Navigate> : ''}
     </div>
