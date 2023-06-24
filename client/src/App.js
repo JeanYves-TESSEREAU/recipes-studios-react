@@ -8,7 +8,7 @@ import RecipeStudio from './components/Studios/RecipeStudio/RecipeStudio.jsx';
 import RecipeBook from './components/Studios/RecipeBook/RecipeBook.jsx';
 import Home from './components/Home/Home.jsx';
 import Connexion from './components/Connexion/Connexion.jsx';
-import Recipe from './components/MultiFonctionComponents/Recipes/Recipe/Recipe';
+import Recipe from './components/MultiFonctionComponents/Recipes/Recipe/Recipe.jsx';
 
 function App() {
   window.onbeforeunload = function () {
