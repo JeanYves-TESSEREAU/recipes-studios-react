@@ -10,7 +10,6 @@ import authRoutes from './routes/authRoutes.js';
 
 const app = express();
 connectDB();
-
 app.use(express.json({ limit: '50mb', extended: false }));
 app.use('/aliments', alimentRoutes);
 app.use('/recipes', recipeRoutes);
