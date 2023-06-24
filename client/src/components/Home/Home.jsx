@@ -824,7 +824,7 @@ export default function Home() {
                 }%, 0%)`;
               } else {
                 // clearTimeout(timer);
-                // timer =
+
                 setTimeout(() => {
                   h4Center.style.transform = `translate(${
                     -50 -

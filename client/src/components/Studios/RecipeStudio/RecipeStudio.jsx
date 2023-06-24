@@ -1015,6 +1015,7 @@ const RecipeStudio = ({
     display: `${recipeDetailsOpen ? '' : 'none'}`,
     opacity: visibility ? '1' : '0',
   };
+  const recipeStudioStyle = { background: visibility ? '': 'none' }
   //  DYNAMIC STYLE VARIABLES   //  ABOVE  //  DYNAMIC STYLE VARIABLES
   //  DYNAMIC STYLE VARIABLES   //  ABOVE  //  DYNAMIC STYLE VARIABLES
 
@@ -1023,7 +1024,7 @@ const RecipeStudio = ({
   /* ______________________             HERE IS THE CONTENT PART                     __________________________ */
 
   return (
-    <div style={menuIsItOpenedStyle} className='recipeStudio'>
+    <div style={recipeStudioStyle} className='recipeStudio'>
       {/*  _________     HERE IS  THE BACKGROUND IMAGE WHICH SHOULD HAVE DIFFERENT ANIMATIONS AND SIZE DEPENDING OF DEVICES AND RATIOS, STILL NOT DONE FOR WIDE SCREENS   ___________ */}
       <img
         id='recetteStudioImg'
