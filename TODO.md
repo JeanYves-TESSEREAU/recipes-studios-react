@@ -13,6 +13,8 @@
 
 - [ ] Finir d'ajouter les filtres des données nutritionelles d'affichage dans le component AlimentBoard ...
 
-TEMPS RESTANT ESTIMÉ : 25 à 30 H
+- [ ] Finir d'ajouter les options de recherche par nutriments et par catégories  dans le component RecipeBook.
+
+TEMPS RESTANT ESTIMÉ : 30 à 40 H
 
 MERCI CHERS LECTEURS
