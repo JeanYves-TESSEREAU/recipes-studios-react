@@ -1,3 +1,4 @@
+
 .Home {
   width: 100%;
   height: 100%;
@@ -359,6 +360,7 @@
 .Home main section:first-of-type h2 {
   display: none;
   padding: 2%;
+  will-change: transform;
   transition: 0.3s ease-out;
   height: 25vh;
   color: transparent;
@@ -386,6 +388,7 @@
 }
 .Home main section:first-of-type h2 span {
   position: absolute;
+  /* will-change: transform; */
   line-height: 100%;
   transition: 0.2s ease-out;
   text-transform: uppercase;
@@ -502,9 +505,9 @@
 }
 .Home .centerContentSection2 {
   position: absolute;
-  transition: 0.3s ease-out;
+    /* pointer-events:none; */
   overflow-y: hidden;
-  overflow-x: scroll;
+  overflow-x: hidden;
   margin: 0;
   padding: 0;
   width: 100%;
@@ -523,11 +526,11 @@
   transform-origin: left top;
   white-space: nowrap;
   margin: 0;
-  /* padding: 0; */
+  will-change: scale;
   text-transform: uppercase;
   font-family: geomanistUltra;
   text-align: center;
-  color: white;
+  color: rgb(255, 255, 255);
   font-size: 13.3vw;
   transition: 0.3s ease-out;
 }
@@ -540,15 +543,17 @@
   left: 125%;
   width: 800%;
   height: 100%;
-  transition: 0.4s ease-out;
+  will-change: transform;
+  transition: 0.1s ease-out;
 }
 
 .Home figure {
   position: relative;
+  will-change: scale;
   transform-origin: center;
   display: flex;
   align-items: center;
-  transition: 0.4s ease-out;
+  transition: 0.3s ease-out;
   width: 100%;
   height: 100%;
 }
@@ -558,19 +563,8 @@
   border-radius: 1vw;
   border: 0.4vw rgba(193, 212, 222, 0.081) solid;
 }
-.Home figure:nth-child(odd)::after {
-  position: absolute;
-  color: var(--blue-pastel);
-  font-family: Geomanist-Light;
-  white-space: nowrap;
-  top: 50%;
-  transform: translateY(-50%);
-  content: attr(data-img);
-  font-size: 4.5vw;
-  writing-mode: vertical-lr;
-  left: 81%;
-}
-.Home figure:nth-child(even)::after {
+
+.Home figure::after {
   position: absolute;
   color: var(--red-pastel);
   font-family: Geomanist-Light;
@@ -582,10 +576,15 @@
   writing-mode: vertical-lr;
   left: 81%;
 }
+.Home figure:nth-child(odd)::after {
+  color: var(--blue-pastel);
+}
 .Home figure figcaption {
   position: absolute;
-  opacity: 0.5;
-  transition: 0.3s ease-out;
+  will-change: transform;
+  transform: translateY(200%);
+    opacity: 0.8 ;
+  transition: 0.1s ease-out;
   bottom: 150%;
   left: 85%;
   z-index: -1;
@@ -597,16 +596,20 @@
   justify-content: center;
   align-items: center;
   font-family: geomanistUltra;
-  color: var(--grey-carbon);
-  text-shadow: var(--blue-pastel) 1px 0px 0px, white 0.540302px 0.841471px 0px,
+  color: var(--blue-pastel);
+  /* text-shadow: var(--blue-pastel) 1px 0px 0px, white 0.540302px 0.841471px 0px,
     white -0.416147px 0.909297px 0px, white -0.989992px 0.14112px 0px,
     white -0.653644px -0.756802px 0px, white 0.283662px -0.958924px 0px,
-    white 0.96017px -0.279415px 0px;
+    white 0.96017px -0.279415px 0px; */
   font-size: 20vw;
   white-space: nowrap;
   font-family: geomanistBold;
   transition: 0.5s ease-out;
-  animation: defilement-lr 6s infinite linear;
+}
+.Home figure:nth-child(odd) figcaption {
+
+  color: var(--red-pastel);
+
 }
 
 /* FOOTER COSMETIC */ /* FOOTER COSMETIC */ /* FOOTER COSMETIC */ /* FOOTER COSMETIC */

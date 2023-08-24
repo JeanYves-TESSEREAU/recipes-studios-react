@@ -16,12 +16,12 @@ function App() {
   };
 
   // This will help to force all fixed pages (without scroll needs) to be up from all tollbars
-  const documentHeight = () => {
-    const doc = document.documentElement;
-    doc.style.setProperty('--doc-height', `${window.innerHeight}px`);
-  };
-  window.addEventListener('resize', documentHeight);
-  documentHeight();
+  // const documentHeight = () => {
+  //   const doc = document.documentElement;
+  //   doc.style.setProperty('--doc-height', `${window.innerHeight}px`);
+  // };
+  // window.addEventListener('resize', documentHeight);
+  // documentHeight();
 
   return (
     <div className='App'>

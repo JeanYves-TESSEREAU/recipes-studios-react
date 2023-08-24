@@ -14,8 +14,10 @@ import imgRecettesBook3 from '../../assets/img/recettesBook3.png';
 import { FaMapMarkerAlt } from 'react-icons/fa';
 import { MdAttachEmail } from 'react-icons/md';
 import { BsFillTelephoneOutboundFill } from 'react-icons/bs';
-// import { useDebouncedCallback } from 'use-debounce';
-// import useDebounce from '../../assets/fonctions/useDebounce';
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
+
 
 export default function Home() {
   let section2Top = useRef(0);
@@ -23,6 +25,7 @@ export default function Home() {
   let homeWidth = useRef(window.innerWidth);
   let isScrolling;
   let actualScrollPourcent = useRef(0);
+  let section2Open = useRef(0);
   let isScrollingBis;
   const [visibility, setVisibility] = useState(true);
   let windowHeight = window.innerHeight;
@@ -30,6 +33,9 @@ export default function Home() {
   let countForWelcomeSpanAfter = 0;
   let userAgent = navigator.userAgent;
   let browserName;
+
+
+  
 
   //  DYNAMIC STYLE VARIABLES   //  ON BELOW  //  DYNAMIC STYLE VARIABLES
   //  DYNAMIC STYLE VARIABLES   //  ON BELOW  //  DYNAMIC STYLE VARIABLES
@@ -172,12 +178,16 @@ export default function Home() {
   // RESIZE LISTENER //   // RESIZE LISTENER //   // RESIZE LISTENER //
   // RESIZE LISTENER //   // RESIZE LISTENER //   // RESIZE LISTENER //
   useEffect(() => {
-    if (window.location.pathname === '/' && visibility) {
+   
+    // if (window.location.pathname === '/' && visibility) {
       const resizeListener = () => {
-        if (window.location.pathname === '/' && visibility) {
+        // setRefreshKey((prevKey) => prevKey + 1);
+        // if (window.location.pathname === '/' && visibility) {
+          
           let home = document.querySelector('.Home');
           coeffSizing.current = window.innerWidth / homeWidth.current;
-
+          let imageSlider = document.querySelector('.imageSlider');
+          let distanceToTranslate =  imageSlider.getBoundingClientRect().width *1.15;
           let aside = document.querySelectorAll('aside');
           let asidePosition = aside[0].getBoundingClientRect();
           section2Top.current =
@@ -207,11 +217,26 @@ export default function Home() {
                 window.scrollY * headerParallax[index] * 0.75
               }px - ${h1Span[index].offsetHeight}px))`;
             }
-          }
+          // }
+         ScrollTrigger.killAll()
+ScrollTrigger.create({
+    trigger: imageSlider,
+    start:   0.5 * home.offsetHeight,
+    end:  (1.2* home.offsetHeight),
+    // markers:true,
+    scrub: 0.7, // Smooth scroll effect
+    onUpdate: (self) =>  {imageSlider.style.transform = `translateX(${- self.progress * distanceToTranslate}px)`;
+    // gsap.set(".h1", { y: window.scrollY }) // Mise à jour de la propriété y avec la valeur de translation // Mettre à jour la propriété transform de l'élément cible
+  }});
         }
       };
       window.addEventListener('resize', resizeListener);
-    }
+
+      return () => {
+        window.removeEventListener('resize', resizeListener);
+      };
+    // }
+   
   }, [windowHeight, windowWidth, headerParallax]);
 
   // ENTRANCE ANIM STATE LISTENER //   // ENTRANCE ANIM STATE LISTENER //   // ENTRANCE ANIM STATE LISTENER //
@@ -227,357 +252,35 @@ export default function Home() {
   // SCROLL LISTENER //   // SCROLL LISTENER //   // SCROLL LISTENER //
   // SCROLL LISTENER //   // SCROLL LISTENER //   // SCROLL LISTENER //
 
-  // const scrollActionsDebounced = useDebounce(
-  //   () => {
-  // // THE NEXT LINE IS ABOUT SOLVE A HARD BUGG LISTENER IN ALL DOM !
-  //   if (
-  //     window.location.pathname === '/' &&
-  //     `${!visibility ? visibility : !visibility}`
-
-  //     //     // THE ABOVE LINE IS ABOUT SOLVE A HARD BUGG LISTENER IN ALL DOM !
-  //   ) {
-  //     console.log(window.scrollY, window.pageYOffset);
-  //     let h1Span = document.querySelectorAll('[data-data]');
-  //     let sections = document.querySelectorAll('section');
-  //     let imageSlider = document.querySelector('.imageSlider');
-  //     let section2 = sections[1];
-  //     let aside = document.querySelectorAll('aside');
-  //     let asidePosition = aside[0].getBoundingClientRect();
-  //     let welcomeSpan = document.querySelectorAll('.welcomeSpan');
-  //     let welcomeH2 = document.querySelector('.welcomeH2');
-  //     let welcomeH2Position = welcomeH2.getBoundingClientRect();
-  //     let welcomeH3 = document.querySelectorAll('.welcomeH3');
-  //     let home = document.querySelector('.Home');
-  //     actualScrollPourcent.current = (window.scrollY / home.offsetHeight) * 100;
-
-  //     // SCROLL ACTIONS FOR HEADER AND NAV //
-
-  //     {
-
-  //       let h2 = document.querySelector('h2');
-
-  //       h2.style.opacity = `${1 - 0.02 * window.scrollY}`;
-  //       for (let index = 0; index < h1Span.length; index++) {
-  //         if (index > 6) {
-  //           h1Span[index].style.transition = `ease-out ${
-  //             headerParallax[index] * 0.2
-  //           }s`;
-  //           h1Span[index].style.transform = `translateY(-${
-  //             window.scrollY * headerParallax[index] * 0.4
-  //           }px) `;
-  //         } else {
-  //           h1Span[index].style.transition = `ease-out ${
-  //             headerParallax[index] * 0.2
-  //           }s`;
-  //           h1Span[index].style.transform = ` translateY(calc(-${
-  //             window.scrollY * headerParallax[index] * 0.75
-  //           }px - ${h1Span[index].offsetHeight}px))`;
-  //         }
-  //       }
-  //     }
-  //     // SCROLL ACTIONS FOR FIRST SECTION //
-  //     // SCROLL ACTIONS FOR FIRST SECTION //
-  //     // SCROLL ACTIONS FOR FIRST SECTION //
-  //     // SCROLL ACTIONS FOR FIRST SECTION //
-
-  //     if (
-  //       window.scrollY > home.offsetHeight * 0.08 &&
-  //       countForWelcomeSpanAfter < 1
-  //     ) {
-  //       const h1After = `
-  //   .Home main section:first-of-type h2 span::after {
-  //     display: initial;
-  //   }
-  // `;
-  //       injectStyle(h1After);
-  //       countForWelcomeSpanAfter++;
-  //     }
-  //     if (
-  //       window.scrollY > home.offsetHeight * 0.05 &&
-  //       window.scrollY < home.offsetHeight * 0.07
-  //     ) {
-  //       welcomeH2.style.display = 'block';
-  //       welcomeH2.style.left = '35%';
-  //     } else if (
-  //       window.scrollY > home.offsetHeight * 0.07 &&
-  //       welcomeH2Position.top + welcomeH2Position.height + 10 <
-  //         asidePosition.top
-  //     ) {
-  //       welcomeH2.style.left = '35%';
-  //       if (browserName !== 'firefox') {
-  //         setTimeout(() => {
-  //           welcomeH2.style.transform = ` translateY(${
-  //             window.scrollY - home.offsetHeight * 0.07
-  //           }px)`;
-  //         }, 10);
-  //       } else
-  //         welcomeH2.style.transform = ` translateY(${
-  //           window.scrollY - home.offsetHeight * 0.07
-  //         }px)`;
-
-  //       for (let index = 0; index < welcomeSpan.length; index++) {
-  //         welcomeSpan[index].style.scale = '1';
-  //       }
-  //     } else if (
-  //       asidePosition.top + asidePosition.height >
-  //         welcomeH2Position.height *
-  //           (window.matchMedia('(max-aspect-ratio: 8/10)').matches ? 1 : 0.5) &&
-  //       window.scrollY > home.offsetHeight * 0.05
-  //     ) {
-  //       window.clearTimeout(isScrollingBis);
-  //       for (let i = 0; i < welcomeH3.length; i++) {
-  //         welcomeH3[i].style.paddingTop = `15%`;
-  //       }
-  //       welcomeH2.style.paddingBottom = '8%';
-  //       isScrollingBis = setTimeout(() => {
-  //         for (let i = 0; i < welcomeH3.length; i++) {
-  //           welcomeH3[i].style.paddingTop = `12%`;
-  //         }
-  //         welcomeH2.style.paddingBottom = '2%';
-  //       }, 100);
-  //       if (window.matchMedia('(max-aspect-ratio: 8/10)').matches) {
-  //         for (let index = 0; index < welcomeSpan.length; index++) {
-  //           welcomeSpan[index].style.scale = `${
-  //             welcomeSpan[index].style.scale === 0 ? '' : 0
-  //           }`;
-  //         }
-  //       } else {
-  //         for (let index = 0; index < welcomeSpan.length; index++) {
-  //           welcomeSpan[index].style.scale = `${
-  //             welcomeSpan[index].style.scale === 1 ? '' : 1
-  //           }`;
-  //         }
-  //       }
-  //       welcomeH2.style.left = '5%';
-  //       if (browserName !== 'firefox') {
-  //         setTimeout(() => {
-  //           welcomeH2.style.transform = ` translateY(${
-  //             window.scrollY - home.offsetHeight * 0.06
-  //           }px)`;
-  //         }, 10);
-  //       } else
-  //         welcomeH2.style.transform = ` translateY(${
-  //           window.scrollY - home.offsetHeight * 0.06
-  //         }px)`;
-  //     } else {
-  //       welcomeH2.style.left = '35%';
-
-  //       for (let index = 0; index < welcomeSpan.length; index++) {
-  //         welcomeSpan[index].style.scale = '1';
-  //       }
-  //     }
-
-  //     for (let index = 0; index < welcomeSpan.length; index++) {
-  //       welcomeSpan[index].style.opacity = '1';
-  //       welcomeSpan[index].style.top = `
-  //        calc(${2 * welcomeSpan[index].offsetHeight}px + ${
-  //         welcomeSpan[index].offsetHeight * index
-  //       }px)`;
-  //       welcomeSpan[index].style.transform = ` translateY(${
-  //         -window.scrollY * 0.1
-  //       }%)`;
-  //     }
-
-  //     // SCROLL ACTIONS FOR SECOND SECTION //
-  //     // SCROLL ACTIONS FOR SECOND SECTION //
-  //     // SCROLL ACTIONS FOR SECOND SECTION //
-  //     // SCROLL ACTIONS FOR SECOND SECTION //
-  //     {
-  //       let centerContentSection2 = document.querySelector(
-  //         '.centerContentSection2'
-  //       );
-  //       let h4Center = centerContentSection2.querySelector('h4');
-  //       let figcaptions = document.querySelectorAll('figcaption');
-  //       let figures = document.querySelectorAll('figure');
-  //       let h3 = section2.querySelectorAll('h3');
-  //       let section2Open = section2Top.current + welcomeH2Position.height * 2.5;
-  //       if (window.scrollY > section2Open) {
-  //         section2.style.position = 'fixed'
-  //           ? ''
-  //           : (section2.style.position = 'fixed') &&
-  //             (section2.style.top = '0') &&
-  //             (section2.style.left = '0') &&
-  //             (h3[0].style.transform = 'translateX(0)') &&
-  //             (h3[1].style.transform = 'translateX(0)');
-  //         section2.style.position = 'fixed';
-  //         section2.style.top = '0';
-  //         section2.style.left = '0';
-  //         h3[0].style.transform = 'translateX(0)';
-  //         h3[1].style.transform = 'translateX(0)';
-  //         if (window.scrollY > section2Open + 0.02 * home.offsetHeight) {
-  //           h3[0].style.top = `-40%`;
-  //           h3[1].style.bottom = `-40%`;
-  //           if (
-  //             window.scrollY > section2Open + 0.02 * home.offsetHeight &&
-  //             window.scrollY < section2Open + 0.025 * home.offsetHeight
-  //           ) {
-  //             h4Center.style.opacity = 0;
-  //             h4Center.style.scale = 0;
-  //           } else if (
-  //             window.scrollY > section2Open + 0.025 * home.offsetHeight &&
-  //             window.scrollY < section2Open + 0.15 * home.offsetHeight
-  //           ) {
-  //             let distanceToScale =
-  //               section2Open +
-  //               0.15 * home.offsetHeight -
-  //               (section2Open + 0.025 * home.offsetHeight);
-  //             setTimeout(() => {
-  //               h4Center.style.scale = `${
-  //                 (window.scrollY +
-  //                   distanceToScale -
-  //                   (section2Open + 0.15 * home.offsetHeight)) /
-  //                 distanceToScale
-  //               }`;
-
-  //               h4Center.style.opacity = `${
-  //                 (window.scrollY +
-  //                   distanceToScale -
-  //                   (section2Open + 0.15 * home.offsetHeight)) /
-  //                 distanceToScale
-  //               }`;
-  //             }, 10);
-  //             centerContentSection2.scrollLeft = 0;
-  //           } else if (
-  //             window.scrollY > section2Open + 0.15 * home.offsetHeight &&
-  //             window.scrollY < section2Open + 0.3 * home.offsetHeight
-  //           ) {
-  //             let distanceToTranslate =
-  //               section2Open +
-  //               0.3 * home.offsetHeight -
-  //               (section2Open + 0.15 * home.offsetHeight);
-  //             coeffSizing.current = window.innerWidth / homeWidth.current;
-
-  //             // 125 = 125 % of inner width because the image slider component start from a 125% left position
-  //             let distanceInPourcent = 125 / distanceToTranslate;
-  //             if (browserName === 'firefox') {
-  //               h4Center.style.transform = `translate(${
-  //                 -50 -
-  //                 (window.scrollY - (section2Open + 0.15 * home.offsetHeight)) *
-  //                   distanceInPourcent
-  //               }%, -50%)`;
-
-  //               imageSlider.style.transform = `translate(${
-  //                 (-(
-  //                   window.scrollY -
-  //                   (section2Open + 0.15 * home.offsetHeight)
-  //                 ) *
-  //                   distanceInPourcent) /
-  //                 8
-  //               }%, 0%)`;
-  //             } else {
-  //               setTimeout(() => {
-  //                 h4Center.style.transform = `translate(${
-  //                   -50 -
-  //                   (window.scrollY -
-  //                     (section2Open + 0.15 * home.offsetHeight)) *
-  //                     distanceInPourcent
-  //                 }%, -50%)`;
-
-  //                 imageSlider.style.transform = `translate(${
-  //                   (-(
-  //                     window.scrollY -
-  //                     (section2Open + 0.15 * home.offsetHeight)
-  //                   ) *
-  //                     distanceInPourcent) /
-  //                   8
-  //                 }%, 0%)`;
-  //               }, 20);
-  //             }
-  //           } else if (
-  //             window.scrollY > section2Open + 0.3 * home.offsetHeight &&
-  //             window.scrollY < section2Open + 0.9 * home.offsetHeight
-  //           ) {
-  //             window.clearTimeout(isScrolling);
-  //             for (let i = 0; i < figures.length; i++) {
-  //               figures[i].style.scale = `0.75`;
-  //             }
-
-  //             isScrolling = setTimeout(() => {
-  //               for (let i = 0; i < figures.length; i++) {
-  //                 figures[i].style.scale = `1`;
-  //               }
-  //             }, 300);
-  //             let distanceToTranslate =
-  //               section2Open +
-  //               0.9 * home.offsetHeight -
-  //               (section2Open + 0.3 * home.offsetHeight);
-  //             // THIS CODE BELOW IS ABOUT IMAGE SLIDER  SCROLLING TO LEFT EFFECT ! BUT !  WITH  PROBLEMS BECAUSE OF WINDOW.SCROLLY NOT SCROLLING SMOOTHLY AND JUMPING
-
-  //             // centerContentSection2.scrollLeft = `${
-  //             //   -(windowWidth * coeffSizing.current) * 8 +
-  //             //   ((window.scrollY +
-  //             //     distanceToTranslate -
-  //             //     (section2Open + 0.3 * home.offsetHeight)) /
-  //             //     distanceToTranslate) *
-  //             //     (windowWidth * coeffSizing.current) *
-  //             //     8
-  //             // } `;
-
-  //             // THIS CODE BELOW IS ABOUT IMAGE SLIDER  SCROLLING TO LEFT EFFECT ! BUT !  WITH TRANSLATE IN ORDER TO SOLVE JUMPING PROBLEMS
-
-  //             setTimeout(() => {
-  //               imageSlider.style.transform = `translateX(calc(${
-  //                 -1.25 * window.innerWidth
-  //               }px - ${
-  //                 -window.innerWidth * 6.95 +
-  //                 ((window.scrollY +
-  //                   distanceToTranslate -
-  //                   (section2Open + 0.3 * home.offsetHeight)) /
-  //                   distanceToTranslate) *
-  //                   window.innerWidth *
-  //                   6.95
-  //               }px))`;
-  //               centerContentSection2.scrollTop = 0;
-  //               for (let i = 0; i < figcaptions.length; i++) {
-  //                 figcaptions[i].style.transform = `translateY(${
-  //                   (figures[i].getBoundingClientRect().right /
-  //                     figures[i].getBoundingClientRect().width) *
-  //                   100
-  //                 }%)`;
-  //               }
-  //             }, 10);
-  //             centerContentSection2.style.opacity = '1';
-  //           } else {
-  //             centerContentSection2.style.opacity = '0.05';
-  //             coeffSizing.current = window.innerWidth / homeWidth.current;
-  //             // centerContentSection2.scrollLeft = 8 * window.innerWidth;
-  //             imageSlider.style.transform = `translateX(-${
-  //               8.15 * window.innerWidth
-  //             }px)`;
-  //           }
-  //         } else {
-  //           h3[0].style.top = `0`;
-  //           h3[1].style.bottom = `0`;
-  //         }
-  //       } else {
-  //         section2.style.position = 'absolute';
-  //         section2.style.top = `${
-  //           welcomeH2Position.height * 2.5 + section2Top.current
-  //         }px`;
-  //         section2.style.left = '0';
-  //       }
-  //     }
-  //   }
-  //   },
-  //   // delay in ms
-  //   10
-  // );
 
   // let timer;
 
-  onscroll = function () {
-    // scrollActionsDebounced();
+  let figureWidth
+ 
+  
 
-    // THE NEXT LINE IS ABOUT SOLVE A HARD BUGG LISTENER IN ALL DOM !
-    if (
-      window.location.pathname === '/' &&
-      `${!visibility ? visibility : !visibility}`
-
-      //     // THE ABOVE LINE IS ABOUT SOLVE A HARD BUGG LISTENER IN ALL DOM !
-    ) {
-      console.log(window.scrollY, window.pageYOffset);
+  
+useEffect(() => {
+  let imageSlider = document.querySelector('.imageSlider');
+  let home = document.querySelector('.Home');
+  let distanceToTranslate =  imageSlider.getBoundingClientRect().width *1.15;
+ScrollTrigger.create({
+    trigger: imageSlider,
+    start:  section2Open.current + 0.5 * home.offsetHeight,
+    end: section2Open.current + (1.2* home.offsetHeight),
+    // markers:true,
+    scrub: 0.7, // Smooth scroll effect
+    onUpdate: (self) =>  {imageSlider.style.transform = `translateX(${- self.progress * distanceToTranslate}px)`;
+    // gsap.set(".h1", { y: window.scrollY }) // Mise à jour de la propriété y avec la valeur de translation // Mettre à jour la propriété transform de l'élément cible
+  }});
+ 
+  function updateTransitions() {
+    
+    // Mettez à jour les transitions ici
+ 
       let h1Span = document.querySelectorAll('[data-data]');
       let sections = document.querySelectorAll('section');
+      let home = document.querySelector('.Home');
       let imageSlider = document.querySelector('.imageSlider');
       let section2 = sections[1];
       let aside = document.querySelectorAll('aside');
@@ -586,7 +289,7 @@ export default function Home() {
       let welcomeH2 = document.querySelector('.welcomeH2');
       let welcomeH2Position = welcomeH2.getBoundingClientRect();
       let welcomeH3 = document.querySelectorAll('.welcomeH3');
-      let home = document.querySelector('.Home');
+    
       actualScrollPourcent.current = (window.scrollY / home.offsetHeight) * 100;
 
       // SCROLL ACTIONS FOR HEADER AND NAV //
@@ -601,14 +304,14 @@ export default function Home() {
               headerParallax[index] * 0.2
             }s`;
             h1Span[index].style.transform = `translateY(-${
-              window.scrollY * headerParallax[index] * 0.4
+              window.scrollY * headerParallax[index] * 0.8
             }px) `;
           } else {
             h1Span[index].style.transition = `ease-out ${
               headerParallax[index] * 0.2
             }s`;
             h1Span[index].style.transform = ` translateY(calc(-${
-              window.scrollY * headerParallax[index] * 0.75
+              window.scrollY * headerParallax[index] * 1.05
             }px - ${h1Span[index].offsetHeight}px))`;
           }
         }
@@ -622,12 +325,14 @@ export default function Home() {
         window.scrollY > home.offsetHeight * 0.08 &&
         countForWelcomeSpanAfter < 1
       ) {
+        let figures = document.querySelectorAll('figure');
         const h1After = `
     .Home main section:first-of-type h2 span::after {
       display: initial;
     }
   `;
         injectStyle(h1After);
+         figureWidth =  figures[0].getBoundingClientRect().width
         countForWelcomeSpanAfter++;
       }
       if (
@@ -690,6 +395,7 @@ export default function Home() {
         }
         welcomeH2.style.left = '5%';
         if (browserName !== 'firefox') {
+     
           // clearTimeout(timer);
           // timer =
           setTimeout(() => {
@@ -709,16 +415,16 @@ export default function Home() {
         }
       }
 
-      for (let index = 0; index < welcomeSpan.length; index++) {
-        welcomeSpan[index].style.opacity = '1';
-        welcomeSpan[index].style.top = `
-         calc(${2 * welcomeSpan[index].offsetHeight}px + ${
-          welcomeSpan[index].offsetHeight * index
-        }px)`;
-        welcomeSpan[index].style.transform = ` translateY(${
-          -window.scrollY * 0.1
-        }%)`;
-      }
+      // for (let index = 0; index < welcomeSpan.length; index++) {
+      //   welcomeSpan[index].style.opacity = '1';
+      //   welcomeSpan[index].style.top = `
+      //    calc(${2 * welcomeSpan[index].offsetHeight}px + ${
+      //     welcomeSpan[index].offsetHeight * index
+      //   }px)`;
+      //   welcomeSpan[index].style.transform = ` translateY(${
+      //     -window.scrollY * 0.1
+      //   }%)`;
+      // }
 
       // SCROLL ACTIONS FOR SECOND SECTION //
       // SCROLL ACTIONS FOR SECOND SECTION //
@@ -732,8 +438,8 @@ export default function Home() {
         let figcaptions = document.querySelectorAll('figcaption');
         let figures = document.querySelectorAll('figure');
         let h3 = section2.querySelectorAll('h3');
-        let section2Open = section2Top.current + welcomeH2Position.height * 2.5;
-        if (window.scrollY > section2Open) {
+         section2Open.current = section2Top.current + welcomeH2Position.height * 2.5;
+        if (window.scrollY > section2Open.current) {
           section2.style.position = 'fixed'
             ? ''
             : (section2.style.position = 'fixed') &&
@@ -746,36 +452,37 @@ export default function Home() {
           section2.style.left = '0';
           h3[0].style.transform = 'translateX(0)';
           h3[1].style.transform = 'translateX(0)';
-          if (window.scrollY > section2Open + 0.02 * home.offsetHeight) {
+          if (window.scrollY > section2Open.current + 0.02 * home.offsetHeight) {
             h3[0].style.top = `-40%`;
             h3[1].style.bottom = `-40%`;
             if (
-              window.scrollY > section2Open + 0.02 * home.offsetHeight &&
-              window.scrollY < section2Open + 0.025 * home.offsetHeight
+              window.scrollY > section2Open.current + 0.02 * home.offsetHeight &&
+              window.scrollY < section2Open.current + 0.025 * home.offsetHeight
             ) {
               h4Center.style.opacity = 0;
               h4Center.style.scale = 0;
             } else if (
-              window.scrollY > section2Open + 0.025 * home.offsetHeight &&
-              window.scrollY < section2Open + 0.15 * home.offsetHeight
+              window.scrollY > section2Open.current + 0.025 * home.offsetHeight &&
+              window.scrollY < section2Open.current + 0.15 * home.offsetHeight
             ) {
+              
               let distanceToScale =
-                section2Open +
+                section2Open.current +
                 0.15 * home.offsetHeight -
-                (section2Open + 0.025 * home.offsetHeight);
+                (section2Open.current + 0.025 * home.offsetHeight);
               if (browserName !== 'firefox') {
                 setTimeout(() => {
                   h4Center.style.scale = `${
                     (window.scrollY +
                       distanceToScale -
-                      (section2Open + 0.15 * home.offsetHeight)) /
+                      (section2Open.current + 0.15 * home.offsetHeight)) /
                     distanceToScale
                   }`;
 
                   h4Center.style.opacity = `${
                     (window.scrollY +
                       distanceToScale -
-                      (section2Open + 0.15 * home.offsetHeight)) /
+                      (section2Open.current + 0.15 * home.offsetHeight)) /
                     distanceToScale
                   }`;
                 }, 10);
@@ -783,70 +490,25 @@ export default function Home() {
                 h4Center.style.scale = `${
                   (window.scrollY +
                     distanceToScale -
-                    (section2Open + 0.15 * home.offsetHeight)) /
+                    (section2Open.current + 0.15 * home.offsetHeight)) /
                   distanceToScale
                 }`;
 
                 h4Center.style.opacity = `${
                   (window.scrollY +
                     distanceToScale -
-                    (section2Open + 0.15 * home.offsetHeight)) /
+                    (section2Open.current + 0.15 * home.offsetHeight)) /
                   distanceToScale
                 }`;
               }
-              centerContentSection2.scrollLeft = 0;
-            } else if (
-              window.scrollY > section2Open + 0.15 * home.offsetHeight &&
-              window.scrollY < section2Open + 0.3 * home.offsetHeight
-            ) {
-              let distanceToTranslate =
-                section2Open +
-                0.3 * home.offsetHeight -
-                (section2Open + 0.15 * home.offsetHeight);
-              coeffSizing.current = window.innerWidth / homeWidth.current;
-
-              // 125 = 125 % of inner width because the image slider component start from a 125% left position
-              let distanceInPourcent = 125 / distanceToTranslate;
-              if (browserName === 'firefox') {
-                h4Center.style.transform = `translate(${
-                  -50 -
-                  (window.scrollY - (section2Open + 0.15 * home.offsetHeight)) *
-                    distanceInPourcent
-                }%, -50%)`;
-
-                imageSlider.style.transform = `translate(${
-                  (-(
-                    window.scrollY -
-                    (section2Open + 0.15 * home.offsetHeight)
-                  ) *
-                    distanceInPourcent) /
-                  8
-                }%, 0%)`;
-              } else {
-                // clearTimeout(timer);
-
-                setTimeout(() => {
-                  h4Center.style.transform = `translate(${
-                    -50 -
-                    (window.scrollY -
-                      (section2Open + 0.15 * home.offsetHeight)) *
-                      distanceInPourcent
-                  }%, -50%)`;
-
-                  imageSlider.style.transform = `translate(${
-                    (-(
-                      window.scrollY -
-                      (section2Open + 0.15 * home.offsetHeight)
-                    ) *
-                      distanceInPourcent) /
-                    8
-                  }%, 0%)`;
-                }, 5);
-              }
-            } else if (
-              window.scrollY > section2Open + 0.3 * home.offsetHeight &&
-              window.scrollY < section2Open + 0.9 * home.offsetHeight
-            ) {
+              
+              h4Center.style.transition = ''
+             
+         
+            }  else if (
+              window.scrollY > section2Open.current + 0.15 * home.offsetHeight &&
+              window.scrollY < section2Open.current + 0.9 * home.offsetHeight
+            ) { 
               window.clearTimeout(isScrolling);
               for (let i = 0; i < figures.length; i++) {
                 figures[i].style.scale = `0.75`;
@@ -857,91 +519,32 @@ export default function Home() {
                   figures[i].style.scale = `1`;
                 }
               }, 300);
-              let distanceToTranslate =
-                section2Open +
-                0.9 * home.offsetHeight -
-                (section2Open + 0.3 * home.offsetHeight);
-              // THIS CODE BELOW IS ABOUT IMAGE SLIDER  SCROLLING TO LEFT EFFECT ! BUT !  WITH  PROBLEMS BECAUSE OF WINDOW.SCROLLY NOT SCROLLING SMOOTHLY AND JUMPING
-              //  clearTimeout(timer);
-              //               timer =
-              //               setTimeout(() => {
-              //               centerContentSection2.scrollLeft = `${
-              //                 -(windowWidth * coeffSizing.current) * 8 +
-              //                 ((window.scrollY +
-              //                   distanceToTranslate -
-              //                   (section2Open + 0.3 * home.offsetHeight)) /
-              //                   distanceToTranslate) *
-              //                   (windowWidth * coeffSizing.current) *
-              //                   8
-              //               } `;
-              // centerContentSection2.scrollTop = 0;
-              // for (let i = 0; i < figcaptions.length; i++) {
-              //   figcaptions[i].style.transform = `translateY(${
-              //     (figures[i].getBoundingClientRect().right /
-              //       figures[i].getBoundingClientRect().width) *
-              //     100
-              //   }%)`;
-              // }
-              // }, 5);
-
-              // THIS CODE BELOW IS ABOUT IMAGE SLIDER  SCROLLING TO LEFT EFFECT ! BUT !  WITH TRANSLATE IN ORDER TO SOLVE JUMPING PROBLEMS
-
-              if (browserName !== 'firefox') {
-                // clearTimeout(timer);
-                // timer =
-                setTimeout(() => {
-                  imageSlider.style.transform = `translateX(calc(${
-                    -1.25 * window.innerWidth
-                  }px - ${
-                    -window.innerWidth * 6.95 +
-                    ((window.scrollY +
-                      distanceToTranslate -
-                      (section2Open + 0.3 * home.offsetHeight)) /
-                      distanceToTranslate) *
-                      window.innerWidth *
-                      6.95
-                  }px))`;
-                  centerContentSection2.scrollTop = 0;
+              
+                
                   for (let i = 0; i < figcaptions.length; i++) {
+                    let calcul = (figures[i].getBoundingClientRect().right /
+                    figureWidth) *
+                  100
+                  if(figures[i].getBoundingClientRect().right > - (figureWidth/2) &&  figures[i].getBoundingClientRect().right < 1.5*figureWidth){
                     figcaptions[i].style.transform = `translateY(${
-                      (figures[i].getBoundingClientRect().right /
-                        figures[i].getBoundingClientRect().width) *
-                      100
+                      calcul 
                     }%)`;
                   }
-                }, 5);
-              } else {
-                imageSlider.style.transform = `translateX(calc(${
-                  -1.25 * window.innerWidth
-                }px - ${
-                  -window.innerWidth * 6.95 +
-                  ((window.scrollY +
-                    distanceToTranslate -
-                    (section2Open + 0.3 * home.offsetHeight)) /
-                    distanceToTranslate) *
-                    window.innerWidth *
-                    6.95
-                }px))`;
-                centerContentSection2.scrollTop = 0;
-                for (let i = 0; i < figcaptions.length; i++) {
-                  figcaptions[i].style.transform = `translateY(${
-                    (figures[i].getBoundingClientRect().right /
-                      figures[i].getBoundingClientRect().width) *
-                    100
-                  }%)`;
-                }
-              }
-              centerContentSection2.style.opacity = '1';
+                 
+                  }
+               
+          
+              h4Center.style.transition = '2s'
+              h4Center.style.opacity = '0.1';
             } else {
-              centerContentSection2.style.opacity = '0.05';
+              h4Center.style.transition = '1s'
+              h4Center.style.opacity = '0.01';
               coeffSizing.current = window.innerWidth / homeWidth.current;
-              // centerContentSection2.scrollLeft = 8 * window.innerWidth;
-              imageSlider.style.transform = `translateX(-${
-                8.15 * window.innerWidth
-              }px)`;
+
             }
           } else {
             h3[0].style.top = `0`;
+           
             h3[1].style.bottom = `0`;
           }
         } else {
@@ -952,11 +555,31 @@ export default function Home() {
           section2.style.left = '0';
         }
       }
-    }
+  }
+ 
+window.addEventListener('scroll', updateTransitions);
+
+
+
+
+  // Suppression de l'écouteur d'événement lors du démontage du composant
+  return () => {
+    window.removeEventListener('scroll', updateTransitions);
   };
+}, [])
+
+
+
+
+
+
+
+
 
   return (
-    <div className='Home'>
+    <div
+    //  key={refreshKey} 
+     className='Home'>
       <header translate='no'>
         <h1 translate='no' style={menuIsItOpenedStyle}>
           <span data-data={'R'}>r</span>
@@ -981,7 +604,7 @@ export default function Home() {
         <Nav hideFor3dOpening={hideFor3dOpening} visibility={visibility} />
       </header>
       <main style={menuIsItOpenedStyle}>
-        <section style={menuIsItOpenedStyle}>
+        <section className='section1' style={menuIsItOpenedStyle}>
           <h2 className='welcomeH2'>
             <span className='welcomeSpan' data-welcome='salut !'>
               salut !
@@ -1113,32 +736,32 @@ export default function Home() {
             </h4>
             <div className='imageSlider'>
               <figure data-img={`recherche`} className='imgGallery1'>
-                <img id='imgGallery1' src={imgAliment1} alt='imgGallery1' />
+                <img id='imgGallery1' src={imgAliment1} alt='imgGallery1' loading="eager" />
                 <figcaption>aliment studio</figcaption>
               </figure>
               <figure data-img={`réglages`} className='imgGallery2'>
-                <img id='imgGallery2' src={imgAliment2} alt='imgGallery2' />
+                <img id='imgGallery2' src={imgAliment2} alt='imgGallery2' loading="eager" />
                 <figcaption>aliment studio</figcaption>
               </figure>
               <figure data-img={`recherche`} className='imgGallery3'>
-                <img id='imgGallery3' src={imgRecettes1} alt='imgGallery3' />
+                <img id='imgGallery3' src={imgRecettes1} alt='imgGallery3' loading="eager" />
                 <figcaption>recipe studio</figcaption>
               </figure>
               <figure
                 data-img={`équilibre énergétique`}
                 className='imgGallery4'>
-                <img id='imgGallery4' src={imgRecettes2} alt='imgGallery4' />
+                <img id='imgGallery4' src={imgRecettes2} alt='imgGallery4' loading="eager" />
                 <figcaption>recipe studio</figcaption>
               </figure>
               <figure data-img={`instructions`} className='imgGallery5'>
-                <img id='imgGallery5' src={imgRecettes3} alt='imgGallery5' />
+                <img id='imgGallery5' src={imgRecettes3} alt='imgGallery5' loading="eager" />
                 <figcaption>recipe studio</figcaption>
               </figure>
               <figure data-img={`recherche`} className='imgGallery6'>
                 <img
                   id='imgGallery6'
                   src={imgRecettesBook1}
-                  alt='imgGallery6'
+                  alt='imgGallery6' loading="eager"
                 />
                 <figcaption>recipe book</figcaption>
               </figure>
@@ -1146,7 +769,7 @@ export default function Home() {
                 <img
                   id='imgGallery7'
                   src={imgRecettesBook2}
-                  alt='imgGallery7'
+                  alt='imgGallery7' loading="eager"
                 />
                 <figcaption>recipe book</figcaption>
               </figure>
@@ -1154,7 +777,7 @@ export default function Home() {
                 <img
                   id='imgGallery8'
                   src={imgRecettesBook3}
-                  alt='imgGallery8'
+                  alt='imgGallery8' loading="eager"
                 />
                 <figcaption>recipe book</figcaption>
               </figure>
